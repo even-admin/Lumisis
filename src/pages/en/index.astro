@@ -5,6 +5,7 @@ import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import Button from '@/components/ui/Button.astro';
 import { Globe } from '@/components/islands/Globe';
+import { AnimatedNumber } from '@/components/islands/AnimatedNumber';
 import { SERVICES, prefixBase, GLOBE_PINS } from '@/lib/constants';
 import { heroHomeAlt, CLIENT_LOGOS, SERVICE_IMAGES } from '@/lib/images';
 
@@ -98,16 +99,24 @@ const services = SERVICES.en;
   <Section bg="dark">
     <Container>
       <div class="grid gap-8 text-center md:grid-cols-3">
-        {[
-          { value: '+0', label: 'Companies' },
-          { value: '+0k', label: 'Impacted Executives' },
-          { value: '+0', label: 'Countries' },
-        ].map((stat) => (
-          <div>
-            <p class="font-display text-5xl">{stat.value}</p>
-            <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">{stat.label}</p>
-          </div>
-        ))}
+        <div>
+          <p class="font-display text-5xl">
+            <AnimatedNumber client:visible end={800} prefix="+" />
+          </p>
+          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Companies</p>
+        </div>
+        <div>
+          <p class="font-display text-5xl">
+            <AnimatedNumber client:visible end={100} prefix="+" suffix="k" />
+          </p>
+          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Impacted Executives</p>
+        </div>
+        <div>
+          <p class="font-display text-5xl">
+            <AnimatedNumber client:visible end={33} prefix="+" />
+          </p>
+          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Countries</p>
+        </div>
       </div>
     </Container>
   </Section>
@@ -142,7 +151,7 @@ const services = SERVICES.en;
           return (
             <a
               href={prefixBase(`/en/solutions/${service.slug}`)}
-              class="group relative block aspect-[4/3] overflow-hidden bg-gray-200 no-underline"
+              class="service-card group"
             >
               {img && (
                 <Image
@@ -150,13 +159,13 @@ const services = SERVICES.en;
                   alt={service.title}
                   width={800}
                   quality={80}
-                  class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  class="service-card__img"
                 />
               )}
-              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              <div class="absolute bottom-0 left-0 p-6">
-                <h3 class="text-xl text-white">{service.title}</h3>
-                <span class="mt-2 inline-block text-xs font-semibold tracking-widest uppercase text-white/70 transition-colors group-hover:text-white">
+              <div class="service-card__overlay" />
+              <div class="service-card__content">
+                <h3 class="service-card__title">{service.title}</h3>
+                <span class="service-card__cta">
                   Explore →
                 </span>
               </div>

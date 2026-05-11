@@ -1,7 +1,9 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import { getLocaleFromUrl, getTranslatedPath } from '@/i18n/utils';
 import { SITE } from '@/lib/constants';
+import Preloader from '@/components/Preloader.astro';
 
 interface Props {
   title: string;
@@ -37,6 +39,8 @@ const alternateUrl = new URL(alternatePath, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={locale === 'es' ? 'es_MX' : 'en_US'} />
+    <meta property="og:locale:alternate" content={alternateLocale === 'es' ? 'es_MX' : 'en_US'} />
     {ogImage && <meta property="og:image" content={ogImage} />}
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -45,9 +49,72 @@ const alternateUrl = new URL(alternatePath, Astro.site);
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <ClientRouter />
+
     <slot name="head" />
   </head>
   <body class="font-body text-brand-black antialiased">
+    <Preloader />
     <slot />
+
+    <script>
+      import Lenis from 'lenis';
+
+      function initLenis() {
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) return;
+
+        const lenis = new Lenis({
+          lerp: 0.1,
+          smoothWheel: true,
+        });
+
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Re-init on View Transition navigation
+        document.addEventListener('astro:after-swap', () => {
+          lenis.scrollTo(0, { immediate: true });
+        });
+      }
+
+      function initReveals() {
+        const revealEls = document.querySelectorAll('[data-reveal]');
+        if (!revealEls.length) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const el = entry.target as HTMLElement;
+                el.classList.add('revealed');
+                observer.unobserve(el);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+        );
+
+        revealEls.forEach((el) => {
+          const htmlEl = el as HTMLElement;
+          if (htmlEl.dataset.revealDelay) {
+            htmlEl.style.transitionDelay = `${htmlEl.dataset.revealDelay}ms`;
+          }
+          observer.observe(el);
+        });
+      }
+
+      // Run on initial load
+      initLenis();
+      initReveals();
+
+      // Re-run reveals after View Transition navigation
+      document.addEventListener('astro:page-load', () => {
+        initReveals();
+      });
+    </script>
   </body>
 </html>

@@ -5,6 +5,7 @@ import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import Button from '@/components/ui/Button.astro';
 import { Globe } from '@/components/islands/Globe';
+import { AnimatedNumber } from '@/components/islands/AnimatedNumber';
 import { GLOBE_PINS } from '@/lib/constants';
 import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/images';
 ---
@@ -107,16 +108,24 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
     <Container>
       <p class="eyebrow mb-8 text-gray-400">We Create an Echo</p>
       <div class="grid gap-8 text-center md:grid-cols-3">
-        {[
-          { value: '+0k', label: 'Workshops' },
-          { value: '+0k', label: 'Talent Release Hours' },
-          { value: '+0', label: 'Conferences' },
-        ].map((stat) => (
-          <div>
-            <p class="font-display text-5xl text-white">{stat.value}</p>
-            <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">{stat.label}</p>
-          </div>
-        ))}
+        <div>
+          <p class="font-display text-5xl text-white">
+            <AnimatedNumber client:visible end={5} prefix="+" suffix="k" />
+          </p>
+          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Workshops</p>
+        </div>
+        <div>
+          <p class="font-display text-5xl text-white">
+            <AnimatedNumber client:visible end={50} prefix="+" suffix="k" />
+          </p>
+          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Talent Release Hours</p>
+        </div>
+        <div>
+          <p class="font-display text-5xl text-white">
+            <AnimatedNumber client:visible end={400} prefix="+" />
+          </p>
+          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Conferences</p>
+        </div>
       </div>
     </Container>
   </Section>
