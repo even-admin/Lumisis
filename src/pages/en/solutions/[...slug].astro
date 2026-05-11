@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from 'astro:content';
+import ServiceLayout from '@/layouts/ServiceLayout.astro';
+
+export async function getStaticPaths() {
+  const allServices = await getCollection('services');
+  const enServices = allServices.filter((s) => s.data.lang === 'en');
+
+  return enServices.map((service) => {
+    const related = service.data.relatedServices
+      .map((slug) => enServices.find((s) => s.id.replace('en/', '') === `${slug}.mdx`))
+      .filter(Boolean)
+      .map((s) => ({ title: s!.data.title, slug: s!.id.replace('en/', '').replace('.mdx', '') }));
+
+    return {
+      params: { slug: service.id.replace('en/', '').replace('.mdx', '') },
+      props: { service, relatedServices: related },
+    };
+  });
+}
+
+const { service, relatedServices } = Astro.props;
+const { Content } = await render(service);
+---
+
+<ServiceLayout
+  title={service.data.title}
+  description={service.data.description}
+  lang="en"
+  relatedServices={relatedServices}
+>
+  <Content />
+</ServiceLayout>
