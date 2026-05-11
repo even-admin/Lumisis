@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+
+# Source assets too large for git
+BRANDING/
+MEDIA/
+
+# Editor
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.*
+
+# OS
+Thumbs.db
