@@ -1,0 +1,114 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/layout/Container.astro';
+import Section from '@/components/layout/Section.astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<PageLayout title="¿Por Qué Nosotros? — LUMISIS" description="Intención, propósito y resultados sin precedentes. Descubre por qué las empresas eligen LUMISIS.">
+  {/* Hero */}
+  <section class="flex min-h-[60vh] items-end bg-gray-900 pb-16 text-white">
+    <Container>
+      <h1 class="text-4xl md:text-5xl text-white">
+        Resonant Strategic<br />Breakthroughs
+      </h1>
+    </Container>
+  </section>
+
+  {/* Three Principles */}
+  <Section>
+    <Container>
+      <div class="grid gap-16 md:grid-cols-3">
+        <div>
+          <p class="eyebrow mb-4">01</p>
+          <h3>The Power of Intention</h3>
+          <p class="mt-4 text-gray-600">
+            We ensure that every intervention is not just active, but purposeful. Creating a powerful, positive echo that extends beyond the boardroom to impact your organization, your people, and the planet.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4">02</p>
+          <h3>A Definitive Turning Point</h3>
+          <p class="mt-4 text-gray-600">
+            We aim for breakthroughs. Our goal is to generate unprecedented results that serve as a true turning point — a moment that participants profoundly recognize as a clear "before and after."
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4">03</p>
+          <h3>The Echo</h3>
+          <p class="mt-4 text-gray-600">
+            We do not believe in isolated actions. Everything we do is designed to be resonant. We ensure that our work vibrates with purpose long after the engagement ends.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  {/* Partners */}
+  <div class="border-y border-gray-200 py-12">
+    <Container>
+      <div class="flex items-center justify-center gap-12 opacity-50">
+        <span class="text-xs tracking-widest uppercase text-gray-400">Our Partners</span>
+      </div>
+    </Container>
+  </div>
+
+  {/* Leadership Team */}
+  <Section>
+    <Container>
+      <p class="eyebrow mb-4">Experts</p>
+      <h2 class="mb-4 text-3xl md:text-4xl">Leadership Team</h2>
+      <p class="mb-12 max-w-xl text-gray-600">
+        Our approach is defined by deep thoughtfulness, rigorous planning, and a strategic mindset.
+      </p>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+        {[
+          'Amenoffis Acosta',
+          'Rosa Villa',
+          'Gabriel Mijares',
+          'Victor Zorrilla',
+          'Juan Benitez',
+        ].map((name) => (
+          <div class="text-center">
+            <div class="mx-auto aspect-square w-full max-w-[200px] bg-gray-200" />
+            <p class="mt-4 font-medium">{name}</p>
+            <p class="text-sm text-gray-500">Title pending</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* Stats */}
+  <Section bg="dark">
+    <Container>
+      <p class="eyebrow mb-8 text-gray-400">We Create an Echo</p>
+      <div class="grid gap-8 text-center md:grid-cols-3">
+        {[
+          { value: '+0k', label: 'Workshops' },
+          { value: '+0k', label: 'Talent Release Hours' },
+          { value: '+0', label: 'Conferences' },
+        ].map((stat) => (
+          <div>
+            <p class="font-display text-5xl text-white">{stat.value}</p>
+            <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* Footprint */}
+  <Section>
+    <Container narrow>
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl">Our Footprint</h2>
+        <p class="mx-auto mt-6 text-gray-600">
+          At LUMISIS Group, we address challenges with a global mindset. We have developed projects in more than <strong>47 countries</strong> spread across <strong>7 continents.</strong>
+        </p>
+        <div class="mx-auto mt-12 aspect-[2/1] max-w-3xl bg-gray-100" />
+      </div>
+    </Container>
+  </Section>
+</PageLayout>
