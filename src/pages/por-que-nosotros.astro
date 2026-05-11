@@ -1,15 +1,27 @@
 ---
+import { Image } from 'astro:assets';
 import PageLayout from '@/layouts/PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import Button from '@/components/ui/Button.astro';
+import { Globe } from '@/components/islands/Globe';
+import { GLOBE_PINS } from '@/lib/constants';
+import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/images';
 ---
 
 <PageLayout title="¿Por Qué Nosotros? — LUMISIS" description="Intención, propósito y resultados sin precedentes. Descubre por qué las empresas eligen LUMISIS.">
   {/* Hero */}
-  <section class="flex min-h-[60vh] items-end bg-gray-900 pb-16 text-white">
+  <section class="relative flex min-h-[60vh] items-end overflow-hidden pb-16 text-white">
+    <Image
+      src={heroWhyUs}
+      alt=""
+      width={1920}
+      quality={80}
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <div class="absolute inset-0 bg-black/50" />
     <Container>
-      <h1 class="text-4xl md:text-5xl text-white">
+      <h1 class="relative text-4xl md:text-5xl text-white">
         Resonant Strategic<br />Breakthroughs
       </h1>
     </Container>
@@ -47,8 +59,16 @@ import Button from '@/components/ui/Button.astro';
   {/* Partners */}
   <div class="border-y border-gray-200 py-12">
     <Container>
-      <div class="flex items-center justify-center gap-12 opacity-50">
-        <span class="text-xs tracking-widest uppercase text-gray-400">Our Partners</span>
+      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+        {PARTNER_LOGOS.map((logo, i) => (
+          <Image
+            src={logo}
+            alt={`Partner ${i + 1}`}
+            height={32}
+            quality={85}
+            class="h-8 w-auto opacity-50 grayscale transition-opacity hover:opacity-80"
+          />
+        ))}
       </div>
     </Container>
   </div>
@@ -63,17 +83,19 @@ import Button from '@/components/ui/Button.astro';
       </p>
 
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
-        {[
-          'Amenoffis Acosta',
-          'Rosa Villa',
-          'Gabriel Mijares',
-          'Victor Zorrilla',
-          'Juan Benitez',
-        ].map((name) => (
+        {TEAM_MEMBERS.map((member) => (
           <div class="text-center">
-            <div class="mx-auto aspect-square w-full max-w-[200px] bg-gray-200" />
-            <p class="mt-4 font-medium">{name}</p>
-            <p class="text-sm text-gray-500">Title pending</p>
+            <div class="mx-auto aspect-square w-full max-w-[200px] overflow-hidden">
+              <Image
+                src={member.image}
+                alt={member.name}
+                width={400}
+                quality={85}
+                class="h-full w-full object-cover"
+              />
+            </div>
+            <p class="mt-4 font-medium">{member.name}</p>
+            <p class="text-sm text-gray-500">{member.title}</p>
           </div>
         ))}
       </div>
@@ -99,15 +121,26 @@ import Button from '@/components/ui/Button.astro';
     </Container>
   </Section>
 
-  {/* Footprint */}
-  <Section>
+  {/* Footprint / Globe */}
+  <Section bg="dark">
     <Container narrow>
       <div class="text-center">
-        <h2 class="text-3xl md:text-4xl">Our Footprint</h2>
-        <p class="mx-auto mt-6 text-gray-600">
-          At LUMISIS Group, we address challenges with a global mindset. We have developed projects in more than <strong>47 countries</strong> spread across <strong>7 continents.</strong>
+        <h2 class="text-3xl md:text-4xl text-white">Our Footprint</h2>
+        <p class="mx-auto mt-6 text-gray-400">
+          At LUMISIS Group, we address challenges with a global mindset. We have developed projects in more than <strong class="text-white">47 countries</strong> spread across <strong class="text-white">7 continents.</strong>
         </p>
-        <div class="mx-auto mt-12 aspect-[2/1] max-w-3xl bg-gray-100" />
+        <div class="mx-auto mt-8 aspect-square max-w-[600px]">
+          <Globe client:visible pins={GLOBE_PINS} />
+        </div>
+        <noscript>
+          <Image
+            src={footprintMap}
+            alt="LUMISIS global footprint — 47 countries, 7 continents"
+            width={1200}
+            quality={85}
+            class="mx-auto mt-12"
+          />
+        </noscript>
       </div>
     </Container>
   </Section>

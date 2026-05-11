@@ -56,4 +56,8 @@ export const SERVICES = {
   ],
 } as const;
 
+export const GLOBE_PINS = [
+  { name: 'LUMISIS HQ', address: 'Mérida, Yucatán, México', lon: -89.6253, lat: 20.9674 },
+];
+
 export { b as prefixBase };

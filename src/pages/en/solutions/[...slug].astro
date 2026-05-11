@@ -26,6 +26,7 @@ const { Content } = await render(service);
 <ServiceLayout
   title={service.data.title}
   description={service.data.description}
+  slug={service.id.replace('en/', '').replace('.mdx', '')}
   lang="en"
   relatedServices={relatedServices}
 >

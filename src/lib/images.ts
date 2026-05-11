@@ -1,0 +1,81 @@
+import heroHome from '@/assets/hero/home-hero-face-with-sunlight.jpg';
+import heroHomeAlt from '@/assets/hero/home-hero-alt.jpg';
+import heroWhyUs from '@/assets/hero/why-us-hero-hands-fireball.jpg';
+import heroSolutions from '@/assets/hero/solutions-hub-hero.png';
+import heroStrategicPlanning from '@/assets/hero/strategic-planning-detail-hero.png';
+
+import serviceStrategicPlanning from '@/assets/services/strategic-planning-1.png';
+import serviceStrategicOffsite from '@/assets/services/strategic-offsite.jpg';
+import serviceCultureEvolution from '@/assets/services/culture-evolution.jpg';
+import serviceLeadershipPrograms from '@/assets/services/leadership-programs.jpg';
+import serviceExecutiveCoaching from '@/assets/services/executive-coaching.jpg';
+import serviceFamilyBusiness from '@/assets/services/family-business.jpg';
+
+import teamAmenoffis from '@/assets/team/amenoffis-acosta.png';
+import teamRosa from '@/assets/team/rosa-villa.png';
+import teamGabriel from '@/assets/team/gabriel-mijares.png';
+import teamVictor from '@/assets/team/victor-zorrilla.png';
+import teamJuan from '@/assets/team/juan-benitez.png';
+
+import client1 from '@/assets/logos/clients/home-client-1.jpg';
+import client2 from '@/assets/logos/clients/home-client-2.png';
+import client3 from '@/assets/logos/clients/home-client-3.png';
+import client4 from '@/assets/logos/clients/home-client-4.png';
+import client5 from '@/assets/logos/clients/home-client-5.png';
+
+import partner1 from '@/assets/logos/partners/partner-1.png';
+import partner2 from '@/assets/logos/partners/partner-2.png';
+import partner3 from '@/assets/logos/partners/partner-3.png';
+import partner4 from '@/assets/logos/partners/partner-4.png';
+import partner5 from '@/assets/logos/partners/partner-5.png';
+import partner6 from '@/assets/logos/partners/partner-6.png';
+
+import footprintMap from '@/assets/map/footprint-world-map.png';
+
+export {
+  heroHome,
+  heroHomeAlt,
+  heroWhyUs,
+  heroSolutions,
+  heroStrategicPlanning,
+  serviceStrategicPlanning,
+  serviceStrategicOffsite,
+  serviceCultureEvolution,
+  serviceLeadershipPrograms,
+  serviceExecutiveCoaching,
+  serviceFamilyBusiness,
+  teamAmenoffis,
+  teamRosa,
+  teamGabriel,
+  teamVictor,
+  teamJuan,
+  client1, client2, client3, client4, client5,
+  partner1, partner2, partner3, partner4, partner5, partner6,
+  footprintMap,
+};
+
+export const CLIENT_LOGOS = [client1, client2, client3, client4, client5];
+export const PARTNER_LOGOS = [partner1, partner2, partner3, partner4, partner5, partner6];
+
+export const TEAM_MEMBERS = [
+  { name: 'Amenoffis Acosta', title: 'Title pending', image: teamAmenoffis },
+  { name: 'Rosa Villa', title: 'Title pending', image: teamRosa },
+  { name: 'Gabriel Mijares', title: 'Title pending', image: teamGabriel },
+  { name: 'Victor Zorrilla', title: 'Title pending', image: teamVictor },
+  { name: 'Juan Benitez', title: 'Title pending', image: teamJuan },
+];
+
+export const SERVICE_IMAGES: Record<string, ImageMetadata> = {
+  'planeacion-estrategica': serviceStrategicPlanning,
+  'strategic-planning': serviceStrategicPlanning,
+  'offsite-estrategico': serviceStrategicOffsite,
+  'strategic-offsite': serviceStrategicOffsite,
+  'evolucion-cultural': serviceCultureEvolution,
+  'culture-evolution': serviceCultureEvolution,
+  'programas-de-liderazgo': serviceLeadershipPrograms,
+  'leadership-programs': serviceLeadershipPrograms,
+  'coaching-ejecutivo': serviceExecutiveCoaching,
+  'executive-coaching': serviceExecutiveCoaching,
+  'evolucion-empresa-familiar': serviceFamilyBusiness,
+  'family-business-evolution': serviceFamilyBusiness,
+};
