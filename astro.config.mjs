@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://even-admin.github.io',
-  base: '/LUMISIS',
+  base: '/Lumisis',
 
   i18n: {
     defaultLocale: 'es',
