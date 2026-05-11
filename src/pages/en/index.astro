@@ -3,7 +3,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import Button from '@/components/ui/Button.astro';
-import { SERVICES } from '@/lib/constants';
+import { SERVICES, prefixBase } from '@/lib/constants';
 
 const services = SERVICES.en;
 ---
@@ -105,7 +105,7 @@ const services = SERVICES.en;
           Has an echo and a powerful impact on organizations, people and the planet.
         </p>
         <div class="mt-8">
-          <Button href="/en/why-us" variant="secondary">Discover More</Button>
+          <Button href={prefixBase('/en/why-us')} variant="secondary">Discover More</Button>
         </div>
       </div>
     </Container>
@@ -120,7 +120,7 @@ const services = SERVICES.en;
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (
           <a
-            href={`/en/solutions/${service.slug}`}
+            href={prefixBase(`/en/solutions/${service.slug}`)}
             class="group relative block aspect-[4/3] overflow-hidden bg-gray-200 no-underline"
           >
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
@@ -146,7 +146,7 @@ const services = SERVICES.en;
           We ensure yours resonates with purpose, creating a lasting impact on your organization and the world.
         </p>
         <div class="mt-8">
-          <Button href="/en/contact">Contact Us</Button>
+          <Button href={prefixBase('/en/contact')}>Contact Us</Button>
         </div>
       </div>
     </Container>

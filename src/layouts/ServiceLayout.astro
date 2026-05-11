@@ -3,6 +3,7 @@ import PageLayout from './PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import Button from '@/components/ui/Button.astro';
+import { prefixBase } from '@/lib/constants';
 
 interface Props {
   title: string;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const { title, description, lang, relatedServices } = Astro.props;
-const solutionsBase = lang === 'es' ? '/soluciones' : '/en/solutions';
+const solutionsBase = prefixBase(lang === 'es' ? '/soluciones' : '/en/solutions');
 const solutionsLabel = lang === 'es' ? 'Soluciones en Movimiento' : 'Solutions in Motion';
 const backLabel = lang === 'es' ? '← Todas las soluciones' : '← All solutions';
 ---

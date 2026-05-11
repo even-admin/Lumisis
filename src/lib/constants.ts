@@ -1,3 +1,11 @@
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function b(path: string): string {
+  if (!BASE) return path;
+  if (path === '/') return `${BASE}/`;
+  return `${BASE}${path}`;
+}
+
 export const SITE = {
   name: 'LUMISIS',
   tagline: 'Strategy | Consulting | Coaching',
@@ -10,16 +18,16 @@ export const SITE = {
 
 export const NAV_ITEMS = {
   es: [
-    { label: 'Inicio', href: '/' },
-    { label: '¿Por Qué Nosotros?', href: '/por-que-nosotros' },
-    { label: 'Soluciones', href: '/soluciones' },
-    { label: 'Contacto', href: '/contacto' },
+    { label: 'Inicio', href: b('/') },
+    { label: '¿Por Qué Nosotros?', href: b('/por-que-nosotros') },
+    { label: 'Soluciones', href: b('/soluciones') },
+    { label: 'Contacto', href: b('/contacto') },
   ],
   en: [
-    { label: 'Home', href: '/en/' },
-    { label: 'Why Us?', href: '/en/why-us' },
-    { label: 'Solutions', href: '/en/solutions' },
-    { label: 'Contact', href: '/en/contact' },
+    { label: 'Home', href: b('/en/') },
+    { label: 'Why Us?', href: b('/en/why-us') },
+    { label: 'Solutions', href: b('/en/solutions') },
+    { label: 'Contact', href: b('/en/contact') },
   ],
 } as const;
 
@@ -47,3 +55,5 @@ export const SERVICES = {
     { title: 'Family Business Evolution', slug: 'family-business-evolution' },
   ],
 } as const;
+
+export { b as prefixBase };

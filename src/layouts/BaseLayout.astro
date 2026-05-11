@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { getLocaleFromUrl } from '@/i18n/utils';
+import { getLocaleFromUrl, getTranslatedPath } from '@/i18n/utils';
 import { SITE } from '@/lib/constants';
 
 interface Props {
@@ -12,6 +12,9 @@ interface Props {
 const locale = getLocaleFromUrl(Astro.url);
 const { title, description = SITE.description[locale], ogImage } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const alternatePath = getTranslatedPath(Astro.url.pathname);
+const alternateLocale = locale === 'es' ? 'en' : 'es';
+const alternateUrl = new URL(alternatePath, Astro.site);
 ---
 
 <!doctype html>
@@ -24,6 +27,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="alternate" hreflang={locale} href={canonicalUrl} />
+    <link rel="alternate" hreflang={alternateLocale} href={alternateUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />

@@ -2,7 +2,7 @@
 import PageLayout from '@/layouts/PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
-import { SERVICES } from '@/lib/constants';
+import { SERVICES, prefixBase } from '@/lib/constants';
 
 const services = SERVICES.en;
 ---
@@ -19,7 +19,7 @@ const services = SERVICES.en;
     <Container>
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (
-          <a href={`/en/solutions/${service.slug}`} class="group relative block aspect-[4/3] overflow-hidden bg-gray-200 no-underline">
+          <a href={prefixBase(`/en/solutions/${service.slug}`)} class="group relative block aspect-[4/3] overflow-hidden bg-gray-200 no-underline">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <div class="absolute bottom-0 left-0 p-6">
               <h2 class="text-xl text-white">{service.title}</h2>

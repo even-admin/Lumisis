@@ -1,5 +1,5 @@
 ---
-import { NAV_ITEMS } from '@/lib/constants';
+import { NAV_ITEMS, prefixBase } from '@/lib/constants';
 import { getLocaleFromUrl, getTranslatedPath } from '@/i18n/utils';
 import { ui } from '@/i18n/ui';
 
@@ -8,12 +8,13 @@ const navItems = NAV_ITEMS[locale];
 const alternatePath = getTranslatedPath(Astro.url.pathname);
 const switchLabel = ui[locale]['lang.switch'];
 const switchAriaLabel = ui[locale]['lang.label'];
+const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
 ---
 
 <header class="fixed top-0 z-50 w-full">
   <div class="bg-white/90 backdrop-blur-md border-b border-gray-200/60">
     <nav class="mx-auto flex max-w-[80rem] items-center justify-between px-6 py-4 md:px-8" aria-label="Main navigation">
-      <a href={locale === 'es' ? '/' : '/en/'} class="text-xl font-bold tracking-wider no-underline text-brand-black">
+      <a href={homeHref} class="text-xl font-bold tracking-wider no-underline text-brand-black">
         LUMISIS
       </a>
 
@@ -53,7 +54,7 @@ const switchAriaLabel = ui[locale]['lang.label'];
     class="hidden fixed inset-0 z-50 bg-white md:hidden"
   >
     <div class="flex items-center justify-between px-6 py-4">
-      <a href={locale === 'es' ? '/' : '/en/'} class="text-xl font-bold tracking-wider no-underline text-brand-black">
+      <a href={homeHref} class="text-xl font-bold tracking-wider no-underline text-brand-black">
         LUMISIS
       </a>
       <button

@@ -1,7 +1,23 @@
 import { ui, type Locale, type UIKey } from './ui';
 
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+export function stripBase(pathname: string): string {
+  if (BASE && pathname.startsWith(BASE)) {
+    return pathname.slice(BASE.length) || '/';
+  }
+  return pathname;
+}
+
+export function prefixBase(path: string): string {
+  if (!BASE) return path;
+  if (path === '/') return `${BASE}/`;
+  return `${BASE}${path}`;
+}
+
 export function getLocaleFromUrl(url: URL): Locale {
-  const [, firstSegment] = url.pathname.split('/');
+  const clean = stripBase(url.pathname);
+  const [, firstSegment] = clean.split('/');
   if (firstSegment === 'en') return 'en';
   return 'es';
 }
@@ -16,15 +32,6 @@ export function getLocalizedPath(path: string, locale: Locale): string {
   return `/en${path}`;
 }
 
-export function getAlternatePath(currentPath: string, currentLocale: Locale): string {
-  if (currentLocale === 'es') {
-    if (currentPath === '/') return '/en/';
-    return `/en${currentPath}`;
-  }
-  const stripped = currentPath.replace(/^\/en/, '') || '/';
-  return stripped;
-}
-
 const ROUTE_MAP: Record<string, string> = {
   '/por-que-nosotros': '/en/why-us',
   '/soluciones': '/en/solutions',
@@ -35,8 +42,10 @@ const ROUTE_MAP: Record<string, string> = {
 };
 
 export function getTranslatedPath(currentPath: string): string {
-  const clean = currentPath.replace(/\/$/, '') || '/';
-  if (clean === '/') return '/en/';
-  if (clean === '/en') return '/';
-  return ROUTE_MAP[clean] ?? clean;
+  const clean = stripBase(currentPath).replace(/\/$/, '') || '/';
+  if (clean === '/') return prefixBase('/en/');
+  if (clean === '/en') return prefixBase('/');
+  const translated = ROUTE_MAP[clean];
+  if (translated) return prefixBase(translated);
+  return currentPath;
 }
