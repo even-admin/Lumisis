@@ -4,6 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
+import react from '@astrojs/react';
+
 export default defineConfig({
   site: 'https://even-admin.github.io',
   base: '/Lumisis',
@@ -20,5 +22,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap(), react()],
 });
