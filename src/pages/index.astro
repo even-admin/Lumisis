@@ -1,17 +1,154 @@
 ---
-import '../styles/global.css';
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/layout/Container.astro';
+import Section from '@/components/layout/Section.astro';
+import Button from '@/components/ui/Button.astro';
+import { SERVICES } from '@/lib/constants';
+
+const services = SERVICES.es;
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>LUMISIS — Strategy | Consulting | Coaching</title>
-  </head>
-  <body class="font-body text-brand-black">
-    <main class="flex min-h-screen items-center justify-center">
-      <h1 class="font-display text-5xl">LUMISIS</h1>
-    </main>
-  </body>
-</html>
+<PageLayout title="LUMISIS — Strategy | Consulting | Coaching">
+  {/* Hero */}
+  <section class="relative flex min-h-[90vh] items-center bg-gray-50">
+    <Container>
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl">
+          Thrive Through<br />Uncertainty
+        </h1>
+        <p class="mt-6 text-lg text-gray-600">
+          Unleashing the Potential of Organizations, Leaders, and Cultures.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  {/* Brand Essence */}
+  <Section>
+    <Container narrow>
+      <p class="font-display text-2xl italic text-center md:text-3xl">
+        Unleashing the Potential of Organizations, Leaders, and Cultures.
+      </p>
+    </Container>
+  </Section>
+
+  {/* Client Logos */}
+  <div class="border-y border-gray-200 py-12">
+    <Container>
+      <div class="flex items-center justify-center gap-12 opacity-50">
+        <span class="text-xs tracking-widest uppercase text-gray-400">Trusted by leading organizations</span>
+      </div>
+    </Container>
+  </div>
+
+  {/* Why Us Preview */}
+  <Section>
+    <Container>
+      <div class="grid gap-16 md:grid-cols-2">
+        <div>
+          <p class="eyebrow mb-4">¿Por Qué Nosotros?</p>
+          <h2 class="text-3xl md:text-4xl">
+            Why Companies Choose Lumisis®
+          </h2>
+          <p class="mt-6 text-gray-600">
+            We approach things with intention, thoughtfulness, planning and a strategic mindset.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-6">Our Advantages Include:</p>
+          <ol class="space-y-4">
+            {[
+              'Clear, Actionable Strategy',
+              'Proven Frameworks',
+              'Hands-On Implementation',
+              'Transparent Costs',
+              'Design for Long-Term Growth',
+            ].map((item, i) => (
+              <li class="flex items-baseline gap-4">
+                <span class="font-display text-2xl text-gray-300">{String(i + 1).padStart(2, '0')}</span>
+                <span class="text-lg font-medium">{item}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  {/* Stats */}
+  <Section bg="dark">
+    <Container>
+      <div class="grid gap-8 text-center md:grid-cols-3">
+        {[
+          { value: '+0', label: 'Companies' },
+          { value: '+0k', label: 'Impacted Executives' },
+          { value: '+0', label: 'Countries' },
+        ].map((stat) => (
+          <div>
+            <p class="font-display text-5xl">{stat.value}</p>
+            <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* Resonant Breakthroughs */}
+  <Section>
+    <Container narrow>
+      <div class="text-center">
+        <p class="eyebrow mb-4">Resonant Strategic Breakthroughs</p>
+        <h2 class="text-3xl md:text-4xl">
+          Everything we do is resonant
+        </h2>
+        <p class="mx-auto mt-6 text-gray-600">
+          Has an echo and a powerful impact on organizations, people and the planet.
+        </p>
+        <div class="mt-8">
+          <Button href="/por-que-nosotros" variant="secondary">Descubrir más</Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  {/* Services Grid */}
+  <Section bg="light">
+    <Container>
+      <p class="eyebrow mb-4">Soluciones</p>
+      <h2 class="mb-12 text-3xl md:text-4xl">Our Services</h2>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((service) => (
+          <a
+            href={`/soluciones/${service.slug}`}
+            class="group relative block aspect-[4/3] overflow-hidden bg-gray-200 no-underline"
+          >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            <div class="absolute bottom-0 left-0 p-6">
+              <h3 class="text-xl text-white">{service.title}</h3>
+              <span class="mt-2 inline-block text-xs font-semibold tracking-widest uppercase text-white/70 transition-colors group-hover:text-white">
+                Explorar →
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* Offices / CTA */}
+  <Section>
+    <Container>
+      <div class="text-center">
+        <p class="eyebrow mb-4">Encuéntranos</p>
+        <h2 class="text-3xl md:text-4xl">Nuestras Oficinas</h2>
+        <p class="mx-auto mt-6 text-gray-600">
+          We ensure yours resonates with purpose, creating a lasting impact on your organization and the world.
+        </p>
+        <div class="mt-8">
+          <Button href="/contacto">Contáctanos</Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>
