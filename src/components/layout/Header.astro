@@ -1,0 +1,95 @@
+---
+import { NAV_ITEMS } from '@/lib/constants';
+import { getLocaleFromUrl, getTranslatedPath } from '@/i18n/utils';
+import { ui } from '@/i18n/ui';
+
+const locale = getLocaleFromUrl(Astro.url);
+const navItems = NAV_ITEMS[locale];
+const alternatePath = getTranslatedPath(Astro.url.pathname);
+const switchLabel = ui[locale]['lang.switch'];
+const switchAriaLabel = ui[locale]['lang.label'];
+---
+
+<header class="fixed top-0 z-50 w-full">
+  <div class="bg-white/90 backdrop-blur-md border-b border-gray-200/60">
+    <nav class="mx-auto flex max-w-[80rem] items-center justify-between px-6 py-4 md:px-8" aria-label="Main navigation">
+      <a href={locale === 'es' ? '/' : '/en/'} class="text-xl font-bold tracking-wider no-underline text-brand-black">
+        LUMISIS
+      </a>
+
+      <div class="hidden items-center gap-8 md:flex">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm font-medium tracking-wide text-gray-600 no-underline transition-colors hover:text-brand-black"
+          >
+            {item.label}
+          </a>
+        ))}
+
+        <a
+          href={alternatePath}
+          class="text-xs font-semibold tracking-widest text-gray-400 no-underline transition-colors hover:text-brand-black"
+          aria-label={switchAriaLabel}
+        >
+          {switchLabel}
+        </a>
+      </div>
+
+      <button
+        class="flex flex-col gap-1.5 md:hidden"
+        aria-label="Open menu"
+        id="mobile-menu-toggle"
+        type="button"
+      >
+        <span class="block h-0.5 w-6 bg-brand-black"></span>
+        <span class="block h-0.5 w-6 bg-brand-black"></span>
+      </button>
+    </nav>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="hidden fixed inset-0 z-50 bg-white md:hidden"
+  >
+    <div class="flex items-center justify-between px-6 py-4">
+      <a href={locale === 'es' ? '/' : '/en/'} class="text-xl font-bold tracking-wider no-underline text-brand-black">
+        LUMISIS
+      </a>
+      <button
+        class="text-2xl leading-none"
+        aria-label="Close menu"
+        id="mobile-menu-close"
+        type="button"
+      >
+        &times;
+      </button>
+    </div>
+    <nav class="flex flex-col gap-6 px-6 pt-12" aria-label="Mobile navigation">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="font-display text-3xl no-underline text-brand-black"
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href={alternatePath}
+        class="mt-4 text-sm font-semibold tracking-widest text-gray-400 no-underline"
+        aria-label={switchAriaLabel}
+      >
+        {switchLabel}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const close = document.getElementById('mobile-menu-close');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => menu?.classList.remove('hidden'));
+  close?.addEventListener('click', () => menu?.classList.add('hidden'));
+</script>

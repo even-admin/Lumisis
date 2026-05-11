@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+import { getLocaleFromUrl } from '@/i18n/utils';
+import { SITE } from '@/lib/constants';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const locale = getLocaleFromUrl(Astro.url);
+const { title, description = SITE.description[locale], ogImage } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={SITE.name} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <slot name="head" />
+  </head>
+  <body class="font-body text-brand-black antialiased">
+    <slot />
+  </body>
+</html>

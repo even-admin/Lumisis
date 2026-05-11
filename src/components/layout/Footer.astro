@@ -1,0 +1,51 @@
+---
+import { NAV_ITEMS, SOCIAL_LINKS, SITE } from '@/lib/constants';
+import { getLocaleFromUrl } from '@/i18n/utils';
+import { ui } from '@/i18n/ui';
+import Container from './Container.astro';
+
+const locale = getLocaleFromUrl(Astro.url);
+const navItems = NAV_ITEMS[locale];
+---
+
+<footer class="border-t border-gray-200 py-16">
+  <Container>
+    <div class="grid gap-12 md:grid-cols-3">
+      <div>
+        <p class="text-xl font-bold tracking-wider">LUMISIS</p>
+        <p class="mt-2 text-sm text-gray-500">Strategy | Consulting | Coaching</p>
+      </div>
+
+      <div>
+        <p class="eyebrow mb-4">{ui[locale]['footer.nav']}</p>
+        <nav class="flex flex-col gap-2" aria-label="Footer navigation">
+          {navItems.map((item) => (
+            <a href={item.href} class="text-sm text-gray-600 no-underline transition-colors hover:text-brand-black">
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <div>
+        <p class="eyebrow mb-4">{ui[locale]['footer.connect']}</p>
+        <div class="flex flex-col gap-2">
+          {SOCIAL_LINKS.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm text-gray-600 no-underline transition-colors hover:text-brand-black"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 border-t border-gray-200 pt-8">
+      <p class="text-xs text-gray-400">{SITE.copyright}</p>
+    </div>
+  </Container>
+</footer>
