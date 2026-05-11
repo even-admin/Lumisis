@@ -10,7 +10,7 @@ Corporate website for LUMISIS, a boutique strategy/consulting/coaching firm base
 - **Tailwind CSS v4** via `@tailwindcss/vite`
 - **MDX** via `@astrojs/mdx` (content collections for services and journal)
 - **Sitemap** via `@astrojs/sitemap` with hreflang
-- **Fonts**: Instrument Serif (display) + Inter Variable (body) via fontsource
+- **Fonts**: Montserrat Variable (display + body) via fontsource — placeholder for licensed Gotham
 - **Deploy**: GitHub Pages (staging) → Cloudflare Pages (production, later)
 
 ## Commands
@@ -64,8 +64,9 @@ Colors from the brand identity manual (July 2023):
 - Tailwind: `text-brand-black`, `bg-brand-blue`, etc.
 
 Typography:
-- Display (headings): `font-display` → Instrument Serif
-- Body: `font-body` → Inter Variable
+- Display (headings): `font-display` → Montserrat Variable (bold, -0.02em tracking)
+- Body: `font-body` → Montserrat Variable (regular)
+- Both tokens point to the same family (matching brand manual where Gotham is used for all text)
 - Eyebrow labels: use `.eyebrow` utility class
 
 Spacing: 8px grid. Section padding via `.section-padding` utility.
