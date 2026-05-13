@@ -291,16 +291,20 @@
     );
 }
 
-.hero-people > :global(*:not(.hero-people__bg):not(.hero-people__overlay)) {
+/* Lift every direct child that isn't the bg image or the overlay above the overlay.
+   :global() doesn't work in plain CSS — explicitly target the Container wrapper here. */
+.hero-people > :not(.hero-people__bg):not(.hero-people__overlay) {
   position: relative;
   z-index: 2;
 }
 
 .hero-people__content {
+  position: relative;
+  z-index: 2;
   width: 100%;
   padding-top: 12rem;
   padding-bottom: 7rem;
-  color: var(--color-on-dark);
+  color: #FFFFFF;
   max-width: 56rem;
 }
 
