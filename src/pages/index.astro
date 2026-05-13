@@ -10,6 +10,10 @@ import { SERVICES, prefixBase, GLOBE_PINS } from '@/lib/constants';
 import { heroHomeAlt, CLIENT_LOGOS, SERVICE_IMAGES } from '@/lib/images';
 
 const services = SERVICES.es;
+
+// Toggle the logo marquee on/off. Keep false until the team confirms the
+// final logo list — placeholder logos risk client-conflict optics.
+const SHOW_LOGO_BAND = false;
 ---
 
 <PageLayout title="LUMISIS — Strategy | Consulting | Coaching">
@@ -62,33 +66,38 @@ const services = SERVICES.es;
     <Container>
       <p class="eyebrow home-intro__eyebrow" data-reveal>Quiénes somos</p>
       <h2 class="home-intro__statement" data-reveal data-reveal-delay="120">
-        Una firma de estrategia, consultoría y coaching para los momentos que definen el futuro de una organización.
+        Una firma de estrategia, consultoría y coaching para <span class="home-intro__mark" data-reveal data-reveal-delay="900">los momentos que definen el futuro</span> de una organización.
       </h2>
       <p class="home-intro__supporting" data-reveal data-reveal-delay="280">
-        Trabajamos con CEOs, consejos y equipos directivos que enfrentan transiciones críticas: crecimiento acelerado, sucesión, reposicionamiento, evolución cultural. Lo que entregamos no son frameworks ni reportes — son decisiones claras, ejecución acompañada y resultados que perduran.
+        Trabajamos con CEOs, consejos y equipos directivos que enfrentan transiciones críticas: <em class="home-intro__chip">crecimiento acelerado</em>, <em class="home-intro__chip">sucesión</em>, <em class="home-intro__chip">reposicionamiento</em>, <em class="home-intro__chip">evolución cultural</em>. Lo que entregamos no son frameworks ni reportes — son decisiones claras, ejecución acompañada y resultados que perduran.
       </p>
 
-      <div class="home-intro__pillars" data-reveal data-reveal-delay="440">
+      <div class="home-intro__pillars">
         {[
           { label: 'Strategy', copy: 'Decisiones de portafolio, mercado y modelo de negocio.' },
           { label: 'Consulting', copy: 'Planeación, ejecución y evolución organizacional.' },
           { label: 'Coaching', copy: 'Desarrollo de líderes y equipos de alto desempeño.' },
-        ].map((p) => (
-          <div class="home-intro__pillar">
+        ].map((p, i) => (
+          <div
+            class="home-intro__pillar"
+            data-reveal
+            data-reveal-delay={`${440 + i * 100}`}
+          >
+            <span class="home-intro__pillar-num">{String(i + 1).padStart(2, '0')}</span>
             <p class="home-intro__pillar-label">{p.label}</p>
             <p class="home-intro__pillar-copy">{p.copy}</p>
           </div>
         ))}
       </div>
 
-      <a href={prefixBase('/por-que-nosotros')} class="home-intro__cta" data-reveal data-reveal-delay="600">
+      <a href={prefixBase('/por-que-nosotros')} class="home-intro__cta" data-reveal data-reveal-delay="740">
         <span class="home-intro__cta-label">Conoce nuestra propuesta</span>
         <span class="home-intro__cta-arrow">&rarr;</span>
       </a>
     </Container>
   </section>
 
-  {/* Logo Marquee — Trusted by */}
+  {SHOW_LOGO_BAND && (
   <section class="logo-marquee" aria-label="Trusted by">
     <Container>
       <p class="eyebrow logo-marquee__eyebrow">Trusted by</p>
@@ -152,6 +161,7 @@ const services = SERVICES.es;
       </div>
     </div>
   </section>
+  )}
 
   {/* Stats */}
   <Section bg="dark">
@@ -284,12 +294,67 @@ const services = SERVICES.es;
     margin: 0;
   }
 
+  .home-intro__mark {
+    position: relative;
+    color: #393938;
+    background-image: linear-gradient(transparent 70%, rgba(0, 152, 219, 0.08) 70%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .home-intro__mark::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    background: #0098DB;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .home-intro__mark.revealed {
+    background-size: 100% 100%;
+  }
+
+  .home-intro__mark.revealed::after {
+    transform: scaleX(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-intro__mark,
+    .home-intro__mark::after { transition: none; }
+    .home-intro__mark.revealed { background-size: 100% 100%; }
+    .home-intro__mark.revealed::after { transform: scaleX(1); }
+  }
+
   .home-intro__supporting {
     margin-top: 2rem;
     max-width: 48rem;
     font-size: 1.0625rem;
     line-height: 1.7;
     color: rgba(57, 57, 56, 0.7);
+  }
+
+  .home-intro__chip {
+    font-style: normal;
+    font-weight: 500;
+    color: #393938;
+    border-bottom: 1px solid rgba(57, 57, 56, 0.25);
+    transition:
+      color 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-bottom-width 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+  }
+
+  .home-intro__chip:hover {
+    color: #0098DB;
+    border-bottom-color: #0098DB;
+    border-bottom-width: 1.5px;
   }
 
   .home-intro__pillars {
@@ -307,7 +372,39 @@ const services = SERVICES.es;
     }
   }
 
+  .home-intro__pillar {
+    position: relative;
+    padding-left: 1.25rem;
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .home-intro__pillar::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #0098DB;
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .home-intro__pillar-num {
+    display: block;
+    font-family: var(--font-display, 'Gotham', sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(57, 57, 56, 0.3);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    transition: color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   .home-intro__pillar-label {
+    position: relative;
+    display: inline-block;
     font-family: var(--font-display, 'Gotham', sans-serif);
     font-size: 0.75rem;
     font-weight: 600;
@@ -317,11 +414,37 @@ const services = SERVICES.es;
     margin-bottom: 0.75rem;
   }
 
+  .home-intro__pillar-label::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 1.5px;
+    background: #0098DB;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   .home-intro__pillar-copy {
     font-size: 1.0625rem;
     line-height: 1.55;
     color: #393938;
     margin: 0;
+  }
+
+  .home-intro__pillar:hover { transform: translateY(-4px); }
+  .home-intro__pillar:hover::before { transform: scaleY(1); }
+  .home-intro__pillar:hover .home-intro__pillar-num { color: #0098DB; }
+  .home-intro__pillar:hover .home-intro__pillar-label::after { transform: scaleX(1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-intro__pillar,
+    .home-intro__pillar::before,
+    .home-intro__pillar-num,
+    .home-intro__pillar-label::after { transition: none; }
+    .home-intro__pillar:hover { transform: none; }
   }
 
   .home-intro__cta {
