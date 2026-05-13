@@ -10,7 +10,7 @@ Corporate website for LUMISIS, a boutique strategy/consulting/coaching firm base
 - **Tailwind CSS v4** via `@tailwindcss/vite`
 - **MDX** via `@astrojs/mdx` (content collections for services and journal)
 - **Sitemap** via `@astrojs/sitemap` with hreflang
-- **Fonts**: Montserrat Variable (display + body) via fontsource — placeholder for licensed Gotham
+- **Fonts**: Self-hosted Gotham (Light/Book/Medium/Bold/Black) + Futura Round Book — licensed to LUMISIS GROUP, declared in `src/styles/fonts.css`
 - **Deploy**: GitHub Pages (staging) → Cloudflare Pages (production, later)
 
 ## Commands
@@ -59,17 +59,33 @@ src/
 
 ## Design System
 
-Colors from the brand identity manual (July 2023):
-- Brand: `--color-brand-black` (#393938), `--color-brand-blue` (#0098DB), `--color-brand-green` (#61C250), `--color-brand-gold` (#EEAF30), `--color-brand-red` (#DE3831)
-- Tailwind: `text-brand-black`, `bg-brand-blue`, etc.
+**THE source of truth is `/Users/racosta/LUMISIS/DESIGN.md`.** Aesthetic POV is **Editorial-Clinical-Luxury**. Read DESIGN.md before any visual/component work — it specifies typography, color, motion, layout, anti-patterns, and signature elements.
 
-Typography:
-- Display (headings): `font-display` → Montserrat Variable (bold, -0.02em tracking)
-- Body: `font-body` → Montserrat Variable (regular)
-- Both tokens point to the same family (matching brand manual where Gotham is used for all text)
-- Eyebrow labels: use `.eyebrow` utility class
+Quick reference (full spec in DESIGN.md):
+- Palette: `--color-background` (#FAF8F5 warm off-white), `--color-ink` (#0E0E10), `--color-accent` (#7A1F1F oxblood), `--color-paper` (#F1ECE3)
+- Typography: Gotham (Light/Book/Medium/Bold/Black) + Futura Round Book (eyebrows)
+- Atmosphere: global grain texture overlay (in `body::before`)
+- Banned: pure white/black, purple/violet, gradient text, rounded-xl, drop-shadow, centered h2+, 3-column feature grids
+- Signatures: roman numeral markers, editorial pull-quotes, kinetic h1 weight cross-fade, sticky-pin narratives
 
-Spacing: 8px grid. Section padding via `.section-padding` utility.
+## Design Workflow (MANDATORY for any UI/component/page/style task)
+
+Any task that touches visual presentation follows this sequence — no exceptions:
+
+1. **Read `/Users/racosta/LUMISIS/DESIGN.md`** first. Every choice must comply with it.
+2. **Invoke `frontend-design` skill** before writing code. State the aesthetic direction (Editorial-Clinical-Luxury) explicitly in the skill prompt.
+3. **Build** referencing DESIGN.md tokens — no off-palette colors, no banned defaults.
+4. **Screenshot via Playwright MCP** after build. Compare against the section in DESIGN.md.
+5. **Self-critique with frontend-design**:
+   - Swap test: could this be any other consulting firm's site? If yes — start over.
+   - Squint test: from 20ft, is the hierarchy doing what it should?
+6. **Run `ux-auditor` agent** for accessibility + heuristic review on substantive changes.
+7. **Only then** propose commit.
+
+Skipping steps produces bland output. The whole point of this workflow is to prevent the regression to safe/generic defaults.
+
+### Banned defaults (auto-reject if present)
+Inter as display, purple/violet/magenta, rounded corners >4px, drop-shadows, centered h2+, 3-column "feature grids," "Trusted by" decorative logo strips, emoji, generic "Get started"/"Learn more" CTAs, hero photos as wallpaper behind text, AI-slop imagery.
 
 ## How to Add a Journal Post
 

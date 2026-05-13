@@ -1,0 +1,53 @@
+/* ============================================================
+   LUMISIS Brand Fonts — Self-hosted, Vite-bundled
+   Source: /Users/racosta/LUMISIS/branding/Tipografias LUMISIS Oct23/
+   Licensed to LUMISIS GROUP. Do not redistribute.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('../assets/fonts/gotham-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('../assets/fonts/gotham-book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('../assets/fonts/gotham-medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('../assets/fonts/gotham-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('../assets/fonts/gotham-black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura Round';
+  src: url('../assets/fonts/futura-round-book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

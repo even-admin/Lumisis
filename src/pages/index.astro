@@ -7,42 +7,50 @@ import Button from '@/components/ui/Button.astro';
 import { Globe } from '@/components/islands/Globe';
 import { AnimatedNumber } from '@/components/islands/AnimatedNumber';
 import { SERVICES, prefixBase, GLOBE_PINS } from '@/lib/constants';
-import { heroHomeAlt, CLIENT_LOGOS, SERVICE_IMAGES } from '@/lib/images';
+import { CLIENT_LOGOS, SERVICE_IMAGES } from '@/lib/images';
 
 const services = SERVICES.es;
 ---
 
 <PageLayout title="LUMISIS — Strategy | Consulting | Coaching">
-  {/* Hero */}
-  <section class="relative flex min-h-[90vh] items-center overflow-hidden">
-    <Image
-      src={heroHomeAlt}
-      alt=""
-      width={1920}
-      quality={80}
-      class="absolute inset-0 h-full w-full object-cover"
-    />
-    <div class="absolute inset-0 bg-black/50" />
+  {/* Hero — Editorial type-hero, no photo background */}
+  <section class="hero-editorial">
     <Container>
-      <div class="relative max-w-3xl text-white">
-        <h1 class="text-4xl uppercase md:text-5xl" data-reveal>
-          Thrive Through<br />Uncertainty
+      <div class="hero-editorial__grid">
+        <div class="hero-editorial__marker">
+          <span class="roman">I &mdash; Manifiesto</span>
+        </div>
+        <h1 class="hero-editorial__title">
+          <span class="word" data-reveal><span class="word__light">Prosperar</span><span class="word__black">Prosperar</span></span>{' '}
+          <span class="word" data-reveal data-reveal-delay="60"><span class="word__light">en</span><span class="word__black">en</span></span>{' '}
+          <span class="word" data-reveal data-reveal-delay="120"><span class="word__light">la</span><span class="word__black">la</span></span><br />
+          <span class="word" data-reveal data-reveal-delay="180"><span class="word__light">incertidumbre.</span><span class="word__black">incertidumbre.</span></span>
         </h1>
-        <p class="mt-6 text-lg text-white/80" data-reveal data-reveal-delay="120">
-          Unleashing the Potential of Organizations, Leaders, and Cultures.
+        <p class="hero-editorial__lede" data-reveal data-reveal-delay="320">
+          Liberamos el potencial de organizaciones, l&iacute;deres y culturas. Sin recetas. Sin pirotecnia. Con intenci&oacute;n.
         </p>
+        <div class="hero-editorial__cta" data-reveal data-reveal-delay="440">
+          <a href={prefixBase('/contacto')} class="cta-fill">
+            <span class="cta-fill__label">Iniciar conversaci&oacute;n</span>
+            <span class="cta-fill__arrow">&rarr;</span>
+          </a>
+        </div>
       </div>
     </Container>
   </section>
 
-  {/* Brand Essence */}
-  <Section>
+  {/* Pull-quote breakout */}
+  <section class="pullquote-section">
     <Container narrow>
-      <p class="font-display text-2xl text-center md:text-3xl font-light" data-reveal>
-        Unleashing the Potential of Organizations, Leaders, and Cultures.
-      </p>
+      <blockquote class="pullquote-section__quote" data-reveal>
+        <span class="roman" style="margin-bottom: 2rem; display: inline-block;">II &mdash; Esencia</span>
+        <p class="pullquote">Un eco, no una intervenci&oacute;n.</p>
+        <footer class="pullquote-section__attribution">
+          Resonancia sobre alcance. Impacto duradero sobre actividad visible.
+        </footer>
+      </blockquote>
     </Container>
-  </Section>
+  </section>
 
   {/* Client Logos */}
   <div class="border-y border-gray-200 py-12">
