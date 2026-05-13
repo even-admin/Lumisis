@@ -11,21 +11,28 @@ const alternatePath = getTranslatedPath(Astro.url.pathname);
 const switchLabel = ui[locale]['lang.switch'];
 const switchAriaLabel = ui[locale]['lang.label'];
 const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
+const contactHref = locale === 'es' ? prefixBase('/contacto') : prefixBase('/en/contact');
+const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
 ---
 
 <header class="header" id="site-header" transition:persist>
-  <nav class="header__nav" aria-label="Main navigation">
-    <a href={homeHref} class="header__logo">
-      <Image src={lumisisLogo} alt="LUMISIS" height={28} class="header__logo-img" />
+  {/* Brand-gradient accent strip — institutional signifier */}
+  <div class="header__accent" aria-hidden="true"></div>
+
+  <nav class="header__inner" aria-label="Main navigation">
+    <a href={homeHref} class="header__logo" aria-label="LUMISIS — Home">
+      <Image src={lumisisLogo} alt="LUMISIS" height={32} class="header__logo-img" />
     </a>
 
-    <div class="header__links">
+    <ul class="header__links" role="list">
       {navItems.map((item) => (
-        <a href={item.href} class="header__link">
-          {item.label}
-        </a>
+        <li>
+          <a href={item.href} class="header__link">{item.label}</a>
+        </li>
       ))}
+    </ul>
 
+    <div class="header__end">
       <a
         href={alternatePath}
         class="header__lang"
@@ -33,23 +40,32 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
       >
         {switchLabel}
       </a>
-    </div>
 
-    <button
-      class="header__burger"
-      aria-label="Open menu"
-      id="mobile-menu-toggle"
-      type="button"
-    >
-      <span></span>
-      <span></span>
-    </button>
+      <a href={contactHref} class="header__cta">
+        <span>{contactLabel}</span>
+        <span class="header__cta-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+
+      <button
+        class="header__burger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        id="mobile-menu-toggle"
+        type="button"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </nav>
 
   <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu__accent" aria-hidden="true"></div>
     <div class="mobile-menu__top">
-      <a href={homeHref} class="header__logo">
-        <Image src={lumisisLogo} alt="LUMISIS" height={28} class="header__logo-img" style="filter: none;" />
+      <a href={homeHref} class="header__logo" aria-label="LUMISIS — Home">
+        <Image src={lumisisLogo} alt="LUMISIS" height={32} class="mobile-menu__logo-img" />
       </a>
       <button
         aria-label="Close menu"
@@ -57,71 +73,129 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
         type="button"
         class="mobile-menu__close"
       >
-        &times;
+        <span></span>
+        <span></span>
       </button>
     </div>
     <nav class="mobile-menu__nav" aria-label="Mobile navigation">
-      {navItems.map((item) => (
-        <a href={item.href} class="mobile-menu__link">
-          {item.label}
+      {navItems.map((item, i) => (
+        <a href={item.href} class="mobile-menu__link" style={`--i:${i}`}>
+          <span class="mobile-menu__link-num">0{i + 1}</span>
+          <span class="mobile-menu__link-label">{item.label}</span>
         </a>
       ))}
-      <a
-        href={alternatePath}
-        class="mobile-menu__lang"
-        aria-label={switchAriaLabel}
-      >
-        {switchLabel}
-      </a>
     </nav>
+    <div class="mobile-menu__footer">
+      <a href={alternatePath} class="mobile-menu__lang">{switchLabel}</a>
+      <a href={contactHref} class="mobile-menu__cta">
+        {contactLabel} &rarr;
+      </a>
+    </div>
   </div>
 </header>
 
 <style>
+  /* ============================================================
+     Header — Transparent over hero → Solid white after scroll
+     White House-inspired institutional nav for LUMISIS
+     ============================================================ */
+
   .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 50;
-    background-color: var(--color-surface-dark, #0A0A0A);
-    border-bottom: 1px solid var(--color-border-dark, rgba(255, 255, 255, 0.1));
+    background-color: transparent;
+    transition:
+      background-color 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      backdrop-filter 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    border-bottom: 1px solid transparent;
   }
 
-  .header__nav {
+  /* Solid state — applied when scrolled past the hero (or by default on pages without one) */
+  .header--solid {
+    background-color: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom-color: rgba(57, 57, 56, 0.08);
+  }
+
+  /* Brand-gradient accent strip — top edge of the entire header */
+  .header__accent {
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      #F5B335 0%,
+      #E43D30 25%,
+      #aa5b5e 50%,
+      #009ADE 75%,
+      #6ABF4B 100%
+    );
+  }
+
+  /* ── Inner nav layout ─────────────────────────────────────── */
+
+  .header__inner {
     max-width: var(--max-width-site, 80rem);
     margin: 0 auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 1.5rem;
+    gap: 2rem;
+    padding: 1.5rem 1.5rem;
   }
 
   @media (min-width: 768px) {
-    .header__nav {
-      padding: 1.25rem 2rem;
+    .header__inner {
+      padding: 1.75rem 2rem;
+      gap: 3rem;
     }
   }
 
+  @media (min-width: 1280px) {
+    .header__inner {
+      padding: 1.75rem 2.5rem;
+    }
+  }
+
+  /* ── Logo ─────────────────────────────────────────────────── */
+
   .header__logo {
-    text-decoration: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    text-decoration: none;
+    color: inherit;
   }
 
   .header__logo-img {
-    height: 28px;
+    height: 32px;
     width: auto;
+    /* Default (over hero): white logo */
     filter: brightness(0) invert(1);
+    transition: filter 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  .header--solid .header__logo-img {
+    /* Solid state: original brand colors */
+    filter: none;
+  }
+
+  /* ── Center nav links ─────────────────────────────────────── */
 
   .header__links {
     display: none;
     align-items: center;
-    gap: 2rem;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 960px) {
     .header__links {
       display: flex;
     }
@@ -129,61 +203,155 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
 
   .header__link {
     position: relative;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    display: inline-block;
+    padding: 0.25rem 0;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;        /* 15px — institutional, readable */
+    font-weight: 500;             /* Gotham Medium */
+    letter-spacing: 0.005em;
+    text-transform: none;         /* Title Case, NOT uppercase */
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.75);
-    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    color: rgba(255, 255, 255, 1);
+    transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  .header--solid .header__link {
+    color: var(--color-brand-black);
+  }
+
+  /* Brand-blue underline that slides in from left on hover */
   .header__link::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 1px;
-    background-color: currentColor;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    background-color: var(--color-brand-blue);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .header__link:hover {
-    color: white;
-  }
-
-  .header__link:hover::after {
+  .header__link:hover::after,
+  .header__link:focus-visible::after {
     transform: scaleX(1);
   }
 
-  .header__lang {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.4);
-    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
+  /* ── Right side: language switch + CTA + burger ───────────── */
 
-  .header__lang:hover {
-    color: white;
-  }
-
-  /* Burger */
-  .header__burger {
+  .header__end {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
+    align-items: center;
+    gap: 1.25rem;
   }
 
   @media (min-width: 768px) {
+    .header__end {
+      gap: 1.5rem;
+    }
+  }
+
+  .header__lang {
+    display: none;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @media (min-width: 768px) {
+    .header__lang {
+      display: inline-block;
+    }
+  }
+
+  .header__lang:hover {
+    color: #FFFFFF;
+  }
+
+  .header--solid .header__lang {
+    color: var(--color-gray-60, #7C7C7B);
+  }
+
+  .header--solid .header__lang:hover {
+    color: var(--color-brand-black);
+  }
+
+  /* Contact CTA — pill on the right, brand-blue fill on hover */
+  .header__cta {
+    display: none;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.6875rem 1.375rem;
+    border-radius: 9999px;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    transition:
+      background-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @media (min-width: 960px) {
+    .header__cta {
+      display: inline-flex;
+    }
+  }
+
+  .header__cta:hover {
+    background-color: var(--color-brand-blue);
+    border-color: var(--color-brand-blue);
+    color: #FFFFFF;
+  }
+
+  .header--solid .header__cta {
+    color: var(--color-brand-black);
+    border-color: var(--color-brand-black);
+  }
+
+  .header--solid .header__cta:hover {
+    background-color: var(--color-brand-blue);
+    border-color: var(--color-brand-blue);
+    color: #FFFFFF;
+  }
+
+  .header__cta-arrow {
+    display: inline-block;
+    transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .header__cta:hover .header__cta-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Burger (mobile) ──────────────────────────────────────── */
+
+  .header__burger {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  @media (min-width: 960px) {
     .header__burger {
       display: none;
     }
@@ -191,89 +359,224 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
 
   .header__burger span {
     display: block;
-    width: 24px;
-    height: 2px;
-    background-color: white;
+    width: 100%;
+    height: 1.5px;
+    background-color: #FFFFFF;
+    transition:
+      background-color 240ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* Mobile menu */
+  .header__burger span:nth-child(2) {
+    width: 70%;
+    margin-left: auto;
+  }
+
+  .header__burger span:nth-child(3) {
+    width: 50%;
+    margin-left: auto;
+  }
+
+  .header--solid .header__burger span {
+    background-color: var(--color-brand-black);
+  }
+
+  .header__burger:hover span:nth-child(2),
+  .header__burger:hover span:nth-child(3) {
+    width: 100%;
+  }
+
+  /* ============================================================
+     Mobile Menu — Full-screen overlay
+     ============================================================ */
+
   .mobile-menu {
     position: fixed;
     inset: 0;
-    z-index: 50;
-    background-color: white;
+    z-index: 60;
+    background-color: #FFFFFF;
     display: none;
+    flex-direction: column;
   }
 
   .mobile-menu--open {
-    display: block;
+    display: flex;
+  }
+
+  .mobile-menu__accent {
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      #F5B335 0%,
+      #E43D30 25%,
+      #aa5b5e 50%,
+      #009ADE 75%,
+      #6ABF4B 100%
+    );
   }
 
   .mobile-menu__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.25rem 1.5rem;
+    padding: 1.5rem 1.5rem;
+    border-bottom: 1px solid rgba(57, 57, 56, 0.06);
+  }
+
+  .mobile-menu__logo-img {
+    height: 32px;
+    width: auto;
   }
 
   .mobile-menu__close {
-    font-size: 1.75rem;
-    line-height: 1;
+    position: relative;
+    width: 36px;
+    height: 36px;
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-brand-black);
-    padding: 4px;
+  }
+
+  .mobile-menu__close span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 1.5px;
+    background-color: var(--color-brand-black);
+  }
+
+  .mobile-menu__close span:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .mobile-menu__close span:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(-45deg);
   }
 
   .mobile-menu__nav {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 3rem 1.5rem 0;
+    padding: 3rem 1.5rem 2rem;
+    gap: 0;
   }
 
   .mobile-menu__link {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    font-weight: 700;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1rem 0;
     text-decoration: none;
     color: var(--color-brand-black);
+    border-bottom: 1px solid rgba(57, 57, 56, 0.08);
+    transition: padding 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mobile-menu__link:hover {
+    padding-left: 0.5rem;
+  }
+
+  .mobile-menu__link-num {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--color-brand-blue);
+  }
+
+  .mobile-menu__link-label {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
     letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .mobile-menu__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.5rem 2rem;
+    border-top: 1px solid rgba(57, 57, 56, 0.08);
   }
 
   .mobile-menu__lang {
-    margin-top: 1rem;
+    font-family: var(--font-body);
     font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     text-decoration: none;
-    color: var(--color-gray-400);
+    color: var(--color-gray-60, #7C7C7B);
+  }
+
+  .mobile-menu__cta {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-brand-blue);
   }
 </style>
 
 <script>
   function initHeader() {
+    const header = document.getElementById('site-header');
     const toggle = document.getElementById('mobile-menu-toggle');
     const close = document.getElementById('mobile-menu-close');
     const menu = document.getElementById('mobile-menu');
+    if (!header) return;
 
+    // ── Mobile menu open/close ──
     toggle?.addEventListener('click', () => {
       menu?.classList.add('mobile-menu--open');
       menu?.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
     });
 
     close?.addEventListener('click', () => {
       menu?.classList.remove('mobile-menu--open');
       menu?.setAttribute('aria-hidden', 'true');
+      toggle?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     });
 
     menu?.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         menu.classList.remove('mobile-menu--open');
         menu.setAttribute('aria-hidden', 'true');
+        toggle?.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
       });
     });
+
+    // ── Transparent → solid on scroll past hero ──
+    const darkHero = document.querySelector(
+      '.hero-people, [data-dark-hero]'
+    );
+
+    if (!darkHero) {
+      // No dark hero on this page → header is solid by default
+      header.classList.add('header--solid');
+      return;
+    }
+
+    // Watch the hero. When it's no longer in view, header becomes solid.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        header.classList.toggle('header--solid', !entry.isIntersecting);
+      },
+      {
+        threshold: 0,
+        rootMargin: '-72px 0px 0px 0px',
+      }
+    );
+    observer.observe(darkHero);
   }
 
   initHeader();
@@ -281,7 +584,10 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
 
   document.addEventListener('astro:after-swap', () => {
     const menu = document.getElementById('mobile-menu');
+    const toggle = document.getElementById('mobile-menu-toggle');
     menu?.classList.remove('mobile-menu--open');
     menu?.setAttribute('aria-hidden', 'true');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
   });
 </script>
