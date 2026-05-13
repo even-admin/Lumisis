@@ -278,12 +278,16 @@
   position: absolute;
   inset: 0;
   z-index: 1;
+  /* Two-layer dark treatment:
+     1. Uniform 50% dark wash to take the bright photo down globally
+     2. Bottom-weighted gradient for even more darkness behind the text/CTAs */
   background:
     linear-gradient(
       180deg,
-      rgba(57, 57, 56, 0.70) 0%,
-      rgba(57, 57, 56, 0.55) 35%,
-      rgba(57, 57, 56, 0.88) 100%
+      rgba(57, 57, 56, 0.55) 0%,
+      rgba(57, 57, 56, 0.65) 30%,
+      rgba(57, 57, 56, 0.85) 65%,
+      rgba(57, 57, 56, 0.95) 100%
     );
 }
 
@@ -323,9 +327,10 @@
   font-family: var(--font-display);
   font-weight: 900;             /* Gotham Black */
   font-size: clamp(2.5rem, 7vw, 7.5rem);
-  line-height: 0.98;
-  letter-spacing: -0.045em;
-  color: var(--color-on-dark);
+  line-height: 1.02;
+  letter-spacing: -0.02em;       /* relaxed from -0.045em — r/t in 'incertidumbre' was clashing */
+  font-kerning: normal;
+  color: #FFFFFF;
   margin: 0;
   text-wrap: balance;
 }
