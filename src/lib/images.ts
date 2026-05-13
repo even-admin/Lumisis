@@ -31,6 +31,7 @@ import partner5 from '@/assets/logos/partners/partner-5.png';
 import partner6 from '@/assets/logos/partners/partner-6.png';
 
 import footprintMap from '@/assets/map/footprint-world-map.png';
+import lumisisLogo from '@/assets/logos/lumisis-logo.avif';
 
 export {
   heroHome,
@@ -52,6 +53,7 @@ export {
   client1, client2, client3, client4, client5,
   partner1, partner2, partner3, partner4, partner5, partner6,
   footprintMap,
+  lumisisLogo,
 };
 
 export const CLIENT_LOGOS = [client1, client2, client3, client4, client5];

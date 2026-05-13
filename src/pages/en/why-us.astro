@@ -3,9 +3,7 @@ import { Image } from 'astro:assets';
 import PageLayout from '@/layouts/PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
-import { Globe } from '@/components/islands/Globe';
 import { AnimatedNumber } from '@/components/islands/AnimatedNumber';
-import { GLOBE_PINS } from '@/lib/constants';
 import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/images';
 ---
 
@@ -29,17 +27,17 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
   <Section>
     <Container>
       <div class="grid gap-16 md:grid-cols-3">
-        <div>
+        <div data-reveal>
           <p class="eyebrow mb-4">01</p>
           <h3>The Power of Intention</h3>
           <p class="mt-4 text-gray-600">We ensure that every intervention is not just active, but purposeful. Creating a powerful, positive echo that extends beyond the boardroom.</p>
         </div>
-        <div>
+        <div data-reveal data-reveal-delay="120">
           <p class="eyebrow mb-4">02</p>
           <h3>A Definitive Turning Point</h3>
           <p class="mt-4 text-gray-600">Our goal is to generate unprecedented results that serve as a true turning point — a clear "before and after" in the life of your organization.</p>
         </div>
-        <div>
+        <div data-reveal data-reveal-delay="240">
           <p class="eyebrow mb-4">03</p>
           <h3>The Echo</h3>
           <p class="mt-4 text-gray-600">Everything we do is designed to be resonant. We ensure that our work vibrates with purpose long after the engagement ends.</p>
@@ -68,9 +66,9 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
   {/* Leadership Team */}
   <Section>
     <Container>
-      <p class="eyebrow mb-4">Experts</p>
-      <h2 class="mb-4 text-3xl md:text-4xl">Leadership Team</h2>
-      <p class="mb-12 max-w-xl text-gray-600">Our approach is defined by deep thoughtfulness, rigorous planning, and a strategic mindset.</p>
+      <p class="eyebrow mb-4" data-reveal>Experts</p>
+      <h2 class="mb-4 text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Leadership Team</h2>
+      <p class="mb-12 max-w-xl text-gray-600" data-reveal data-reveal-delay="160">Our approach is defined by deep thoughtfulness, rigorous planning, and a strategic mindset.</p>
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
         {TEAM_MEMBERS.map((member) => (
           <div class="text-center">
@@ -118,24 +116,25 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
     </Container>
   </Section>
 
-  {/* Footprint / Globe */}
-  <Section bg="dark">
-    <Container narrow>
-      <div class="text-center">
-        <h2 class="text-3xl md:text-4xl text-white">Our Footprint</h2>
-        <p class="mx-auto mt-6 text-gray-400">At LUMISIS Group, we address challenges with a global mindset. We have developed projects in more than <strong class="text-white">47 countries</strong> spread across <strong class="text-white">7 continents.</strong></p>
-        <div class="mx-auto mt-8 aspect-square max-w-[600px]">
-          <Globe client:visible pins={GLOBE_PINS} />
+  {/* Footprint */}
+  <Section>
+    <Container>
+      <div class="grid gap-12 items-center md:grid-cols-2">
+        <div>
+          <p class="eyebrow mb-4" data-reveal>Our Footprint</p>
+          <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Global Reach</h2>
+          <p class="mt-6 text-gray-600" data-reveal data-reveal-delay="160">
+            At LUMISIS Group, we address challenges with a global mindset. We have developed projects in more than <strong>47 countries</strong> spread across <strong>7 continents.</strong>
+          </p>
         </div>
-        <noscript>
+        <div>
           <Image
             src={footprintMap}
             alt="LUMISIS global footprint — 47 countries, 7 continents"
             width={1200}
             quality={85}
-            class="mx-auto mt-12"
           />
-        </noscript>
+        </div>
       </div>
     </Container>
   </Section>

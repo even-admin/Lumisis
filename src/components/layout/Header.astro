@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import { NAV_ITEMS, prefixBase } from '@/lib/constants';
 import { getLocaleFromUrl, getTranslatedPath } from '@/i18n/utils';
 import { ui } from '@/i18n/ui';
+import { lumisisLogo } from '@/lib/images';
 
 const locale = getLocaleFromUrl(Astro.url);
 const navItems = NAV_ITEMS[locale];
@@ -14,7 +16,7 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
 <header class="header" id="site-header" transition:persist>
   <nav class="header__nav" aria-label="Main navigation">
     <a href={homeHref} class="header__logo">
-      LUMISIS
+      <Image src={lumisisLogo} alt="LUMISIS" height={28} class="header__logo-img" />
     </a>
 
     <div class="header__links">
@@ -46,7 +48,9 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
 
   <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
     <div class="mobile-menu__top">
-      <a href={homeHref} class="header__logo">LUMISIS</a>
+      <a href={homeHref} class="header__logo">
+        <Image src={lumisisLogo} alt="LUMISIS" height={28} class="header__logo-img" style="filter: none;" />
+      </a>
       <button
         aria-label="Close menu"
         id="mobile-menu-close"
@@ -80,18 +84,8 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
     left: 0;
     right: 0;
     z-index: 50;
-    transition:
-      background-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
-      backdrop-filter 300ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 300ms cubic-bezier(0.16, 1, 0.3, 1);
-    border-bottom: 1px solid transparent;
-  }
-
-  .header--solid {
-    background-color: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom-color: rgba(0, 0, 0, 0.06);
+    background-color: var(--color-surface-dark, #0A0A0A);
+    border-bottom: 1px solid var(--color-border-dark, rgba(255, 255, 255, 0.1));
   }
 
   .header__nav {
@@ -110,17 +104,15 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
   }
 
   .header__logo {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
     text-decoration: none;
-    color: white;
-    transition: color 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
   }
 
-  .header--solid .header__logo {
-    color: var(--color-brand-black);
+  .header__logo-img {
+    height: 28px;
+    width: auto;
+    filter: brightness(0) invert(1);
   }
 
   .header__links {
@@ -167,14 +159,6 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
     transform: scaleX(1);
   }
 
-  .header--solid .header__link {
-    color: var(--color-gray-500);
-  }
-
-  .header--solid .header__link:hover {
-    color: var(--color-brand-black);
-  }
-
   .header__lang {
     font-size: 0.6875rem;
     font-weight: 600;
@@ -186,14 +170,6 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
 
   .header__lang:hover {
     color: white;
-  }
-
-  .header--solid .header__lang {
-    color: var(--color-gray-400);
-  }
-
-  .header--solid .header__lang:hover {
-    color: var(--color-brand-black);
   }
 
   /* Burger */
@@ -218,11 +194,6 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
     width: 24px;
     height: 2px;
     background-color: white;
-    transition: background-color 300ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .header--solid .header__burger span {
-    background-color: var(--color-brand-black);
   }
 
   /* Mobile menu */
@@ -243,10 +214,6 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
     align-items: center;
     justify-content: space-between;
     padding: 1.25rem 1.5rem;
-  }
-
-  .mobile-menu__top .header__logo {
-    color: var(--color-brand-black);
   }
 
   .mobile-menu__close {
@@ -287,25 +254,9 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
 
 <script>
   function initHeader() {
-    const header = document.getElementById('site-header');
     const toggle = document.getElementById('mobile-menu-toggle');
     const close = document.getElementById('mobile-menu-close');
     const menu = document.getElementById('mobile-menu');
-    if (!header) return;
-
-    const hero = document.querySelector('section:first-of-type, [data-hero]');
-
-    if (hero) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          header.classList.toggle('header--solid', !entry.isIntersecting);
-        },
-        { threshold: 0, rootMargin: '-80px 0px 0px 0px' },
-      );
-      observer.observe(hero);
-    } else {
-      header.classList.add('header--solid');
-    }
 
     toggle?.addEventListener('click', () => {
       menu?.classList.add('mobile-menu--open');
@@ -327,4 +278,10 @@ const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
 
   initHeader();
   document.addEventListener('astro:page-load', initHeader);
+
+  document.addEventListener('astro:after-swap', () => {
+    const menu = document.getElementById('mobile-menu');
+    menu?.classList.remove('mobile-menu--open');
+    menu?.setAttribute('aria-hidden', 'true');
+  });
 </script>

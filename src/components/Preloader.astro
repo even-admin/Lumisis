@@ -1,8 +1,11 @@
 ---
+import { lumisisLogo } from '@/lib/images';
+
+const logoSrc = typeof lumisisLogo === 'string' ? lumisisLogo : lumisisLogo.src;
 ---
 
 <div id="preloader" class="preloader" aria-hidden="true">
-  <p class="preloader__text">LUMISIS</p>
+  <img src={logoSrc} alt="" class="preloader__logo" />
 </div>
 
 <style>
@@ -14,7 +17,7 @@
     align-items: center;
     justify-content: center;
     background-color: var(--color-surface-dark, #0A0A0A);
-    animation: preloader-bg-out 400ms cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
+    animation: preloader-bg-out 200ms cubic-bezier(0.16, 1, 0.3, 1) 800ms forwards;
     pointer-events: none;
   }
 
@@ -22,15 +25,13 @@
     display: none;
   }
 
-  .preloader__text {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 5vw, 3rem);
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    color: var(--color-text-on-dark, #FBFAFC);
+  .preloader__logo {
+    max-height: 48px;
+    width: auto;
+    filter: brightness(0) invert(1);
     animation:
-      preloader-text-in 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards,
-      preloader-text-out 400ms cubic-bezier(0.7, 0, 0.84, 0) 1.2s forwards;
+      preloader-text-in 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards,
+      preloader-text-out 200ms cubic-bezier(0.7, 0, 0.84, 0) 600ms forwards;
   }
 
   @keyframes preloader-text-in {
@@ -67,7 +68,7 @@
       animation: preloader-bg-out 0ms 200ms forwards;
     }
 
-    .preloader__text {
+    .preloader__logo {
       animation: none;
       opacity: 1;
     }

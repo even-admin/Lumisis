@@ -57,7 +57,39 @@ export const SERVICES = {
 } as const;
 
 export const GLOBE_PINS = [
-  { name: 'LUMISIS HQ', address: 'Mérida, Yucatán, México', lon: -89.6253, lat: 20.9674 },
+  {
+    name: 'LUMISIS HQ — Mérida, México',
+    address: 'C 17 474, entre 20 y 22, Mérida, Yucatan 97130, MX',
+    phone: '+52 999 942 9151',
+    lon: -89.6253,
+    lat: 20.9674,
+  },
+  {
+    name: 'Berlin, Germany',
+    address: 'Giesebrechtstrasse 15, 10629',
+    phone: '+49 30 235911-599',
+    lon: 13.3221,
+    lat: 52.5015,
+  },
+  {
+    name: 'Mexico City, Mexico',
+    address: 'Oficina Regional',
+    phone: '+52 (999) 942 9151',
+    lon: -99.1332,
+    lat: 19.4326,
+  },
+  {
+    name: 'Miami, USA',
+    address: 'Regional Office',
+    lon: -80.1918,
+    lat: 25.7617,
+  },
+  {
+    name: 'Chihuahua, Mexico',
+    address: 'Oficina Regional',
+    lon: -106.0889,
+    lat: 28.6353,
+  },
 ];
 
 export { b as prefixBase };

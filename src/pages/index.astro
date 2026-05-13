@@ -25,10 +25,10 @@ const services = SERVICES.es;
     <div class="absolute inset-0 bg-black/50" />
     <Container>
       <div class="relative max-w-3xl text-white">
-        <h1 class="text-4xl uppercase md:text-5xl">
+        <h1 class="text-4xl uppercase md:text-5xl" data-reveal>
           Thrive Through<br />Uncertainty
         </h1>
-        <p class="mt-6 text-lg text-white/80">
+        <p class="mt-6 text-lg text-white/80" data-reveal data-reveal-delay="120">
           Unleashing the Potential of Organizations, Leaders, and Cultures.
         </p>
       </div>
@@ -99,19 +99,19 @@ const services = SERVICES.es;
   <Section bg="dark">
     <Container>
       <div class="grid gap-8 text-center md:grid-cols-3">
-        <div>
+        <div data-reveal>
           <p class="font-display text-5xl">
             <AnimatedNumber client:visible end={800} prefix="+" />
           </p>
           <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Companies</p>
         </div>
-        <div>
+        <div data-reveal data-reveal-delay="80">
           <p class="font-display text-5xl">
             <AnimatedNumber client:visible end={100} prefix="+" suffix="k" />
           </p>
           <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Impacted Executives</p>
         </div>
-        <div>
+        <div data-reveal data-reveal-delay="160">
           <p class="font-display text-5xl">
             <AnimatedNumber client:visible end={33} prefix="+" />
           </p>
@@ -143,7 +143,7 @@ const services = SERVICES.es;
   <Section bg="light">
     <Container>
       <p class="eyebrow mb-4" data-reveal>Soluciones</p>
-      <h2 class="mb-12 text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Our Services</h2>
+      <h2 class="mb-12 text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Nuestros Servicios</h2>
 
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => {
