@@ -1,210 +1,193 @@
-# LUMISIS DESIGN.md
+# LUMISIS DESIGN.md — Brand-True
 
-> **The committed aesthetic POV. Every component, page, animation, and copy decision references this document. No drift allowed without re-opening this file in conversation with the user.**
+> **The source of truth is `/Users/racosta/LUMISIS/BRANDING/Manual de identidad Lumisis _ 12 julio 2023.pdf`. This document translates the manual into code-relevant tokens. When in doubt, open the manual first. Do not invent colors, do not borrow external aesthetics, do not reference Aesop / A24 / McKinsey / Linear as design sources — LUMISIS has its own brand, follow it.**
 
 ## North Star
 
-**Editorial-Clinical-Luxury.** Institutional consulting needs gravitas + warmth. Closer to Aesop, A24 Films, McKinsey Digital, and Bloomberg Businessweek than to Linear or Vercel. Authoritative, calm, expensive-feeling, with editorial typography and warm neutrals — not startup-cool, not corporate-sterile.
+**LUMISIS Brand-True: people-focused institutional consulting, executed with the brand's actual color system and Gotham typography.**
 
-The site whispers, not shouts. Premium feel comes from typographic restraint, atmospheric texture, generous whitespace, and signature moments — not from animation density.
+LUMISIS does Strategy, Consulting, and Coaching. The brand markets to executives and organizations going through transformation. **Photography of people is central** — every major page should center the people LUMISIS works with. Backgrounds are **white-principal or black-negative only** (no warm off-whites, no creams, no paper tones). The brand has four corporate colors plus a digital gradient — use them as the system, not as a single accent.
 
-## Anti-references (avoid)
+## Previous Drift (so it doesn't happen again)
 
-- Linear, Stripe homepages — too startup-coded for institutional consulting
-- Generic Bootstrap consulting templates — what we just escaped
-- Framer Motion demo-heavy sites — performative animation undermines authority
-- Apple marketing pages — too product-coded
-- AI-slop tropes: purple gradients, glassmorphism on hero, rotating SaaS dashboards, "trusted by" logo strips treated as decoration
+A previous design pass invented an "Editorial-Clinical-Luxury" aesthetic with oxblood (#7A1F1F), warm off-white (#FAF8F5), cream paper (#F1ECE3), and grain texture. **None of those are LUMISIS.** They were external aesthetic borrows. This document is the corrective.
 
-## References (study before building)
+## Color Corporativo (manual page 9)
 
-- **Aesop.com** — warm off-white, restrained type, generous whitespace, atmospheric photography
-- **Bloomberg Businessweek covers** — display typography as the design itself
-- **A24 Films marketing pages** — editorial layouts, oversized type, intentional asymmetry
-- **McKinsey Digital reports** — institutional gravitas in long-form content
-- **Aman Resorts** — calm, expensive, warm — visual quietness
-- **Penguin Random House book pages** — editorial pacing, pull-quotes, breathing room
+| Token | HEX | Pantone | Role |
+|-------|-----|---------|------|
+| `--color-brand-black` | `#393938` | Pantone Black 100% | Primary ink + brand-black background. R57 G57 B56 — slight warm dark gray, NOT pure black |
+| `--color-brand-blue` | `#0098DB` | Pantone 2925 C | **Primary digital accent** — institutional/strategic |
+| `--color-brand-green` | `#61C250` | Pantone 360 C | Secondary — Well-being / Coaching contexts |
+| `--color-brand-gold` | `#EEAF30` | Pantone 143 C | Tertiary — Strategy contexts |
+| `--color-brand-red` | `#DE3831` | Pantone 179 C | Emphasis — Consulting / urgency |
+| `--gradient-brand` | `#F5B335 → #E43D30 → #aa5b5e → #009ADE → #6ABF4B` | Digital media | **Signature moments only** — logo Vs, hero secondary CTAs, dividers |
 
-## Typography
+### Grayscale (derived from brand black per manual page 9)
+- 100% — `#393938` (brand black)
+- 80% — `#5B5B5A`
+- 60% — `#7C7C7B`
+- 50% — `#9C9C9B`
+- 30% — `#C4C4C3`
+- 10% — `#ECECEC` (UI surface)
 
-**Fonts are the LUMISIS brand truth, not an approximation.** Use the licensed Gotham family + Futura Round Book the team owns. Drop Montserrat entirely. Self-host via Vite.
+## Surface Modes — Only Two Valid (manual page 14)
 
-```
-Display:   Gotham Black (900) / Bold (700)  → Bloomberg/Vanity-Fair gravitas
-Body:      Gotham Book (400) / Light (300)
-Eyebrow:   Futura Round Book → the distinctive "voice"
-Numerals:  Gotham Bold + tabular-nums for stats (no layout shift on count-up)
-```
+- **Principal**: `#FFFFFF` (pure white). Use for most sections.
+- **Negative**: `#393938` (brand black). Use for high-contrast statement moments, hero photos with dark overlay, and "sobre imagen oscura" treatments.
 
-### Type scale (modular, generous range)
-```
-12 / 14 / 16 / 18 / 24 / 32 / 48 / 72 / 96 / 144
-```
-144 reserved for hero on desktop. Fluid clamps in CSS:
-- h1: `clamp(3rem, 8vw, 9rem)` → 48px mobile → 144px desktop
-- h2: `clamp(2rem, 5vw, 4.5rem)` → 32px mobile → 72px desktop
+**No third tone.** No warm off-whites, no cream, no paper, no beige, no bone. The brand book is explicit: white or black.
 
-### Tracking & line-height
-- Display 700/900: `letter-spacing: -0.045em` on h1, `-0.03em` on h2, `line-height: 1.02`
-- Body: `letter-spacing: 0`, `line-height: 1.6`, max width `60ch`
-- Eyebrow (Futura Round): `letter-spacing: 0.22em`, uppercase, `font-size: 12px`
-- Roman numerals (section markers): `letter-spacing: 0.3em`, accent color, underlined
+## Accent System (locked in)
 
-### Weight transitions (no variable font — cross-fade weights)
-Gotham isn't variable. To simulate variable-font weight reveals:
-- Stack two `<span>` layers of the same word: one in Light (300), one in Black (900)
-- Transition opacity over 600ms with stagger per word for hero reveals
-- Don't try to fake `font-variation-settings` — use weight cross-fade instead
+**Brand blue leads, others situational.**
+- **Default accent** = `--color-brand-blue` (#0098DB). Use for primary CTAs, link hovers, focus rings, default UI accents, hover-fill on pill buttons.
+- **Green / Gold / Red** appear only in their service contexts (Well-being/Coaching → green; Strategy → gold; Consulting → red). Don't sprinkle these as general accents.
+- **Brand gradient** is for signature moments: logo V, hero secondary CTA hovers, dividers between major sections. Not every accent.
 
-## Color
+## Typography (manual page 12)
 
-```
---color-background : #FAF8F5   /* warm off-white. NEVER pure white. */
---color-ink        : #0E0E10   /* near-black. NEVER pure black. */
---color-accent     : #7A1F1F   /* deep oxblood. Reserved for emphasis. */
---color-paper      : #F1ECE3   /* warm card surface */
---color-rule       : #1A1A1C   /* dividers, borders, ink rules */
---color-muted      : #6B6660   /* warm gray, secondary text */
---color-on-dark    : #F1ECE3   /* paper text on ink surfaces */
-```
+**Gotham** is the corporate typeface. Self-hosted, owned by LUMISIS GROUP.
 
-### Usage rules
-- **Never** use pure `#000` or pure `#FFF` — they break the warm atmosphere
-- **Oxblood** is reserved: section markers, primary CTAs on hover, pull-quote accent rules, key emphasis. Not for body text, not for icons in general.
-- Sections alternate: `background` → `paper` → `ink` (rarely). Two-tone-light dominant, ink section used for high-contrast statement moments.
-- **No** gradients except mesh atmosphere (and even those used sparingly)
-- **No** neons, no purples, no violets, no electric blues
-- **No** gradient text. Ever.
+Available weights:
+- Light (300)
+- Book (400)
+- Medium (500)
+- Bold (700)
+- Black (900)
 
-## Surface & Atmosphere
+The manual specifies Light, Book, and Bold explicitly. Medium and Black were included in the licensed package and used where they fit the editorial intent.
 
-- **Global grain texture overlay** at 8% opacity, mix-blend-mode multiply. Implemented in `body::before` with inline SVG turbulence. Single most important "premium feel" upgrade.
-- **Cards**: paper color background, 1px ink rule, no shadow. Hover transitions border to accent.
-- **Sections**: alternate background and paper, rarely ink. Dividers are 1px ink-color hairlines, not gradients or thick borders.
-- **No** glassmorphism, no clay-morphism, no neumorphism
-- **No** drop-shadows. Period.
-- Corners: max 2px radius on inputs/buttons. No `rounded-xl`, no pills. Rectangles communicate institution.
+### Type roles
+- **Display (h1)**: Gotham Black (900), `clamp(2.5rem, 7vw, 7.5rem)`, `letter-spacing: -0.04em`, `line-height: 1.02`
+- **Display (h2)**: Gotham Bold (700), `clamp(2rem, 4.5vw, 4rem)`, `letter-spacing: -0.025em`
+- **Body**: Gotham Book (400), 18px, `line-height: 1.6`, max-width 62ch
+- **Lede / subtitle**: Gotham Light (300), 18–22px (`clamp`)
+- **Eyebrow**: Gotham Medium (500), 12px uppercase, `letter-spacing: 0.18em`
+- **Numerals**: Gotham Bold with `font-feature-settings: 'tnum'` for layout-stable count-ups
+
+## Photography (manual page 15)
+
+Photography of people is **central** to the brand. The manual shows two valid logo applications over imagery:
+- **Sobre imagen oscura** (over dark image) → white logo
+- **Sobre imagen clara** (over light image) → black logo
+
+**The hero is people-photography with dark overlay** — this is the LUMISIS signature, not an editorial type-hero on neutral background. Photos should show people in moments of transformation, decision, leadership, or engagement. No stock-photo clichés (no fake smiling teams around laptops), no AI-generated imagery.
+
+## Hero Spec (locked in)
+
+**Home page hero = black-negative mode with people photo:**
+- Full-bleed photo (heroHomeAlt or equivalent)
+- Dark overlay gradient: 55% top → 35% middle → 75% bottom
+- Eyebrow in white Gotham Medium with brand-blue 1px underline
+- h1 in white Gotham Black at `clamp(2.5rem, 7vw, 7.5rem)`
+- Subtitle in Gotham Light, white at 82% opacity
+- **Two pill CTAs**: solid white (fills brand-blue on hover) + outline white (fills white→black on hover). Both use letter-swipe animation
+- Header is dark and overlaps the hero (the dark overlay handles contrast)
+- **No white band below the hero** — next section flows directly
+
+Why-us and solutions pages use white-principal mode with photography insets where appropriate.
+
+## Buttons (LUMISIS-true)
+
+**No square plain buttons. Two valid shapes:**
+
+### Pill (primary CTA) — `.cta-pill`
+- `border-radius: 9999px`
+- Three variants:
+  - **Solid** (`--solid`): white pill on dark hero → fills brand-blue on hover (text inverts to white)
+  - **Outline** (`--outline`): transparent border → fills white on dark / blue on light
+  - **Gradient** (`--gradient`): brand-black pill → fills with brand digital gradient on hover (signature moments only)
+- Always with **letter-swipe** text animation: each letter is two stacked spans, top translates up off-screen while bottom (clone) translates in from below, stagger 18ms per character
+- Padding: 1rem 2rem
+- Letter-spacing: 0.14em uppercase
+
+### Ghost (secondary/inline) — `.cta-ghost`
+- Borderless, no background
+- 1px brand-blue underline animates from 0 to scaleX(1) on hover (left-origin)
+- Same letter-spacing and case as pill
+
+**Banned button patterns**: square outlines, rounded-md (4–8px corners), drop shadows, gradient borders, neon glows, "Get started"-style fills with no character.
 
 ## Motion
 
-The site moves with restraint. Scroll-linked storytelling beats hover-density.
-
-### Allowed
-- Word-by-word reveal on hero h1 (stagger 60ms, duration 700ms, cubic-bezier `(0.16, 1, 0.3, 1)`)
-- Weight cross-fade on h1/h2 enter (Light → Black, 600ms)
-- Scroll-triggered fade+rise reveals (data-reveal system, 28px translate, 700ms)
-- Directional fill on button hover (accent color, left-to-right, 250ms)
-- Sticky-pin narrative sections (Why Us 3 principles)
-- AnimatedNumber count-up with tabular-nums
-- Slow logo marquee (40s+, never frantic)
-- View Transitions: fade-and-rise (8px) on route change, never plain fade
-- Service card image scale (1.05) + saturation increase on hover
-- Custom cursor: small accent dot, expands to ring on interactive elements (desktop only)
-
-### Banned
-- Bouncing elements (`spring` easings with overshoot)
-- Glow effects, pulse animations on non-interactive elements
-- Rotating carousels
-- Animated SaaS-style dashboard previews
-- Excessive parallax (slight is okay)
-- Auto-playing video without explicit reduced-motion respect
-- Anything that distracts from reading
-
-### Easing
-Default: `cubic-bezier(0.16, 1, 0.3, 1)` — snappy in, smooth out.
-Slow movements (>500ms): same easing, longer duration. Don't switch curves casually.
-
-### Reduced-motion
-Always respected. `prefers-reduced-motion: reduce` → animations disabled, grain at 5% (still visible, no flash).
+- **Easing default**: `cubic-bezier(0.16, 1, 0.3, 1)` (snappy in, smooth out)
+- **Scroll reveals**: `[data-reveal]` opacity 0 + translateY 28px → opacity 1 + translateY 0, 700ms
+- **Letter-swipe**: signature CTA interaction, 380ms per letter with 18ms stagger
+- **Pill fills**: 480ms left-to-right
+- **View transitions**: fade + 6px translate on route change
+- **AnimatedNumber**: count-up with tabular-nums, easeOutExpo, 2s
+- **Reduced motion**: always respected — animations disabled, transitions to 0.01ms
 
 ## Layout
 
-- **Asymmetric grids**, not 12-col safety. Why Us page = 5/12 + 7/12 split, not 6/6. Hero text bleeds into space, doesn't center.
-- **Generous whitespace** — 30%+ of every section. Sections rhythm: 80 / 120 / 160 / 240px vertical, not uniform.
-- **Hero**: oversize display type on background-color, no hero photo (photos belong in service cards and atmosphere shots, not as wallpaper behind text).
-- **Service grids**: 1 large + 2 small, or 3 small + 1 large — not uniform 3-column.
-- **Stats**: oversized number with tiny label tucked into negative space. Never label-above-number.
-- **Pull-quotes** between major sections as breathing moments.
-- **Section padding**: section-padding utility (5rem mobile / 7.5rem tablet / 10rem desktop).
+- Mobile-first responsive
+- 8px spacing grid
+- Section padding: 5rem mobile / 7.5rem tablet / 9rem desktop
+- Site max-width: 80rem
+- Content max-width: 65rem
+- Body copy max-width: 62ch
 
-## Banned Defaults (the swap test)
+## Banned Defaults (auto-reject if present)
 
-If a design choice would work for *any* generic consulting firm, it doesn't belong here. Things to actively reject:
-
-- Inter or Roboto as display
+- Inter or Roboto as display (use Gotham)
+- Warm off-whites or creams as background (`#FAF8F5`, `#F1ECE3`, etc. — invented, not LUMISIS)
+- Pure black `#000` as ink (use `#393938` brand black)
+- Pure white in dark sections (`#FFFFFF` ink only, no off-whites)
+- Oxblood, burgundy, deep wine, or any invented accent
+- Purple, violet, magenta
+- Gradient text
+- Drop shadows (any)
+- Rounded corners between 4px and 9999px (only sharp rectangles or full pills)
+- Grain or noise texture overlays
+- Glassmorphism, clay-morphism, neumorphism
+- "Trusted by" logo bars treated as decoration (use static logo rows or marquee with purpose)
 - Centered alignment on h2+
-- 3-column "feature grid"
-- "Trusted by" logo bar treated as decoration (use slow marquee with paper texture instead)
-- Drop shadows of any kind
-- Rounded corners larger than 4px
-- Purple, violet, electric blue, magenta
-- Gradient text (any)
-- Hero photo as background with text over it (we already removed this)
-- Emoji of any kind
-- "Get started" / "Learn more" generic CTAs — write the actual action verb
-- Stock-photo-style placeholder images
-- AI-generated-looking imagery (we recognize the slop)
-
-## Signature Elements
-
-Every page must include at least one. These are what the user remembers.
-
-1. **Roman numeral section markers** (I., II., III.) in oxblood, small, underlined — used for principle/process lists
-2. **Editorial pull-quotes** between major sections, paper-color full-bleed, serif weight 300
-3. **Global grain texture** atmosphere
-4. **Kinetic h1** with weight cross-fade reveal
-5. **Sticky-pin narrative** on "Why Us" (3 principles pin and reveal in sequence)
-6. **Tabular-nums stats** with oversized numbers and tiny labels
-7. **Custom SVG illustrations** for the 3 principles (Intention / Turning Point / Echo)
-8. **Slow client logo marquee** with grain overlay
-9. **Custom cursor** (desktop) — accent dot, expands to ring on interactive
-
-## Copy Voice
-
-- Direct, specific, calm. Never urgent, never hyped.
-- No "We help you / I transform / I empower" — institutional voice, not personal-brand.
-- No frameworks-as-marketing ("We use the 5C framework!"). Show, don't list.
-- One idea per sentence. Tight, declarative.
-- Spanish for ES (default), English for EN.
-- ES voice = Mexican Spanish, professional but warm. Vos/usted balanced.
-- EN voice = international English, restrained.
-- Pull-quote candidates: "An echo, not an intervention." / "Resonance over reach." — short, declarative, single thought.
+- 3-column "feature grid" (use asymmetric layouts)
+- Generic "Get started"/"Learn more" CTAs (write the actual action verb)
+- Roman numeral section markers (not brand)
+- Editorial pull-quotes with serif (Gotham doesn't include a serif)
+- AI-generated-looking imagery
+- Hero photos centered behind small h1 text (we use full-bleed photo + dark overlay + large h1)
 
 ## Component Checklist (before commit)
 
 For every new or modified component:
 
-- [ ] Reads `DESIGN.md` directly or implicitly (no contradicting tokens)
+- [ ] Followed Design Workflow Step 0 (read brand manual if any doubt)
+- [ ] Reads `DESIGN.md` tokens, no off-palette colors
 - [ ] No banned defaults present
-- [ ] Includes at least one signature element where appropriate
+- [ ] Photography of people is used where the section is about people (Why Us, Team, Hero)
+- [ ] Pure white or brand-black backgrounds only
+- [ ] Brand blue is the lead accent; green/gold/red only in service contexts
+- [ ] Buttons are pills or ghosts — no squares
+- [ ] Letter-swipe animation on primary CTAs
 - [ ] Respects `prefers-reduced-motion`
 - [ ] Tested via Playwright screenshot before commit
-- [ ] Passes the swap test: would this work for any other consulting firm? If yes — start over.
-- [ ] Passes the squint test: from 20 ft, can you tell what hierarchy is doing?
-- [ ] Color choices justified against the palette (no off-palette accents)
-- [ ] Typography uses Gotham or Futura Round only — no system font fallbacks visible
+- [ ] Passes the swap test: would another consulting firm use this? If yes — reconsider what's distinctively LUMISIS about it
+- [ ] Side-by-side compared against the brand manual pages 9, 12, 14, 15
 
 ## Implementation Stack
 
-- **Astro 6** + React 19 islands + TypeScript strict
-- **Tailwind v4** via `@tailwindcss/vite` (no Tailwind config file — design tokens in `@theme` block in `global.css`)
-- **Lenis** for smooth scroll
-- **GSAP** allowed for scroll-triggered sticky-pin sections (the one place where the IntersectionObserver fallback isn't enough)
-- **Magic UI MCP** components used sparingly — marquee, animated beam, kinetic text — only where they serve the editorial intent
-- **shadcn/ui** for primitives that need accessibility (Dialog, DropdownMenu) — restyled to match DESIGN.md
-- **Playwright MCP** for visual regression — every commit screenshots affected pages
-- **frontend-design skill** invoked before any new design task
+- Astro 6 + React 19 islands + TypeScript strict
+- Tailwind v4 via `@tailwindcss/vite` (no Tailwind config file — tokens in `@theme` block in `global.css`)
+- Lenis smooth scroll
+- shadcn/ui for accessibility primitives (Dialog, DropdownMenu) — restyled to match DESIGN.md
+- Magic UI MCP components used **sparingly** — marquee for client logos, animated beam only where it serves a brand moment
+- Playwright MCP for visual verification — every commit screenshots affected pages
+- `frontend-design` skill invoked before any new visual task
 
 ## How To Change This Document
 
 This document is not a draft. Changes require:
 1. Explicit user decision in conversation
-2. New screenshot evidence the change makes the site better
-3. Reference-site comparison showing what we're now matching
+2. A new entry in the brand manual that supports the change (we follow the manual, not the other way around)
+3. Screenshot evidence the change makes the site more LUMISIS, not more like another brand
 
 Drift happens silently. This document exists to prevent it.
 
 ---
 
-*Last updated: 2026-05-13 (Editorial-Clinical-Luxury commit)*
-*Fonts: Gotham (5 weights) + Futura Round Book — licensed to LUMISIS GROUP*
+*Last updated: 2026-05-13 — corrected from invented "Editorial-Clinical-Luxury" back to actual LUMISIS brand identity per manual.*
+*Brand fonts: Gotham (Light/Book/Medium/Bold/Black) + Futura Round Book — licensed to LUMISIS GROUP, self-hosted via `src/styles/fonts.css`.*
+*Brand manual: `/Users/racosta/LUMISIS/BRANDING/Manual de identidad Lumisis _ 12 julio 2023.pdf`*

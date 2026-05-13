@@ -2,34 +2,42 @@
 @import "./fonts.css";
 
 /* ============================================================
-   Design System Tokens — LUMISIS
-   Aesthetic: Editorial-Clinical-Luxury
-   See: /DESIGN.md
+   Design System Tokens — LUMISIS Brand-True
+   Source of truth: /Users/racosta/LUMISIS/BRANDING/Manual de identidad Lumisis _ 12 julio 2023.pdf
+   See: /DESIGN.md (do not invent. follow the manual.)
    ============================================================ */
 
 @theme {
-  /* ── Editorial-Clinical-Luxury palette ─────────────────────── */
-  --color-background: #FAF8F5;   /* warm off-white, never pure white */
-  --color-ink:        #0E0E10;   /* near-black, never pure */
-  --color-accent:     #7A1F1F;   /* deep oxblood — institutional gravitas */
-  --color-paper:      #F1ECE3;   /* warm card surface */
-  --color-rule:       #1A1A1C;   /* divider/border */
-  --color-muted:      #6B6660;   /* warm gray for secondary text */
-  --color-muted-soft: #A39C92;   /* tertiary text on light bg */
-  --color-on-dark:    #F1ECE3;   /* paper-color text on ink surfaces */
-  --color-on-dark-muted: #8C857B; /* secondary text on dark */
+  /* ── LUMISIS Brand Corporate Colors (manual page 9) ────────── */
+  --color-brand-black: #393938;   /* Pantone Black 100% — R57 G57 B56 */
+  --color-brand-blue:  #0098DB;   /* Pantone 2925 C — primary digital accent */
+  --color-brand-green: #61C250;   /* Pantone 360 C  — Well-being / Coaching */
+  --color-brand-gold:  #EEAF30;   /* Pantone 143 C  — Strategy */
+  --color-brand-red:   #DE3831;   /* Pantone 179 C  — Consulting / emphasis */
 
-  /* Legacy brand corporate colors (preserved for selective use only) */
-  --color-brand-black: #0E0E10;
-  --color-brand-blue: #0098DB;
-  --color-brand-green: #61C250;
-  --color-brand-gold: #EEAF30;
-  --color-brand-red: #DE3831;
+  /* Brand digital gradient stops (manual page 17) */
+  --gradient-stop-1: #F5B335;
+  --gradient-stop-2: #E43D30;
+  --gradient-stop-3: #aa5b5e;
+  --gradient-stop-4: #009ADE;
+  --gradient-stop-5: #6ABF4B;
 
-  /* Neutral grays (for system UI, not visual design) */
-  --color-white: #FFFFFF;
-  --color-gray-50: #FAFAFA;
-  --color-gray-100: #F5F5F5;
+  /* ── Surface modes — ONLY two valid backgrounds (manual page 14) ── */
+  --color-background:      #FFFFFF;    /* Principal */
+  --color-background-dark: #393938;    /* Negative (brand black) */
+  --color-ink:             #393938;    /* Primary text on white */
+  --color-on-dark:         #FFFFFF;    /* Primary text on brand black */
+
+  /* Grayscale derived from brand black (manual page 9 — 100/80/60/50/30%) */
+  --color-gray-100: #393938;                       /* 100% — brand black */
+  --color-gray-80:  #5B5B5A;                       /* 80%  */
+  --color-gray-60:  #7C7C7B;                       /* 60%  */
+  --color-gray-50:  #9C9C9B;                       /* 50%  */
+  --color-gray-30:  #C4C4C3;                       /* 30%  */
+  --color-gray-10:  #ECECEC;                       /* 10% — UI surface */
+
+  /* Legacy Tailwind grays (kept for utility class compatibility) */
+  --color-gray-50-legacy: #FAFAFA;
   --color-gray-200: #E5E5E5;
   --color-gray-300: #D4D4D4;
   --color-gray-400: #A3A3A3;
@@ -39,19 +47,17 @@
   --color-gray-800: #262626;
   --color-gray-900: #171717;
 
-  /* Dark section palette (legacy — being replaced by --color-ink) */
-  --color-surface-dark: #0E0E10;
-  --color-text-on-dark: #F1ECE3;
-  --color-text-muted-dark: #8C857B;
-  --color-border-dark: rgba(241, 236, 227, 0.12);
-  --color-accent-orange: #F7B435;
+  /* Dark section palette */
+  --color-surface-dark: #393938;
+  --color-text-on-dark: #FFFFFF;
+  --color-text-muted-dark: #C4C4C3;
+  --color-border-dark: rgba(255, 255, 255, 0.18);
 
-  /* ── Typography — LUMISIS brand fonts ─────────────────────── */
+  /* ── Typography — LUMISIS brand fonts (manual page 12) ────── */
   --font-display: 'Gotham', system-ui, sans-serif;
-  --font-body: 'Gotham', system-ui, sans-serif;
-  --font-eyebrow: 'Futura Round', 'Gotham', system-ui, sans-serif;
+  --font-body:    'Gotham', system-ui, sans-serif;
 
-  /* Font sizes — modular scale, generous range for editorial display */
+  /* Font sizes — institutional consulting scale */
   --text-xs: 0.75rem;    /* 12px */
   --text-sm: 0.875rem;   /* 14px */
   --text-base: 1rem;     /* 16px */
@@ -59,9 +65,9 @@
   --text-xl: 1.5rem;     /* 24px */
   --text-2xl: 2rem;      /* 32px */
   --text-3xl: 3rem;      /* 48px */
-  --text-4xl: 4.5rem;    /* 72px */
-  --text-5xl: 6rem;      /* 96px */
-  --text-6xl: 9rem;      /* 144px — hero display, desktop only */
+  --text-4xl: 4rem;      /* 64px */
+  --text-5xl: 5.5rem;    /* 88px */
+  --text-6xl: 7.5rem;    /* 120px — hero display, desktop only */
 
   /* Layout */
   --max-width-site: 80rem;
@@ -78,13 +84,11 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
-    font-feature-settings: 'ss01', 'tnum';  /* tabular numbers globally */
+    font-feature-settings: 'tnum';  /* tabular numbers globally */
   }
 
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
+    html { scroll-behavior: auto; }
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
@@ -104,20 +108,20 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    line-height: 1.02;           /* tight on display */
+    line-height: 1.05;
     text-wrap: balance;
   }
 
   h1 {
-    font-size: clamp(3rem, 8vw, var(--text-6xl));   /* 48px → 144px fluid */
+    font-size: clamp(2.5rem, 7vw, var(--text-6xl));
     font-weight: 900;            /* Gotham Black */
-    letter-spacing: -0.045em;
+    letter-spacing: -0.04em;
   }
 
   h2 {
-    font-size: clamp(2rem, 5vw, var(--text-4xl));   /* 32px → 72px fluid */
+    font-size: clamp(2rem, 4.5vw, var(--text-4xl));
     font-weight: 700;            /* Gotham Bold */
-    letter-spacing: -0.03em;
+    letter-spacing: -0.025em;
   }
 
   h3 {
@@ -133,7 +137,7 @@
   }
 
   p {
-    max-width: 60ch;
+    max-width: 62ch;
     font-weight: 400;
   }
 
@@ -149,49 +153,27 @@
     text-underline-offset: 0.15em;
   }
 
-  strong, b {
-    font-weight: 700;
-  }
+  strong, b { font-weight: 700; }
 
   ::selection {
-    background-color: var(--color-accent);
-    color: var(--color-background);
+    background-color: var(--color-brand-blue);
+    color: #FFFFFF;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-brand-blue);
     outline-offset: 2px;
   }
 
   /* Global transition defaults */
   a, button, [role="button"] {
     transition:
-      color 200ms cubic-bezier(0.16, 1, 0.3, 1),
-      background-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
-      transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
-      opacity 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 220ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-}
-
-/* ============================================================
-   Atmosphere — Global Grain Texture
-   The single most important "premium feel" upgrade.
-   ============================================================ */
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.08;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body::before { opacity: 0.05; }
 }
 
 /* ============================================================
@@ -199,11 +181,11 @@ body::before {
    ============================================================ */
 
 ::view-transition-old(root) {
-  animation: fade-out 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: fade-out 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 ::view-transition-new(root) {
-  animation: fade-in 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: fade-in 260ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes fade-out {
@@ -212,7 +194,7 @@ body::before {
 }
 
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -246,12 +228,12 @@ body::before {
    ============================================================ */
 
 @utility eyebrow {
-  font-family: var(--font-eyebrow);
+  font-family: var(--font-body);
   font-size: var(--text-xs);
-  font-weight: 400;
-  letter-spacing: 0.22em;
+  font-weight: 500;             /* Gotham Medium */
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-gray-60);
 }
 
 @utility section-padding {
@@ -264,215 +246,294 @@ body::before {
   }
 
   @media (min-width: 1280px) {
-    padding-top: 10rem;
-    padding-bottom: 10rem;
+    padding-top: 9rem;
+    padding-bottom: 9rem;
   }
 }
 
 /* ============================================================
-   Roman Numeral Section Markers
-   Signature element of Editorial-Clinical-Luxury
+   Hero — People-Photo with Dark Overlay
+   Black-negative mode per brand manual page 14-15
    ============================================================ */
 
-@utility roman {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: var(--text-xs);
-  letter-spacing: 0.3em;
-  color: var(--color-accent);
-  display: inline-block;
-  padding-bottom: 0.25rem;
-  border-bottom: 1px solid currentColor;
-}
-
-/* ============================================================
-   Editorial Pull-Quote
-   ============================================================ */
-
-@utility pullquote {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-  color: var(--color-ink);
-  text-wrap: balance;
-  max-width: 28ch;
-}
-
-/* ============================================================
-   Editorial Hero — Phase C2
-   Replaces photo-background hero with type-driven editorial hero
-   ============================================================ */
-
-.hero-editorial {
+.hero-people {
   position: relative;
-  padding-top: clamp(8rem, 14vh, 12rem);
-  padding-bottom: clamp(6rem, 12vh, 10rem);
-  background-color: var(--color-background);
+  display: flex;
+  align-items: flex-end;
+  min-height: 100vh;
   overflow: hidden;
+  background-color: var(--color-brand-black);  /* fallback while image loads */
 }
 
-.hero-editorial__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  max-width: 70rem;
-}
-
-.hero-editorial__marker {
-  margin-bottom: 2rem;
-}
-
-.hero-editorial__title {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(3rem, 9vw, 9rem);
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  color: var(--color-ink);
-  text-wrap: balance;
-  margin: 0;
-}
-
-/* Word-weight cross-fade — Gotham isn't variable so we layer Light + Black */
-.hero-editorial__title .word {
-  position: relative;
-  display: inline-block;
-  isolation: isolate;
-}
-
-.hero-editorial__title .word__light,
-.hero-editorial__title .word__black {
-  display: inline-block;
-  transition:
-    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-editorial__title .word__light {
+.hero-people__bg {
   position: absolute;
   inset: 0;
-  font-weight: 300;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.hero-editorial__title .word__black {
-  font-weight: 900;
-  opacity: 0;
-  transform: translateY(0.15em);
-}
-
-/* When the parent .word has .revealed, swap weight */
-.hero-editorial__title .word.revealed .word__light {
-  opacity: 0;
-  transform: translateY(-0.05em);
-}
-
-.hero-editorial__title .word.revealed .word__black {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.hero-editorial__lede {
-  max-width: 38ch;
-  font-family: var(--font-body);
-  font-weight: 300;
-  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
-  line-height: 1.5;
-  color: var(--color-muted);
-  margin-top: 2rem;
-}
-
-.hero-editorial__cta {
-  margin-top: 3rem;
-}
-
-/* ============================================================
-   CTA — Directional Fill Button (oxblood)
-   Signature interaction. Replaces generic Button for hero/primary moments.
-   ============================================================ */
-
-.cta-fill {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.75rem;
-  background-color: transparent;
-  border: 1px solid var(--color-ink);
-  color: var(--color-ink);
-  text-decoration: none;
-  font-family: var(--font-eyebrow);
-  font-size: 0.8125rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  overflow: hidden;
-  cursor: pointer;
-  transition: color 350ms cubic-bezier(0.16, 1, 0.3, 1), border-color 350ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.cta-fill::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: var(--color-accent);
-  transform: translateX(-101%);
-  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   z-index: 0;
 }
 
-.cta-fill:hover {
-  color: var(--color-background);
-  border-color: var(--color-accent);
+.hero-people__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(57, 57, 56, 0.55) 0%,
+      rgba(57, 57, 56, 0.35) 40%,
+      rgba(57, 57, 56, 0.75) 100%
+    );
 }
 
-.cta-fill:hover::before {
+.hero-people > :global(*:not(.hero-people__bg):not(.hero-people__overlay)) {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-people__content {
+  width: 100%;
+  padding-top: 12rem;
+  padding-bottom: 7rem;
+  color: var(--color-on-dark);
+  max-width: 56rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-people__content {
+    padding-bottom: 9rem;
+  }
+}
+
+.hero-people__eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-on-dark);
+  opacity: 0.8;
+  margin-bottom: 1.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-brand-blue);
+}
+
+.hero-people__title {
+  font-family: var(--font-display);
+  font-weight: 900;             /* Gotham Black */
+  font-size: clamp(2.5rem, 7vw, 7.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  color: var(--color-on-dark);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.hero-people__lede {
+  margin-top: 2rem;
+  max-width: 38ch;
+  font-family: var(--font-body);
+  font-weight: 300;             /* Gotham Light */
+  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.hero-people__cta {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ============================================================
+   CTA — Pill Buttons with Letter-Swipe Animation
+   Signature LUMISIS interaction. Brand-blue fill (or gradient).
+   ============================================================ */
+
+.cta-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1rem 2rem;
+  border-radius: 9999px;       /* pill */
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+/* Solid variant: white pill on dark hero → fills with brand blue on hover */
+.cta-pill--solid {
+  background-color: #FFFFFF;
+  color: var(--color-brand-black);
+  border: 1px solid #FFFFFF;
+}
+
+.cta-pill--solid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-brand-blue);
+  transform: translateX(-101%);
+  transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.cta-pill--solid:hover {
+  color: #FFFFFF;
+  border-color: var(--color-brand-blue);
+}
+
+.cta-pill--solid:hover::before {
   transform: translateX(0);
 }
 
-.cta-fill__label,
-.cta-fill__arrow {
+/* Outline variant: transparent → fills with white on dark / blue on light */
+.cta-pill--outline {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.cta-pill--outline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #FFFFFF;
+  transform: translateX(-101%);
+  transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.cta-pill--outline:hover {
+  color: var(--color-brand-black);
+  border-color: #FFFFFF;
+}
+
+.cta-pill--outline:hover::before {
+  transform: translateX(0);
+}
+
+/* Gradient variant: signature moment, uses the brand digital gradient */
+.cta-pill--gradient {
+  background-color: var(--color-brand-black);
+  color: #FFFFFF;
+  border: 1px solid var(--color-brand-black);
+}
+
+.cta-pill--gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--gradient-stop-1) 0%,
+    var(--gradient-stop-2) 25%,
+    var(--gradient-stop-3) 50%,
+    var(--gradient-stop-4) 75%,
+    var(--gradient-stop-5) 100%
+  );
+  transform: translateX(-101%);
+  transition: transform 580ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.cta-pill--gradient:hover::before {
+  transform: translateX(0);
+}
+
+/* Letter-swipe text animation — applied to .cta-pill .letters */
+.cta-pill .letters {
   position: relative;
-  z-index: 1;
-  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
 }
 
-.cta-fill:hover .cta-fill__arrow {
-  transform: translateX(4px);
+.cta-pill .letter {
+  position: relative;
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1;
 }
 
-/* ============================================================
-   Pull-Quote Editorial Breakout Section
-   ============================================================ */
-
-.pullquote-section {
-  background-color: var(--color-paper);
-  padding-top: clamp(6rem, 10vh, 9rem);
-  padding-bottom: clamp(6rem, 10vh, 9rem);
-  border-top: 1px solid var(--color-rule);
-  border-bottom: 1px solid var(--color-rule);
+.cta-pill .letter > span {
+  display: block;
+  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * 18ms);
 }
 
-.pullquote-section__quote {
-  margin: 0;
-  padding-left: 2rem;
-  border-left: 2px solid var(--color-accent);
+.cta-pill .letter > span:last-child {
+  position: absolute;
+  top: 100%;
+  left: 0;
 }
 
-.pullquote-section__attribution {
-  margin-top: 1.5rem;
+.cta-pill:hover .letter > span:first-child {
+  transform: translateY(-100%);
+}
+
+.cta-pill:hover .letter > span:last-child {
+  transform: translateY(-100%);
+}
+
+.cta-pill__arrow {
+  position: relative;
+  display: inline-block;
+  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-pill:hover .cta-pill__arrow {
+  transform: translateX(6px);
+}
+
+/* Ghost CTA — borderless, animated underline in brand blue */
+.cta-ghost {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.25rem;
   font-family: var(--font-body);
-  font-size: var(--text-sm);
-  font-weight: 400;
-  color: var(--color-muted);
-  letter-spacing: 0.02em;
-  max-width: 42ch;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-ghost::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-brand-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-ghost:hover::after {
+  transform: scaleX(1);
 }
 
 /* ============================================================
-   Service Cards — keeping existing pattern, retouched colors
+   Service Cards
    ============================================================ */
 
 .service-card {
@@ -480,14 +541,14 @@ body::before {
   display: block;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background-color: var(--color-paper);
+  background-color: var(--color-gray-10);
   text-decoration: none;
   border: 1px solid transparent;
   transition: border-color 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .service-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-brand-blue);
 }
 
 .service-card__img {
@@ -496,7 +557,7 @@ body::before {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(0.3) contrast(1.05);
+  filter: grayscale(0.2) contrast(1.04);
   transition:
     transform 600ms cubic-bezier(0.16, 1, 0.3, 1),
     filter 400ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -510,12 +571,22 @@ body::before {
 .service-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(14, 14, 16, 0.85), rgba(14, 14, 16, 0.15) 50%, transparent 75%);
+  background: linear-gradient(
+    to top,
+    rgba(57, 57, 56, 0.85) 0%,
+    rgba(57, 57, 56, 0.15) 55%,
+    transparent 80%
+  );
   transition: background 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .service-card:hover .service-card__overlay {
-  background: linear-gradient(to top, rgba(122, 31, 31, 0.9), rgba(14, 14, 16, 0.2) 50%, transparent 75%);
+  background: linear-gradient(
+    to top,
+    rgba(0, 152, 219, 0.92) 0%,
+    rgba(57, 57, 56, 0.2) 55%,
+    transparent 80%
+  );
 }
 
 .service-card__content {
@@ -523,7 +594,7 @@ body::before {
   bottom: 0;
   left: 0;
   padding: 1.75rem;
-  color: var(--color-background);
+  color: #FFFFFF;
 }
 
 .service-card__title {
@@ -543,18 +614,18 @@ body::before {
 .service-card__cta {
   display: inline-block;
   margin-top: 0.75rem;
-  font-family: var(--font-eyebrow);
+  font-family: var(--font-body);
   font-size: var(--text-xs);
-  font-weight: 400;
-  letter-spacing: 0.2em;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(241, 236, 227, 0.6);
+  color: rgba(255, 255, 255, 0.7);
   transition:
     color 300ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .service-card:hover .service-card__cta {
-  color: var(--color-background);
+  color: #FFFFFF;
   transform: translateX(6px);
 }

@@ -59,33 +59,43 @@ src/
 
 ## Design System
 
-**THE source of truth is `/Users/racosta/LUMISIS/DESIGN.md`.** Aesthetic POV is **Editorial-Clinical-Luxury**. Read DESIGN.md before any visual/component work — it specifies typography, color, motion, layout, anti-patterns, and signature elements.
+**Two sources of truth, in this order:**
+1. **`/Users/racosta/LUMISIS/BRANDING/Manual de identidad Lumisis _ 12 julio 2023.pdf`** — the actual LUMISIS brand book. Authoritative for all color, typography, logo usage, and photography decisions.
+2. **`/Users/racosta/LUMISIS/DESIGN.md`** — code-level translation of the manual into tokens, components, motion, and banned defaults.
+
+Aesthetic direction = **LUMISIS Brand-True** (no invented label).
 
 Quick reference (full spec in DESIGN.md):
-- Palette: `--color-background` (#FAF8F5 warm off-white), `--color-ink` (#0E0E10), `--color-accent` (#7A1F1F oxblood), `--color-paper` (#F1ECE3)
-- Typography: Gotham (Light/Book/Medium/Bold/Black) + Futura Round Book (eyebrows)
-- Atmosphere: global grain texture overlay (in `body::before`)
-- Banned: pure white/black, purple/violet, gradient text, rounded-xl, drop-shadow, centered h2+, 3-column feature grids
-- Signatures: roman numeral markers, editorial pull-quotes, kinetic h1 weight cross-fade, sticky-pin narratives
+- Background modes: **pure white `#FFFFFF` (principal) OR brand black `#393938` (negative)** — only these two, no warm off-whites
+- Ink color: `#393938` (brand black) on white, `#FFFFFF` on brand black
+- Accents: brand blue `#0098DB` leads; green `#61C250` / gold `#EEAF30` / red `#DE3831` only in service contexts; brand gradient `(F5B335 → E43D30 → aa5b5e → 009ADE → 6ABF4B)` for signature moments
+- Typography: Gotham (Light/Book/Medium/Bold/Black) — self-hosted, owned
+- Photography of people is central — heroes use full-bleed photo + dark overlay + white display type
+- Buttons: pills (`border-radius: 9999px`) or ghosts — no squares
+- Signatures: letter-swipe text animation on pill CTAs, brand-blue fill on hover, brand-gradient on special moments
+- Banned: warm off-whites, pure black `#000`, invented accents (oxblood etc.), purple, gradient text, drop shadows, mid-radius corners, grain textures
 
 ## Design Workflow (MANDATORY for any UI/component/page/style task)
 
 Any task that touches visual presentation follows this sequence — no exceptions:
 
-1. **Read `/Users/racosta/LUMISIS/DESIGN.md`** first. Every choice must comply with it.
-2. **Invoke `frontend-design` skill** before writing code. State the aesthetic direction (Editorial-Clinical-Luxury) explicitly in the skill prompt.
-3. **Build** referencing DESIGN.md tokens — no off-palette colors, no banned defaults.
-4. **Screenshot via Playwright MCP** after build. Compare against the section in DESIGN.md.
-5. **Self-critique with frontend-design**:
+**Step 0 (before everything else)** — If you have *any* doubt about a color, shape, font, or aesthetic choice, open `/Users/racosta/LUMISIS/BRANDING/Manual de identidad Lumisis _ 12 julio 2023.pdf` first. **Do not invent colors. Do not invent aesthetic terminology. Do not reference external brands (Aesop, A24, McKinsey, Linear, Vercel, Stripe, etc.) as the source.** LUMISIS has its own brand book — it is THE source. If you propose a color, you must be able to quote which manual page it comes from.
+
+1. **Read `/Users/racosta/LUMISIS/DESIGN.md`** — the code-relevant translation of the manual. Every choice must comply with it.
+2. **Invoke `frontend-design` skill** before writing code. State the aesthetic direction as "LUMISIS Brand-True per manual" — do not invent labels.
+3. **Build** referencing DESIGN.md tokens — no off-palette colors, no banned defaults, no warm off-whites, no invented accents.
+4. **Screenshot via Playwright MCP** after build. Compare against the section in DESIGN.md *and* against the brand manual pages it derives from.
+5. **Self-critique**:
+   - Brand-truth test: open the manual, does this match? If you can't point to a manual page that supports the choice, the choice is wrong.
    - Swap test: could this be any other consulting firm's site? If yes — start over.
    - Squint test: from 20ft, is the hierarchy doing what it should?
 6. **Run `ux-auditor` agent** for accessibility + heuristic review on substantive changes.
 7. **Only then** propose commit.
 
-Skipping steps produces bland output. The whole point of this workflow is to prevent the regression to safe/generic defaults.
+Skipping Step 0 is how we got "Editorial-Clinical-Luxury with oxblood and warm off-white." That was a drift. It cost a full commit to roll back. Do not skip Step 0.
 
 ### Banned defaults (auto-reject if present)
-Inter as display, purple/violet/magenta, rounded corners >4px, drop-shadows, centered h2+, 3-column "feature grids," "Trusted by" decorative logo strips, emoji, generic "Get started"/"Learn more" CTAs, hero photos as wallpaper behind text, AI-slop imagery.
+Inter as display, warm off-whites (`#FAF8F5`, `#F1ECE3`, etc.), pure black `#000` as ink (use `#393938`), invented accent colors (oxblood, burgundy, anything not in the manual), purple/violet/magenta, rounded corners between 4px and 9999px (only rectangles or full pills), drop shadows, centered h2+, 3-column "feature grids," "Trusted by" decorative logo strips, emoji, generic "Get started"/"Learn more" CTAs, hero photos as wallpaper behind small text (use full-bleed + large display), AI-slop imagery, grain/noise overlays, roman numeral section markers, editorial pull-quotes with serif (Gotham has no serif).
 
 ## How to Add a Journal Post
 

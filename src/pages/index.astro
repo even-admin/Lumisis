@@ -7,48 +7,53 @@ import Button from '@/components/ui/Button.astro';
 import { Globe } from '@/components/islands/Globe';
 import { AnimatedNumber } from '@/components/islands/AnimatedNumber';
 import { SERVICES, prefixBase, GLOBE_PINS } from '@/lib/constants';
-import { CLIENT_LOGOS, SERVICE_IMAGES } from '@/lib/images';
+import { heroHomeAlt, CLIENT_LOGOS, SERVICE_IMAGES } from '@/lib/images';
 
 const services = SERVICES.es;
 ---
 
 <PageLayout title="LUMISIS — Strategy | Consulting | Coaching">
-  {/* Hero — Editorial type-hero, no photo background */}
-  <section class="hero-editorial">
+  {/* Hero — People-photo with dark overlay (LUMISIS brand-true, negative mode) */}
+  <section class="hero-people">
+    <Image
+      src={heroHomeAlt}
+      alt=""
+      width={1920}
+      quality={82}
+      class="hero-people__bg"
+    />
+    <div class="hero-people__overlay"></div>
     <Container>
-      <div class="hero-editorial__grid">
-        <div class="hero-editorial__marker">
-          <span class="roman">I &mdash; Manifiesto</span>
-        </div>
-        <h1 class="hero-editorial__title">
-          <span class="word" data-reveal><span class="word__light">Prosperar</span><span class="word__black">Prosperar</span></span>{' '}
-          <span class="word" data-reveal data-reveal-delay="60"><span class="word__light">en</span><span class="word__black">en</span></span>{' '}
-          <span class="word" data-reveal data-reveal-delay="120"><span class="word__light">la</span><span class="word__black">la</span></span><br />
-          <span class="word" data-reveal data-reveal-delay="180"><span class="word__light">incertidumbre.</span><span class="word__black">incertidumbre.</span></span>
+      <div class="hero-people__content">
+        <span class="hero-people__eyebrow" data-reveal>Strategy &nbsp;|&nbsp; Consulting &nbsp;|&nbsp; Coaching</span>
+        <h1 class="hero-people__title" data-reveal data-reveal-delay="120">
+          Prosperar en la<br />incertidumbre.
         </h1>
-        <p class="hero-editorial__lede" data-reveal data-reveal-delay="320">
-          Liberamos el potencial de organizaciones, l&iacute;deres y culturas. Sin recetas. Sin pirotecnia. Con intenci&oacute;n.
+        <p class="hero-people__lede" data-reveal data-reveal-delay="280">
+          Liberamos el potencial de organizaciones, l&iacute;deres y culturas.
         </p>
-        <div class="hero-editorial__cta" data-reveal data-reveal-delay="440">
-          <a href={prefixBase('/contacto')} class="cta-fill">
-            <span class="cta-fill__label">Iniciar conversaci&oacute;n</span>
-            <span class="cta-fill__arrow">&rarr;</span>
+        <div class="hero-people__cta" data-reveal data-reveal-delay="440">
+          <a href={prefixBase('/contacto')} class="cta-pill cta-pill--solid" aria-label="Iniciar conversaci&oacute;n">
+            <span class="letters">
+              {'INICIAR CONVERSACIÓN'.split('').map((char, i) => (
+                char === ' '
+                  ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
+                  : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
+              ))}
+            </span>
+            <span class="cta-pill__arrow">&rarr;</span>
+          </a>
+          <a href={prefixBase('/soluciones')} class="cta-pill cta-pill--outline">
+            <span class="letters">
+              {'VER SOLUCIONES'.split('').map((char, i) => (
+                char === ' '
+                  ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
+                  : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
+              ))}
+            </span>
           </a>
         </div>
       </div>
-    </Container>
-  </section>
-
-  {/* Pull-quote breakout */}
-  <section class="pullquote-section">
-    <Container narrow>
-      <blockquote class="pullquote-section__quote" data-reveal>
-        <span class="roman" style="margin-bottom: 2rem; display: inline-block;">II &mdash; Esencia</span>
-        <p class="pullquote">Un eco, no una intervenci&oacute;n.</p>
-        <footer class="pullquote-section__attribution">
-          Resonancia sobre alcance. Impacto duradero sobre actividad visible.
-        </footer>
-      </blockquote>
     </Container>
   </section>
 
