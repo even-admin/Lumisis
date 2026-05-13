@@ -57,6 +57,37 @@ const services = SERVICES.es;
     </Container>
   </section>
 
+  {/* Intro — Quiénes Somos */}
+  <section class="home-intro">
+    <Container>
+      <p class="eyebrow home-intro__eyebrow" data-reveal>Quiénes somos</p>
+      <h2 class="home-intro__statement" data-reveal data-reveal-delay="120">
+        Una firma de estrategia, consultoría y coaching para los momentos que definen el futuro de una organización.
+      </h2>
+      <p class="home-intro__supporting" data-reveal data-reveal-delay="280">
+        Trabajamos con CEOs, consejos y equipos directivos que enfrentan transiciones críticas: crecimiento acelerado, sucesión, reposicionamiento, evolución cultural. Lo que entregamos no son frameworks ni reportes — son decisiones claras, ejecución acompañada y resultados que perduran.
+      </p>
+
+      <div class="home-intro__pillars" data-reveal data-reveal-delay="440">
+        {[
+          { label: 'Strategy', copy: 'Decisiones de portafolio, mercado y modelo de negocio.' },
+          { label: 'Consulting', copy: 'Planeación, ejecución y evolución organizacional.' },
+          { label: 'Coaching', copy: 'Desarrollo de líderes y equipos de alto desempeño.' },
+        ].map((p) => (
+          <div class="home-intro__pillar">
+            <p class="home-intro__pillar-label">{p.label}</p>
+            <p class="home-intro__pillar-copy">{p.copy}</p>
+          </div>
+        ))}
+      </div>
+
+      <a href={prefixBase('/por-que-nosotros')} class="home-intro__cta" data-reveal data-reveal-delay="600">
+        <span class="home-intro__cta-label">Conoce nuestra propuesta</span>
+        <span class="home-intro__cta-arrow">&rarr;</span>
+      </a>
+    </Container>
+  </section>
+
   {/* Logo Marquee — Trusted by */}
   <section class="logo-marquee" aria-label="Trusted by">
     <Container>
@@ -65,72 +96,62 @@ const services = SERVICES.es;
 
     <div class="logo-marquee__viewport">
       <div class="logo-marquee__track logo-marquee__track--left">
-        {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo) => (
-          <Image
-            src={logo}
-            alt=""
-            aria-hidden="true"
-            height={40}
-            quality={85}
-            class="logo-marquee__logo"
-          />
-        ))}
+        <div class="logo-marquee__copy">
+          {CLIENT_LOGOS.map((logo) => (
+            <Image
+              src={logo}
+              alt=""
+              aria-hidden="true"
+              height={40}
+              quality={85}
+              class="logo-marquee__logo"
+            />
+          ))}
+        </div>
+        <div class="logo-marquee__copy" aria-hidden="true">
+          {CLIENT_LOGOS.map((logo) => (
+            <Image
+              src={logo}
+              alt=""
+              aria-hidden="true"
+              height={40}
+              quality={85}
+              class="logo-marquee__logo"
+            />
+          ))}
+        </div>
       </div>
     </div>
 
     <div class="logo-marquee__viewport">
       <div class="logo-marquee__track logo-marquee__track--right">
-        {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo) => (
-          <Image
-            src={logo}
-            alt=""
-            aria-hidden="true"
-            height={40}
-            quality={85}
-            class="logo-marquee__logo"
-          />
-        ))}
+        <div class="logo-marquee__copy">
+          {CLIENT_LOGOS.map((logo) => (
+            <Image
+              src={logo}
+              alt=""
+              aria-hidden="true"
+              height={40}
+              quality={85}
+              class="logo-marquee__logo"
+            />
+          ))}
+        </div>
+        <div class="logo-marquee__copy" aria-hidden="true">
+          {CLIENT_LOGOS.map((logo) => (
+            <Image
+              src={logo}
+              alt=""
+              aria-hidden="true"
+              height={40}
+              quality={85}
+              class="logo-marquee__logo"
+            />
+          ))}
+        </div>
       </div>
     </div>
   </section>
-
-  {/* Why Us Preview */}
-  <Section>
-    <Container>
-      <div class="grid gap-16 md:grid-cols-2">
-        <div data-reveal>
-          <p class="eyebrow mb-4">¿Por Qué Nosotros?</p>
-          <h2 class="text-3xl md:text-4xl">
-            Why Companies Choose Lumisis®
-          </h2>
-          <p class="mt-6 text-gray-600">
-            We approach things with intention, thoughtfulness, planning and a strategic mindset.
-          </p>
-        </div>
-        <div>
-          <p class="eyebrow mb-6" data-reveal data-reveal-delay="100">Our Advantages Include:</p>
-          <ol class="why-us__list">
-            {[
-              'Clear, Actionable Strategy',
-              'Proven Frameworks',
-              'Hands-On Implementation',
-              'Transparent Costs',
-              'Design for Long-Term Growth',
-            ].map((item, i) => (
-              <li
-                class="why-us__item"
-                data-reveal
-                data-reveal-delay={`${200 + i * 60}`}
-              >
-                <span class="why-us__num">{String(i + 1).padStart(2, '0')}</span>
-                <span class="why-us__label">{item}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-    </Container>
-  </Section>
 
   {/* Stats */}
   <Section bg="dark">
@@ -232,13 +253,131 @@ const services = SERVICES.es;
 
 <style>
   /* =========================================================
+     Home Intro — Quiénes Somos
+     Editorial statement + three-pillar grid + CTA
+     ========================================================= */
+  .home-intro {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    background: #fff;
+  }
+
+  @media (min-width: 768px) {
+    .home-intro {
+      padding-top: 9rem;
+      padding-bottom: 9rem;
+    }
+  }
+
+  .home-intro__eyebrow {
+    margin-bottom: 1.5rem;
+  }
+
+  .home-intro__statement {
+    font-family: var(--font-display, 'Gotham', sans-serif);
+    font-size: clamp(1.75rem, 3.6vw, 3rem);
+    line-height: 1.15;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: #393938;
+    max-width: 60rem;
+    margin: 0;
+  }
+
+  .home-intro__supporting {
+    margin-top: 2rem;
+    max-width: 48rem;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: rgba(57, 57, 56, 0.7);
+  }
+
+  .home-intro__pillars {
+    margin-top: 4rem;
+    display: grid;
+    gap: 2.5rem;
+    border-top: 1px solid rgba(57, 57, 56, 0.08);
+    padding-top: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .home-intro__pillars {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .home-intro__pillar-label {
+    font-family: var(--font-display, 'Gotham', sans-serif);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #0098DB;
+    margin-bottom: 0.75rem;
+  }
+
+  .home-intro__pillar-copy {
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: #393938;
+    margin: 0;
+  }
+
+  .home-intro__cta {
+    margin-top: 3.5rem;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.625rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #393938;
+    text-decoration: none;
+    transition: color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .home-intro__cta-label {
+    position: relative;
+  }
+
+  .home-intro__cta-label::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 1.5px;
+    background: #0098DB;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .home-intro__cta-arrow {
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .home-intro__cta:hover { color: #0098DB; }
+  .home-intro__cta:hover .home-intro__cta-label::after { transform: scaleX(1); }
+  .home-intro__cta:hover .home-intro__cta-arrow { transform: translateX(4px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-intro__cta,
+    .home-intro__cta-arrow,
+    .home-intro__cta-label::after { transition: none; }
+    .home-intro__cta:hover .home-intro__cta-arrow { transform: none; }
+  }
+
+  /* =========================================================
      Logo Marquee — Trusted by
-     Two rows drifting opposite directions, pure CSS, no JS.
+     Two rows drifting opposite directions on brand-black bg.
+     Each track holds two .copy children, min-width:100vw each,
+     guaranteeing the track is always wider than the viewport.
      ========================================================= */
   .logo-marquee {
     padding-top: 5rem;
     padding-bottom: 5rem;
-    background: #fff;
+    background: #393938;
   }
 
   @media (min-width: 768px) {
@@ -251,7 +390,7 @@ const services = SERVICES.es;
   .logo-marquee__eyebrow {
     text-align: center;
     margin-bottom: 3rem;
-    color: rgba(57, 57, 56, 0.6);
+    color: rgba(255, 255, 255, 0.55);
   }
 
   .logo-marquee__viewport {
@@ -278,14 +417,22 @@ const services = SERVICES.es;
 
   .logo-marquee__track {
     display: flex;
-    align-items: center;
-    gap: 4rem;
     width: max-content;
     will-change: transform;
   }
 
+  .logo-marquee__copy {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    min-width: 100vw;
+    justify-content: space-around;
+    padding: 0 2rem;
+    flex-shrink: 0;
+  }
+
   @media (max-width: 767px) {
-    .logo-marquee__track { gap: 2rem; }
+    .logo-marquee__copy { gap: 2rem; padding: 0 1rem; }
   }
 
   .logo-marquee__track--left  { animation: marquee-left  60s linear infinite; }
@@ -308,11 +455,9 @@ const services = SERVICES.es;
   .logo-marquee__logo {
     height: 40px;
     width: auto;
-    filter: grayscale(100%);
-    opacity: 0.55;
-    transition:
-      filter 320ms cubic-bezier(0.16, 1, 0.3, 1),
-      opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(0) invert(1);
+    opacity: 0.6;
+    transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @media (max-width: 767px) {
@@ -320,7 +465,6 @@ const services = SERVICES.es;
   }
 
   .logo-marquee__logo:hover {
-    filter: grayscale(0%);
     opacity: 1;
   }
 
@@ -336,80 +480,13 @@ const services = SERVICES.es;
       flex-wrap: wrap;
       justify-content: center;
       width: 100%;
+    }
+    .logo-marquee__copy {
+      flex-wrap: wrap;
+      justify-content: center;
+      min-width: 0;
+      width: 100%;
       gap: 2rem;
     }
-  }
-
-  /* =========================================================
-     Why Us — staggered reveal + per-row hover
-     ========================================================= */
-  .why-us__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .why-us__item {
-    display: flex;
-    align-items: baseline;
-    gap: 1.25rem;
-    padding: 1.125rem 0;
-    border-bottom: 1px solid rgba(57, 57, 56, 0.08);
-    transition:
-      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 320ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .why-us__item:last-child {
-    border-bottom: 0;
-  }
-
-  .why-us__num {
-    font-family: var(--font-display, 'Gotham', sans-serif);
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: rgba(57, 57, 56, 0.25);
-    min-width: 2.5rem;
-    transition: color 320ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .why-us__label {
-    position: relative;
-    font-size: 1.0625rem;
-    font-weight: 500;
-    color: #393938;
-  }
-
-  .why-us__label::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -3px;
-    height: 1.5px;
-    background: #0098DB;
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .why-us__item:hover {
-    transform: translateX(4px);
-    border-bottom-color: rgba(0, 152, 219, 0.35);
-  }
-
-  .why-us__item:hover .why-us__num {
-    color: #0098DB;
-  }
-
-  .why-us__item:hover .why-us__label::after {
-    transform: scaleX(1);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .why-us__item,
-    .why-us__num,
-    .why-us__label::after { transition: none; }
-    .why-us__item:hover { transform: none; }
   }
 </style>
