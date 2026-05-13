@@ -200,6 +200,8 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
     text-decoration: none;
     color: inherit;
     height: 32px;
+    grid-column: 1;
+    justify-self: start;
     transition: height 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -247,6 +249,8 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
     margin: 0;
     padding: 0;
     list-style: none;
+    grid-column: 2;
+    justify-self: center;
   }
 
   @media (min-width: 960px) {
@@ -297,6 +301,8 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
     display: flex;
     align-items: center;
     gap: 1.25rem;
+    grid-column: 3;
+    justify-self: end;
   }
 
   @media (min-width: 768px) {
@@ -628,26 +634,65 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
       });
     });
 
-    // ── Transparent → solid on scroll past hero ──
+    // ── Transparent → solid on first scroll (not after full hero exit) ──
+    // Uses both scroll events AND a rAF polling fallback for robustness
+    // against smooth-scroll libraries (like Lenis) that may not always
+    // dispatch native scroll events.
     const darkHero = document.querySelector(
       '.hero-people, [data-dark-hero]'
     );
+    const SCROLL_THRESHOLD = 8;
 
-    if (!darkHero) {
-      header.classList.add('header--solid');
-      return;
+    function updateHeaderState() {
+      if (!darkHero) {
+        header.classList.add('header--solid');
+        return;
+      }
+      header.classList.toggle(
+        'header--solid',
+        window.scrollY > SCROLL_THRESHOLD,
+      );
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        header.classList.toggle('header--solid', !entry.isIntersecting);
-      },
-      {
-        threshold: 0,
-        rootMargin: '-72px 0px 0px 0px',
+    // Clean up any previous listener / poll loop from an earlier initHeader call
+    if (header._stopPoll) header._stopPoll();
+    if (header._scrollListener) {
+      window.removeEventListener('scroll', header._scrollListener);
+    }
+
+    // 1) Native scroll event listener (covers normal scrolls)
+    let ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateHeaderState();
+          ticking = false;
+        });
+        ticking = true;
       }
-    );
-    observer.observe(darkHero);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    header._scrollListener = onScroll;
+
+    // 2) rAF poll fallback (covers Lenis or other libs that may not fire native scroll)
+    let lastScrollY = -1;
+    let stopped = false;
+    function poll() {
+      if (stopped) return;
+      const y = window.scrollY;
+      if (y !== lastScrollY) {
+        lastScrollY = y;
+        updateHeaderState();
+      }
+      requestAnimationFrame(poll);
+    }
+    header._stopPoll = () => {
+      stopped = true;
+    };
+    poll();
+
+    // Set initial state immediately
+    updateHeaderState();
   }
 
   initHeader();
