@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { NAV_ITEMS, SOCIAL_LINKS, SITE } from '@/lib/constants';
 import { getLocaleFromUrl } from '@/i18n/utils';
 import { ui } from '@/i18n/ui';
-import { lumisisLogo } from '@/lib/images';
+import { lumisisLogoWhite } from '@/lib/images';
 import Container from './Container.astro';
 
 const locale = getLocaleFromUrl(Astro.url);
@@ -14,7 +14,7 @@ const navItems = NAV_ITEMS[locale];
   <Container>
     <div class="footer__grid">
       <div class="footer__brand">
-        <Image src={lumisisLogo} alt="LUMISIS" height={32} class="footer__logo" />
+        <Image src={lumisisLogoWhite} alt="LUMISIS" height={32} class="footer__logo" />
         <p class="footer__tagline">Strategy | Consulting | Coaching</p>
       </div>
 
@@ -82,7 +82,6 @@ const navItems = NAV_ITEMS[locale];
   .footer__logo {
     height: 32px;
     width: auto;
-    filter: brightness(0) invert(1);
   }
 
   .footer__tagline {

@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { NAV_ITEMS, prefixBase } from '@/lib/constants';
 import { getLocaleFromUrl, getTranslatedPath } from '@/i18n/utils';
 import { ui } from '@/i18n/ui';
-import { lumisisLogo } from '@/lib/images';
+import { lumisisLogoWhite, lumisisLogoColor } from '@/lib/images';
 
 const locale = getLocaleFromUrl(Astro.url);
 const navItems = NAV_ITEMS[locale];
@@ -13,6 +13,7 @@ const switchAriaLabel = ui[locale]['lang.label'];
 const homeHref = locale === 'es' ? prefixBase('/') : prefixBase('/en/');
 const contactHref = locale === 'es' ? prefixBase('/contacto') : prefixBase('/en/contact');
 const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
+const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
 ---
 
 <header class="header" id="site-header" transition:persist>
@@ -20,10 +21,24 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
   <div class="header__accent" aria-hidden="true"></div>
 
   <nav class="header__inner" aria-label="Main navigation">
+    {/* Logo — two stacked images, swap via opacity (white over hero, full color on scroll) */}
     <a href={homeHref} class="header__logo" aria-label="LUMISIS — Home">
-      <Image src={lumisisLogo} alt="LUMISIS" height={32} class="header__logo-img" />
+      <Image
+        src={lumisisLogoWhite}
+        alt="LUMISIS"
+        height={32}
+        class="header__logo-img header__logo-img--white"
+      />
+      <Image
+        src={lumisisLogoColor}
+        alt=""
+        aria-hidden="true"
+        height={32}
+        class="header__logo-img header__logo-img--color"
+      />
     </a>
 
+    {/* Center nav links — visible only in default (over hero) state on desktop */}
     <ul class="header__links" role="list">
       {navItems.map((item) => (
         <li>
@@ -32,6 +47,7 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
       ))}
     </ul>
 
+    {/* Right side: lang + CTA (full-state) OR Menu button (compact-state / mobile) */}
     <div class="header__end">
       <a
         href={alternatePath}
@@ -47,16 +63,18 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
       </a>
 
       <button
-        class="header__burger"
-        aria-label="Open menu"
+        class="header__menu-btn"
+        aria-label={`Open ${menuLabel}`}
         aria-expanded="false"
         aria-controls="mobile-menu"
         id="mobile-menu-toggle"
         type="button"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span class="header__menu-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+        <span class="header__menu-label">{menuLabel}</span>
       </button>
     </div>
   </nav>
@@ -65,7 +83,7 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     <div class="mobile-menu__accent" aria-hidden="true"></div>
     <div class="mobile-menu__top">
       <a href={homeHref} class="header__logo" aria-label="LUMISIS — Home">
-        <Image src={lumisisLogo} alt="LUMISIS" height={32} class="mobile-menu__logo-img" />
+        <Image src={lumisisLogoColor} alt="LUMISIS" height={32} class="mobile-menu__logo-img" />
       </a>
       <button
         aria-label="Close menu"
@@ -96,8 +114,8 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
 
 <style>
   /* ============================================================
-     Header — Transparent over hero → Solid white after scroll
-     White House-inspired institutional nav for LUMISIS
+     Header — Transparent over hero → Compact white on scroll
+     Institutional nav. Gets out of the way once you scroll.
      ============================================================ */
 
   .header {
@@ -114,7 +132,6 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     border-bottom: 1px solid transparent;
   }
 
-  /* Solid state — applied when scrolled past the hero (or by default on pages without one) */
   .header--solid {
     background-color: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(20px) saturate(180%);
@@ -122,7 +139,7 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     border-bottom-color: rgba(57, 57, 56, 0.08);
   }
 
-  /* Brand-gradient accent strip — top edge of the entire header */
+  /* Brand-gradient accent strip — top edge of the header */
   .header__accent {
     height: 3px;
     width: 100%;
@@ -134,6 +151,12 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
       #009ADE 75%,
       #6ABF4B 100%
     );
+    transition: height 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Compact state: thinner accent strip */
+  .header--solid .header__accent {
+    height: 2px;
   }
 
   /* ── Inner nav layout ─────────────────────────────────────── */
@@ -146,6 +169,7 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     align-items: center;
     gap: 2rem;
     padding: 1.5rem 1.5rem;
+    transition: padding 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @media (min-width: 768px) {
@@ -161,29 +185,59 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     }
   }
 
-  /* ── Logo ─────────────────────────────────────────────────── */
+  /* Compact state — significantly reduced padding (and smaller logo via CSS below) */
+  .header--solid .header__inner {
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+  }
+
+  /* ── Logo — two stacked images, opacity swap ──────────────── */
 
   .header__logo {
+    position: relative;
     display: inline-flex;
     align-items: center;
     text-decoration: none;
     color: inherit;
+    height: 32px;
+    transition: height 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .header__logo-img {
     height: 32px;
     width: auto;
-    /* Default (over hero): white logo */
-    filter: brightness(0) invert(1);
-    transition: filter 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      opacity 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      height 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  .header__logo-img--white {
+    opacity: 1;
+  }
+
+  .header__logo-img--color {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+
+  /* Solid state: swap to color logo + shrink */
+  .header--solid .header__logo,
   .header--solid .header__logo-img {
-    /* Solid state: original brand colors */
-    filter: none;
+    height: 28px;
   }
 
-  /* ── Center nav links ─────────────────────────────────────── */
+  .header--solid .header__logo-img--white {
+    opacity: 0;
+  }
+
+  .header--solid .header__logo-img--color {
+    opacity: 1;
+  }
+
+  /* ── Center nav links — desktop only, hidden when solid ───── */
 
   .header__links {
     display: none;
@@ -199,6 +253,9 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     .header__links {
       display: flex;
     }
+    .header--solid .header__links {
+      display: none;
+    }
   }
 
   .header__link {
@@ -206,20 +263,16 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     display: inline-block;
     padding: 0.25rem 0;
     font-family: var(--font-body);
-    font-size: 0.9375rem;        /* 15px — institutional, readable */
-    font-weight: 500;             /* Gotham Medium */
+    font-size: 0.9375rem;
+    font-weight: 500;
     letter-spacing: 0.005em;
-    text-transform: none;         /* Title Case, NOT uppercase */
+    text-transform: none;
     text-decoration: none;
-    color: rgba(255, 255, 255, 1);
+    color: #FFFFFF;
     transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .header--solid .header__link {
-    color: var(--color-brand-black);
-  }
-
-  /* Brand-blue underline that slides in from left on hover */
+  /* Brand-blue underline slides in from left on hover */
   .header__link::after {
     content: '';
     position: absolute;
@@ -238,7 +291,7 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     transform: scaleX(1);
   }
 
-  /* ── Right side: language switch + CTA + burger ───────────── */
+  /* ── Right side end-group ─────────────────────────────────── */
 
   .header__end {
     display: flex;
@@ -252,6 +305,7 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     }
   }
 
+  /* Lang switcher — visible only in default desktop state */
   .header__lang {
     display: none;
     font-family: var(--font-body);
@@ -260,13 +314,16 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     letter-spacing: 0.18em;
     text-transform: uppercase;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.85);
     transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 960px) {
     .header__lang {
       display: inline-block;
+    }
+    .header--solid .header__lang {
+      display: none;
     }
   }
 
@@ -274,15 +331,7 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     color: #FFFFFF;
   }
 
-  .header--solid .header__lang {
-    color: var(--color-gray-60, #7C7C7B);
-  }
-
-  .header--solid .header__lang:hover {
-    color: var(--color-brand-black);
-  }
-
-  /* Contact CTA — pill on the right, brand-blue fill on hover */
+  /* Contact CTA pill — visible only in default desktop state */
   .header__cta {
     display: none;
     align-items: center;
@@ -297,7 +346,7 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     text-decoration: none;
     background-color: transparent;
     color: #FFFFFF;
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.85);
     transition:
       background-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
       color 280ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -308,20 +357,12 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     .header__cta {
       display: inline-flex;
     }
+    .header--solid .header__cta {
+      display: none;
+    }
   }
 
   .header__cta:hover {
-    background-color: var(--color-brand-blue);
-    border-color: var(--color-brand-blue);
-    color: #FFFFFF;
-  }
-
-  .header--solid .header__cta {
-    color: var(--color-brand-black);
-    border-color: var(--color-brand-black);
-  }
-
-  .header--solid .header__cta:hover {
     background-color: var(--color-brand-blue);
     border-color: var(--color-brand-blue);
     color: #FFFFFF;
@@ -336,58 +377,84 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     transform: translateX(4px);
   }
 
-  /* ── Burger (mobile) ──────────────────────────────────────── */
+  /* ── Menu button — appears when compact (solid state) OR on mobile ── */
 
-  .header__burger {
+  .header__menu-btn {
     display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 36px;
-    height: 36px;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.5rem 0.75rem 0.5rem 0.625rem;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @media (min-width: 960px) {
-    .header__burger {
+    .header__menu-btn {
       display: none;
+    }
+    .header--solid .header__menu-btn {
+      display: inline-flex;
     }
   }
 
-  .header__burger span {
+  /* When in solid state, menu button text is brand-black */
+  .header--solid .header__menu-btn {
+    color: var(--color-brand-black);
+  }
+
+  .header__menu-btn:hover {
+    color: var(--color-brand-blue);
+  }
+
+  .header--solid .header__menu-btn:hover {
+    color: var(--color-brand-blue);
+  }
+
+  /* Two-bar icon (institutional, not 3-bar hamburger) */
+  .header__menu-bars {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 22px;
+  }
+
+  .header__menu-bars > span {
     display: block;
     width: 100%;
     height: 1.5px;
-    background-color: #FFFFFF;
-    transition:
-      background-color 240ms cubic-bezier(0.16, 1, 0.3, 1),
-      transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: currentColor;
+    transition: width 240ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .header__burger span:nth-child(2) {
-    width: 70%;
+  .header__menu-bars > span:nth-child(2) {
+    width: 60%;
     margin-left: auto;
   }
 
-  .header__burger span:nth-child(3) {
-    width: 50%;
-    margin-left: auto;
-  }
-
-  .header--solid .header__burger span {
-    background-color: var(--color-brand-black);
-  }
-
-  .header__burger:hover span:nth-child(2),
-  .header__burger:hover span:nth-child(3) {
+  .header__menu-btn:hover .header__menu-bars > span:nth-child(2) {
     width: 100%;
   }
 
+  .header__menu-label {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .header__menu-label {
+      display: inline-block;
+    }
+  }
+
   /* ============================================================
-     Mobile Menu — Full-screen overlay
+     Mobile / Compact Menu Drawer — Full-screen overlay
      ============================================================ */
 
   .mobile-menu {
@@ -494,6 +561,12 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     line-height: 1.1;
   }
 
+  @media (min-width: 768px) {
+    .mobile-menu__link-label {
+      font-size: 2.5rem;
+    }
+  }
+
   .mobile-menu__footer {
     display: flex;
     align-items: center;
@@ -531,7 +604,7 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     const menu = document.getElementById('mobile-menu');
     if (!header) return;
 
-    // ── Mobile menu open/close ──
+    // ── Menu open/close (works for both mobile burger and desktop compact-state Menu button) ──
     toggle?.addEventListener('click', () => {
       menu?.classList.add('mobile-menu--open');
       menu?.setAttribute('aria-hidden', 'false');
@@ -561,12 +634,10 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
     );
 
     if (!darkHero) {
-      // No dark hero on this page → header is solid by default
       header.classList.add('header--solid');
       return;
     }
 
-    // Watch the hero. When it's no longer in view, header becomes solid.
     const observer = new IntersectionObserver(
       ([entry]) => {
         header.classList.toggle('header--solid', !entry.isIntersecting);
