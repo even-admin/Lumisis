@@ -1634,14 +1634,14 @@
 }
 
 @media (min-width: 768px) {
-  .whyus-footprint__grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .whyus-footprint__grid { grid-template-columns: 1fr 1.5fr; gap: 3rem; }
 }
 
 .whyus-footprint__map {
   position: relative;
-  /* Holds the FootprintMap canvas, which letterboxes an aspect-correct
-     equirectangular map (lon 360 / lat 132) inside its own padded box. */
-  aspect-ratio: 5 / 2;
+  /* Holds the FootprintMap canvas. aspect-ratio matches the map's content
+     aspect (lon 360 / lat 140 = 18/7) so it fills with no letterbox. */
+  aspect-ratio: 18 / 7;
 }
 
 .whyus-footprint__copy strong {

@@ -29,11 +29,11 @@ const LAND_URLS = [
 ]
 const URL_TOPO = "https://esm.sh/topojson-client@3?bundle"
 
-// Equirectangular viewport — clip the empty poles + Antarctica for a clean
-// "world view" (the globe drops the same polar mass in filterNonPolarPolys).
-// LAT_TOP stops at 76: drops the most equirectangular-distorted polar band
-// (all plotted points sit ≤ ~53° lat, so nothing relevant is lost).
-const LAT_TOP = 76
+// Equirectangular viewport — clip empty Antarctica for a clean "world view"
+// (the globe drops the same polar mass in filterNonPolarPolys). LAT_TOP 84
+// keeps the full northern landmass; the container's aspect-ratio (18/7 in
+// global.css) matches 360/LAT_RANGE so the map fills with no letterbox.
+const LAT_TOP = 84
 const LAT_BOTTOM = -56
 const LAT_RANGE = LAT_TOP - LAT_BOTTOM
 
@@ -219,8 +219,8 @@ function draw(
   // Project into an inset, aspect-correct, centred rect (not edge-to-edge):
   // the padding keeps coastlines off the canvas edges, and fitting an explicit
   // 360/LAT_RANGE-aspect rect preserves the equirectangular proportions.
-  const padX = w * 0.05
-  const padY = h * 0.06
+  const padX = w * 0.025
+  const padY = h * 0.025
   const mapAspect = 360 / LAT_RANGE
   let rectW = w - padX * 2
   let rectH = rectW / mapAspect
