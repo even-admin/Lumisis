@@ -79,10 +79,10 @@ export const GLOBE_PINS = [
     lat: 19.4326,
   },
   {
-    name: 'Miami, USA',
-    address: 'Regional Office',
-    lon: -80.1918,
-    lat: 25.7617,
+    name: 'San Diego, USA',
+    address: 'Oficina Regional',
+    lon: -117.1611,
+    lat: 32.7157,
   },
   {
     name: 'Chihuahua, Mexico',

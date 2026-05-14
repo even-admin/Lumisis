@@ -23,6 +23,9 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
       <h1 class="relative text-4xl md:text-5xl text-white">
         Resonant Strategic<br />Breakthroughs
       </h1>
+      <p class="relative mt-6 max-w-xl text-lg text-white/80">
+        Todo lo que hacemos es resonante, tiene eco y repercute de manera poderosa en las organizaciones, en las personas y en el planeta.
+      </p>
     </Container>
   </section>
 
@@ -32,51 +35,51 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
       <div class="grid gap-16 md:grid-cols-3">
         <div data-reveal>
           <p class="eyebrow mb-4">01</p>
-          <h3>The Power of Intention</h3>
+          <h3>El poder de la intención</h3>
           <p class="mt-4 text-gray-600">
-            We ensure that every intervention is not just active, but purposeful. Creating a powerful, positive echo that extends beyond the boardroom to impact your organization, your people, and the planet.
+            Hacemos las cosas con intención, premeditación y planeación. No trabajamos en temas "sin sentido": el "para qué" es crucial en cada una de nuestras intervenciones profesionales.
           </p>
         </div>
         <div data-reveal data-reveal-delay="120">
           <p class="eyebrow mb-4">02</p>
-          <h3>A Definitive Turning Point</h3>
+          <h3>Un parteaguas definitivo</h3>
           <p class="mt-4 text-gray-600">
-            We aim for breakthroughs. Our goal is to generate unprecedented results that serve as a true turning point — a moment that participants profoundly recognize as a clear "before and after."
+            Apuntamos a un breakthrough, no a un crecimiento marginal. Buscamos resultados sin precedente — un antes y un después que los participantes reconocen de manera trascendental.
           </p>
         </div>
         <div data-reveal data-reveal-delay="240">
           <p class="eyebrow mb-4">03</p>
-          <h3>The Echo</h3>
+          <h3>El eco</h3>
           <p class="mt-4 text-gray-600">
-            We do not believe in isolated actions. Everything we do is designed to be resonant. We ensure that our work vibrates with purpose long after the engagement ends.
+            No creemos en acciones aisladas. Todo lo que hacemos está diseñado para ser resonante: tiene eco y repercute mucho después de que termina la intervención.
           </p>
         </div>
       </div>
     </Container>
   </Section>
 
-  {/* Why Companies Choose Lumisis — tangible advantages */}
+  {/* Nuestro enfoque — los cinco frentes de trabajo */}
   <Section bg="light">
     <Container>
       <div class="grid gap-16 md:grid-cols-2">
         <div data-reveal>
           <p class="eyebrow mb-4">¿Por Qué Nosotros?</p>
           <h2 class="text-3xl md:text-4xl">
-            Why Companies Choose Lumisis®
+            Nuestro enfoque
           </h2>
           <p class="mt-6 text-gray-600">
-            We approach things with intention, thoughtfulness, planning and a strategic mindset.
+            Abordamos cada reto con intención, premeditación, planeación y un planteamiento estratégico — alineados a la estrategia del negocio en sus cinco plazos estratégicos.
           </p>
         </div>
         <div>
-          <p class="eyebrow mb-6" data-reveal data-reveal-delay="100">Our Advantages Include:</p>
+          <p class="eyebrow mb-6" data-reveal data-reveal-delay="100">Trabajamos en cinco frentes:</p>
           <ol class="why-us__list">
             {[
-              'Clear, Actionable Strategy',
-              'Proven Frameworks',
-              'Hands-On Implementation',
-              'Transparent Costs',
-              'Design for Long-Term Growth',
+              'Estratégico — alineados a la estrategia del negocio',
+              'Funcional — de aplicación práctica y real',
+              'Institucional — profesionalización y capacidades en un ambiente ESG',
+              'Rentable — valor, ROI, ROE y crecimiento',
+              'Personas — mindset, competencias y enfoque sistémico',
             ].map((item, i) => (
               <li
                 class="why-us__item"
@@ -110,13 +113,13 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
     </Container>
   </div>
 
-  {/* Leadership Team */}
+  {/* Nuestro Equipo */}
   <Section>
     <Container>
-      <p class="eyebrow mb-4" data-reveal>Experts</p>
-      <h2 class="mb-4 text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Leadership Team</h2>
+      <p class="eyebrow mb-4" data-reveal>Expertos</p>
+      <h2 class="mb-4 text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Nuestro Equipo</h2>
       <p class="mb-12 max-w-xl text-gray-600" data-reveal data-reveal-delay="160">
-        Our approach is defined by deep thoughtfulness, rigorous planning, and a strategic mindset.
+        Un equipo multidisciplinario de alto perfil que hace fit con las necesidades de nuestros clientes — estrategas, consultores y coaches, expertos internacionales.
       </p>
 
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
@@ -142,25 +145,25 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
   {/* Stats */}
   <Section bg="dark">
     <Container>
-      <p class="eyebrow mb-8 text-gray-400">We Create an Echo</p>
+      <p class="eyebrow mb-8 text-gray-400">Generamos eco</p>
       <div class="grid gap-8 text-center md:grid-cols-3">
         <div>
           <p class="font-display text-5xl text-white">
             <AnimatedNumber client:visible end={5} prefix="+" suffix="k" />
           </p>
-          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Workshops</p>
+          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Talleres</p>
         </div>
         <div>
           <p class="font-display text-5xl text-white">
             <AnimatedNumber client:visible end={50} prefix="+" suffix="k" />
           </p>
-          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Talent Release Hours</p>
+          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Horas de liberación de talento</p>
         </div>
         <div>
           <p class="font-display text-5xl text-white">
             <AnimatedNumber client:visible end={400} prefix="+" />
           </p>
-          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Conferences</p>
+          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Conferencias</p>
         </div>
       </div>
     </Container>
@@ -171,16 +174,16 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
     <Container>
       <div class="grid gap-12 items-center md:grid-cols-2">
         <div>
-          <p class="eyebrow mb-4" data-reveal>Our Footprint</p>
-          <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Global Reach</h2>
+          <p class="eyebrow mb-4" data-reveal>Nuestra Huella</p>
+          <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Alcance Global</h2>
           <p class="mt-6 text-gray-600" data-reveal data-reveal-delay="160">
-            At LUMISIS Group, we address challenges with a global mindset. We have developed projects in more than <strong>47 countries</strong> spread across <strong>7 continents.</strong>
+            Hemos servido a clientes a nivel internacional en más de <strong>30 países</strong> — México, Alemania, Francia, Suiza, Inglaterra, Kenia, Sudáfrica, Canadá, Estados Unidos, Colombia, Argentina, Brasil y Japón, por mencionar algunos. Desde multinacionales hasta PyMES, desde empresas que cotizan en bolsa hasta empresas familiares.
           </p>
         </div>
         <div>
           <Image
             src={footprintMap}
-            alt="LUMISIS global footprint — 47 countries, 7 continents"
+            alt="Huella global de LUMISIS — más de 30 países"
             width={1200}
             quality={85}
           />

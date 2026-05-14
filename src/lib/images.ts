@@ -66,11 +66,11 @@ export const CLIENT_LOGOS = [client1, client2, client3, client4, client5];
 export const PARTNER_LOGOS = [partner1, partner2, partner3, partner4, partner5, partner6];
 
 export const TEAM_MEMBERS = [
-  { name: 'Amenoffis Acosta', title: 'Title pending', image: teamAmenoffis },
-  { name: 'Rosa Villa', title: 'Title pending', image: teamRosa },
-  { name: 'Gabriel Mijares', title: 'Title pending', image: teamGabriel },
-  { name: 'Victor Zorrilla', title: 'Title pending', image: teamVictor },
-  { name: 'Juan Benitez', title: 'Title pending', image: teamJuan },
+  { name: 'Amenoffis Acosta', title: 'Co-fundador y Director', image: teamAmenoffis },
+  { name: 'Rosa Villa', title: 'Co-fundadora', image: teamRosa },
+  { name: 'Gabriel Mijares', title: '— pendiente', image: teamGabriel },
+  { name: 'Víctor Zorrilla', title: '— pendiente', image: teamVictor },
+  { name: 'Juan Benitez', title: '— pendiente', image: teamJuan },
 ];
 
 export const SERVICE_IMAGES: Record<string, ImageMetadata> = {
