@@ -16,7 +16,7 @@ const contactLabel = locale === 'es' ? 'Contáctanos' : 'Contact';
 const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
 ---
 
-<header class="header" id="site-header" transition:persist>
+<header class="header" id="site-header">
   {/* Brand-gradient accent strip — institutional signifier */}
   <div class="header__accent" aria-hidden="true"></div>
 
@@ -84,7 +84,7 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
     against the viewport, not against the header (which has backdrop-filter
     in its solid state, creating a containing block that would scope the
     menu to the header's tiny height). */}
-<div id="mobile-menu" class="mobile-menu" aria-hidden="true" transition:persist>
+<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
   <div class="mobile-menu__accent" aria-hidden="true"></div>
   <div class="mobile-menu__top">
     <a href={homeHref} class="header__logo" aria-label="LUMISIS — Home">
@@ -688,7 +688,7 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
     let lastScrollY = -1;
     let stopped = false;
     function poll() {
-      if (stopped) return;
+      if (stopped || !header.isConnected) return;
       const y = window.scrollY;
       if (y !== lastScrollY) {
         lastScrollY = y;

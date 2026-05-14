@@ -1,4 +1,5 @@
 import { ui, type Locale, type UIKey } from './ui';
+import { SERVICES } from '@/lib/constants';
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -40,6 +41,14 @@ const ROUTE_MAP: Record<string, string> = {
   '/en/solutions': '/soluciones',
   '/en/contact': '/contacto',
 };
+
+// Service detail pages — slugs differ per locale, so generate both directions
+// from SERVICES (the .es[] and .en[] arrays are index-aligned: same service).
+SERVICES.es.forEach((es, i) => {
+  const en = SERVICES.en[i];
+  ROUTE_MAP[`/soluciones/${es.slug}`] = `/en/solutions/${en.slug}`;
+  ROUTE_MAP[`/en/solutions/${en.slug}`] = `/soluciones/${es.slug}`;
+});
 
 export function getTranslatedPath(currentPath: string): string {
   const clean = stripBase(currentPath).replace(/\/$/, '') || '/';

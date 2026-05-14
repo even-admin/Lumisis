@@ -9,9 +9,10 @@ import Container from './Container.astro';
 const locale = getLocaleFromUrl(Astro.url);
 const navItems = NAV_ITEMS[locale];
 const services = SERVICES[locale];
+const solutionsBase = locale === 'es' ? '/soluciones' : '/en/solutions';
 ---
 
-<footer class="footer" transition:persist>
+<footer class="footer">
   <Container>
     <div class="footer__grid">
 
@@ -25,10 +26,10 @@ const services = SERVICES[locale];
       </div>
 
       <div class="footer__col">
-        <p class="footer__heading">Soluciones</p>
+        <p class="footer__heading">{ui[locale]['services.title']}</p>
         <nav class="footer__nav" aria-label="Servicios">
           {services.map((s) => (
-            <a href={prefixBase(`/soluciones/${s.slug}`)} class="footer__link">{s.title}</a>
+            <a href={prefixBase(`${solutionsBase}/${s.slug}`)} class="footer__link">{s.title}</a>
           ))}
         </nav>
       </div>
@@ -50,7 +51,7 @@ const services = SERVICES[locale];
       </div>
 
       <div class="footer__col">
-        <p class="footer__heading">Contacto</p>
+        <p class="footer__heading">{ui[locale]['nav.contact']}</p>
         <div class="footer__nav">
           <a href="mailto:hola@lumisis.com" class="footer__link">hola@lumisis.com</a>
           <a href="tel:+529999429151" class="footer__link">+52 999 942 9151</a>
