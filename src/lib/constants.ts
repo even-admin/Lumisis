@@ -92,23 +92,4 @@ export const GLOBE_PINS = [
   },
 ];
 
-// Countries named in the "Alcance Global" footprint copy — plotted as dots on
-// the FootprintMap (capital-city coords). Spanish names serve both locales
-// since the map renders dots only, no labels.
-export const FOOTPRINT_COUNTRIES = [
-  { name: 'México', lon: -99.13, lat: 19.43 },
-  { name: 'Alemania', lon: 13.4, lat: 52.52 },
-  { name: 'Francia', lon: 2.35, lat: 48.86 },
-  { name: 'Suiza', lon: 7.45, lat: 46.95 },
-  { name: 'Inglaterra', lon: -0.13, lat: 51.51 },
-  { name: 'Kenia', lon: 36.82, lat: -1.29 },
-  { name: 'Sudáfrica', lon: 28.19, lat: -25.75 },
-  { name: 'Canadá', lon: -75.7, lat: 45.42 },
-  { name: 'Estados Unidos', lon: -77.04, lat: 38.9 },
-  { name: 'Colombia', lon: -74.07, lat: 4.71 },
-  { name: 'Argentina', lon: -58.38, lat: -34.6 },
-  { name: 'Brasil', lon: -47.93, lat: -15.78 },
-  { name: 'Japón', lon: 139.69, lat: 35.69 },
-];
-
 export { b as prefixBase };

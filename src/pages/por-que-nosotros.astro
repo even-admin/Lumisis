@@ -4,8 +4,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import { AnimatedNumber } from '@/components/islands/AnimatedNumber';
-import { FootprintMap } from '@/components/islands/FootprintMap';
-import { prefixBase, FOOTPRINT_COUNTRIES } from '@/lib/constants';
+import { prefixBase } from '@/lib/constants';
 import { heroWhyUs, TEAM_MEMBERS } from '@/lib/images';
 
 const fronts = [
@@ -22,6 +21,9 @@ const process = [
   { label: 'Deliver', copy: 'Entregamos la promesa diseñada con impecabilidad y potencia.' },
   { label: 'Develop', copy: 'Damos seguimiento y fortalecemos los resultados en el tiempo.' },
 ];
+
+const countries = ['México', 'Alemania', 'Francia', 'Suiza', 'Inglaterra', 'Kenia', 'Sudáfrica', 'Canadá', 'Estados Unidos', 'Colombia', 'Argentina', 'Brasil', 'Japón'];
+const clientTypes = ['Multinacionales', 'PyMES', 'Empresas públicas', 'Empresas familiares'];
 ---
 
 <PageLayout title="¿Por Qué Nosotros? — LUMISIS" description="Intención, propósito y resultados sin precedentes. Descubre por qué las empresas eligen LUMISIS.">
@@ -157,41 +159,68 @@ const process = [
     </Container>
   </Section>
 
-  {/* Footprint — Alcance Global (brand-black, cierre con CTA) */}
+  {/* Footprint — Alcance Global (brand-black, cierre editorial) */}
   <Section bg="dark" class="whyus-footprint">
     <Container>
-      <div class="whyus-footprint__grid">
-        <div class="whyus-footprint__copy">
-          <p class="eyebrow mb-4" data-reveal>Nuestra Huella</p>
-          <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Alcance Global</h2>
-          <p class="whyus-footprint__lead" data-reveal data-reveal-delay="160">
-            Hemos servido a clientes a nivel internacional en más de <strong>30 países</strong> — México, Alemania, Francia, Suiza, Inglaterra, Kenia, Sudáfrica, Canadá, Estados Unidos, Colombia, Argentina, Brasil y Japón, por mencionar algunos. Desde multinacionales hasta PyMES, desde empresas que cotizan en bolsa hasta empresas familiares.
-          </p>
-          <div class="whyus-footprint__cta" data-reveal data-reveal-delay="240">
-            <a href={prefixBase('/contacto')} class="cta-pill cta-pill--solid" aria-label="Iniciar conversaci&oacute;n">
-              <span class="letters">
-                {'INICIAR CONVERSACIÓN'.split('').map((char, i) => (
-                  char === ' '
-                    ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
-                    : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
-                ))}
-              </span>
-              <span class="cta-pill__arrow">&rarr;</span>
-            </a>
-            <a href={prefixBase('/soluciones')} class="cta-pill cta-pill--outline" aria-label="Ver soluciones">
-              <span class="letters">
-                {'VER SOLUCIONES'.split('').map((char, i) => (
-                  char === ' '
-                    ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
-                    : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
-                ))}
-              </span>
-            </a>
-          </div>
-        </div>
-        <div class="whyus-footprint__map" data-reveal data-reveal-delay="120">
-          <FootprintMap client:visible pins={FOOTPRINT_COUNTRIES} />
-        </div>
+      <p class="eyebrow mb-4" data-reveal>Nuestra Huella</p>
+      <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Alcance Global</h2>
+      <p class="whyus-footprint__intro" data-reveal data-reveal-delay="140">
+        Hemos servido a clientes a nivel internacional, en cinco continentes.
+      </p>
+
+      <div
+        class="whyus-footprint__stat"
+        role="group"
+        aria-label="Más de 30 países atendidos"
+        data-reveal
+        data-reveal-delay="200"
+      >
+        <span class="whyus-footprint__stat-num" aria-hidden="true">+30</span>
+        <span class="whyus-footprint__stat-rule" aria-hidden="true"></span>
+        <span class="whyus-footprint__stat-label" aria-hidden="true">Países atendidos</span>
+      </div>
+
+      <ul class="whyus-footprint__countries" role="list">
+        {countries.map((name, i) => (
+          <li
+            class="whyus-footprint__country"
+            data-reveal
+            data-reveal-delay={`${220 + i * 22}`}
+          >
+            <span class="whyus-footprint__country-mark" aria-hidden="true"></span>
+            <span class="whyus-footprint__country-name">{name}</span>
+          </li>
+        ))}
+      </ul>
+
+      <p class="whyus-footprint__note" data-reveal data-reveal-delay="500">
+        Por mencionar algunos.
+      </p>
+
+      <ul class="whyus-footprint__detail" role="list" data-reveal data-reveal-delay="520">
+        {clientTypes.map((type) => <li>{type}</li>)}
+      </ul>
+
+      <div class="whyus-footprint__cta" data-reveal data-reveal-delay="580">
+        <a href={prefixBase('/contacto')} class="cta-pill cta-pill--solid" aria-label="Iniciar conversaci&oacute;n">
+          <span class="letters">
+            {'INICIAR CONVERSACIÓN'.split('').map((char, i) => (
+              char === ' '
+                ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
+                : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
+            ))}
+          </span>
+          <span class="cta-pill__arrow">&rarr;</span>
+        </a>
+        <a href={prefixBase('/soluciones')} class="cta-pill cta-pill--outline" aria-label="Ver soluciones">
+          <span class="letters">
+            {'VER SOLUCIONES'.split('').map((char, i) => (
+              char === ' '
+                ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
+                : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
+            ))}
+          </span>
+        </a>
       </div>
     </Container>
   </Section>
