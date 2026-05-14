@@ -4,6 +4,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import { AnimatedNumber } from '@/components/islands/AnimatedNumber';
+import { prefixBase } from '@/lib/constants';
 import { heroWhyUs, TEAM_MEMBERS, footprintMap } from '@/lib/images';
 
 const fronts = [
@@ -101,7 +102,7 @@ const process = [
     </Container>
   </Section>
 
-  {/* Por qué las empresas eligen LUMISIS — los cinco frentes de trabajo */}
+  {/* Por qué las empresas eligen LUMISIS — los cinco frentes + conteo integrado */}
   <Section class="whyus-rule">
     <Container>
       <div class="grid gap-16 md:grid-cols-2">
@@ -114,7 +115,7 @@ const process = [
             Abordamos cada reto con intención, premeditación, planeación y un planteamiento estratégico — alineados a la estrategia del negocio en sus cinco plazos estratégicos.
           </p>
         </div>
-        <div>
+        <div class="whyus-enfoque__list">
           <p class="eyebrow mb-6" data-reveal data-reveal-delay="100">Trabajamos en cinco frentes:</p>
           <ol class="why-us__list" role="list">
             {fronts.map((item, i) => (
@@ -130,13 +131,7 @@ const process = [
           </ol>
         </div>
       </div>
-    </Container>
-  </Section>
 
-  {/* Conteo de números — Generamos eco (sobre brand-black) */}
-  <Section bg="dark" class="whyus-stats">
-    <Container>
-      <h2 class="eyebrow mb-8" data-reveal>Generamos eco</h2>
       <hr class="whyus-stats__divider" data-reveal />
       <div class="whyus-stats__grid">
         <div class="whyus-stat" data-reveal data-reveal-delay="120">
@@ -161,16 +156,37 @@ const process = [
     </Container>
   </Section>
 
-  {/* Footprint — Alcance Global */}
-  <Section>
+  {/* Footprint — Alcance Global (brand-black, cierre con CTA) */}
+  <Section bg="dark" class="whyus-footprint">
     <Container>
       <div class="whyus-footprint__grid">
         <div class="whyus-footprint__copy">
           <p class="eyebrow mb-4" data-reveal>Nuestra Huella</p>
           <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Alcance Global</h2>
-          <p class="mt-6 text-gray-600" data-reveal data-reveal-delay="160">
+          <p class="whyus-footprint__lead" data-reveal data-reveal-delay="160">
             Hemos servido a clientes a nivel internacional en más de <strong>30 países</strong> — México, Alemania, Francia, Suiza, Inglaterra, Kenia, Sudáfrica, Canadá, Estados Unidos, Colombia, Argentina, Brasil y Japón, por mencionar algunos. Desde multinacionales hasta PyMES, desde empresas que cotizan en bolsa hasta empresas familiares.
           </p>
+          <div class="whyus-footprint__cta" data-reveal data-reveal-delay="240">
+            <a href={prefixBase('/contacto')} class="cta-pill cta-pill--solid" aria-label="Iniciar conversaci&oacute;n">
+              <span class="letters">
+                {'INICIAR CONVERSACIÓN'.split('').map((char, i) => (
+                  char === ' '
+                    ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
+                    : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
+                ))}
+              </span>
+              <span class="cta-pill__arrow">&rarr;</span>
+            </a>
+            <a href={prefixBase('/soluciones')} class="cta-pill cta-pill--outline" aria-label="Ver soluciones">
+              <span class="letters">
+                {'VER SOLUCIONES'.split('').map((char, i) => (
+                  char === ' '
+                    ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
+                    : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
+                ))}
+              </span>
+            </a>
+          </div>
         </div>
         <div class="whyus-footprint__map" data-reveal data-reveal-delay="120">
           <Image
