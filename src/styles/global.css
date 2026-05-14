@@ -2283,3 +2283,34 @@
     grid-auto-rows: minmax(240px, auto);
   }
 }
+
+/* ── Contact — #YaEsHora signature at the submit action ── */
+.contact-submit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.contact-hashtag {
+  margin: 0;
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-brand-blue);
+}
+
+/* Short brand-gradient accent rule — a "signature moment" tie-in (gradient as
+   accent/divider is allowed; gradient text is not). Values match .header__accent. */
+.contact-hashtag::after {
+  content: '';
+  display: block;
+  margin-top: 0.5rem;
+  width: 2.5rem;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    #F5B335 0%, #E43D30 25%, #aa5b5e 50%, #009ADE 75%, #6ABF4B 100%
+  );
+}
