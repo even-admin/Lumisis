@@ -1476,7 +1476,7 @@
   font-family: var(--font-display, 'Gotham', sans-serif);
   font-size: 1.5rem;
   font-weight: 500;
-  color: rgba(57, 57, 56, 0.25);
+  color: rgba(57, 57, 56, 0.32);
   min-width: 2.5rem;
   transition: color 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1519,4 +1519,701 @@
   .why-us__num,
   .why-us__label::after { transition: none; }
   .why-us__item:hover { transform: none; }
+}
+
+/* ============================================================
+   /por-que-nosotros — Why Us page dial-in
+   White-principal sections, brand-blue accent, shared motion
+   vocabulary (numerals → blue, underline-draw, hover lift, reveal).
+   ============================================================ */
+
+/* Subtle hairline between consecutive white sections */
+.whyus-rule {
+  border-top: 1px solid rgba(57, 57, 56, 0.08);
+}
+
+/* ── Las 4 D — process grid (modeled on .home-intro__pillar) ── */
+.whyus-process {
+  list-style: none;
+  margin: 3.5rem 0 0;
+  padding: 2.5rem 0 0;
+  border-top: 1px solid rgba(57, 57, 56, 0.08);
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .whyus-process { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+}
+
+@media (min-width: 1024px) {
+  .whyus-process { grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+}
+
+.whyus-process__step {
+  position: relative;
+  padding-left: 1.25rem;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-process__step::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #0098DB;
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-process__num {
+  display: block;
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  line-height: 1;
+  font-weight: 500;
+  color: rgba(57, 57, 56, 0.32);
+  margin-bottom: 1rem;
+  transition: color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-process__label {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #0098DB;
+  margin: 0 0 0.75rem;
+}
+
+.whyus-process__label::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1.5px;
+  background: #0098DB;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-process__copy {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-gray-80);
+  margin: 0;
+}
+
+.whyus-process__step:hover { transform: translateY(-4px); }
+.whyus-process__step:hover::before { transform: scaleY(1); }
+.whyus-process__step:hover .whyus-process__num { color: #0098DB; }
+.whyus-process__step:hover .whyus-process__label::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .whyus-process__step,
+  .whyus-process__step::before,
+  .whyus-process__num,
+  .whyus-process__label::after { transition: none; }
+  .whyus-process__step:hover { transform: none; }
+}
+
+/* ── Footprint — map with editorial corner accents ── */
+.whyus-footprint__grid {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .whyus-footprint__grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+}
+
+.whyus-footprint__map {
+  position: relative;
+}
+
+.whyus-footprint__map img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.whyus-footprint__map::before,
+.whyus-footprint__map::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: rgba(57, 57, 56, 0.25);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.whyus-footprint__map::before {
+  top: -1.25rem;
+  left: -1.25rem;
+  border-width: 1px 0 0 1px;
+}
+
+.whyus-footprint__map::after {
+  bottom: -1.25rem;
+  right: -1.25rem;
+  border-width: 0 1px 1px 0;
+}
+
+.whyus-footprint__copy strong {
+  color: #0098DB;
+  font-weight: 500;
+}
+
+/* ── Team — mosaic on brand-black (modeled on .services__mosaic) ── */
+.whyus-team__intro {
+  margin-top: 1.5rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.whyus-team__mosaic {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+@media (min-width: 768px) {
+  .whyus-team__mosaic { grid-template-columns: repeat(5, 1fr); }
+}
+
+/* One horizontal row of equal portrait tiles — no tile larger than another */
+.whyus-team__tile {
+  position: relative;
+  overflow: hidden;
+  background: #393938;
+  aspect-ratio: 3 / 4;
+  isolation: isolate;
+}
+
+/* Brand-blue tint, fades in on hover (between image and gradient) */
+.whyus-team__tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 152, 219, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-team__tile:hover::before { opacity: 1; }
+
+.whyus-team__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  z-index: 0;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-team__tile:hover .whyus-team__photo { transform: scale(1.05); }
+
+.whyus-team__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.35) 42%,
+    rgba(0, 0, 0, 0) 72%
+  );
+}
+
+.whyus-team__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .whyus-team__content { padding: 1.75rem; }
+}
+
+.whyus-team__name {
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.whyus-team__title {
+  margin: 0.375rem 0 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whyus-team__tile::before,
+  .whyus-team__photo { transition: none; }
+  .whyus-team__tile:hover .whyus-team__photo { transform: none; }
+}
+
+/* ── Stats — count-up row on brand-black (modeled on .presencia-stat) ── */
+.whyus-stats__divider {
+  border: none;
+  height: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.16);
+  margin: 0;
+  opacity: 1 !important;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-stats__divider.revealed {
+  transform: scaleX(1);
+}
+
+.whyus-stats__grid {
+  margin-top: 3rem;
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .whyus-stats__grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+}
+
+.whyus-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.whyus-stat__num {
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  line-height: 1;
+  font-weight: 500;
+  color: #FFFFFF;
+  font-feature-settings: 'tnum';
+}
+
+.whyus-stat__label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whyus-stats__divider { transition: none; }
+  .whyus-stats__divider.revealed { transform: scaleX(1); }
+}
+
+/* On-dark sections (Equipo + Conteo) — eyebrow on brand-black */
+.whyus-team .eyebrow,
+.whyus-stats .eyebrow {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ============================================================
+   Inner-page Hero — taller photo hero, ramped overlay + detail
+   Shared by Why-Us, Solutions hub, Service detail.
+   Home keeps its own full-viewport .hero-people.
+   ============================================================ */
+.hero-inner {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 78vh;
+  overflow: hidden;
+  background-color: var(--color-brand-black);
+}
+
+.hero-inner__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Ramped overlay — photo reads vibrant up top, text pops at the bottom */
+.hero-inner__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(57, 57, 56, 0.25) 0%,
+    rgba(57, 57, 56, 0.30) 30%,
+    rgba(57, 57, 56, 0.65) 70%,
+    rgba(57, 57, 56, 0.85) 100%
+  );
+}
+
+.hero-inner > :not(.hero-inner__bg):not(.hero-inner__overlay) {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-inner__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 52rem;
+  padding-top: 10rem;
+  padding-bottom: 5rem;
+  padding-left: 1.25rem;
+  color: #FFFFFF;
+}
+
+@media (min-width: 1024px) {
+  .hero-inner__content { padding-bottom: 6.5rem; }
+}
+
+/* Brand-blue vertical bar — the "lines" detail (echoes .home-intro__pillar::before) */
+.hero-inner__content::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10rem;
+  bottom: 5rem;
+  width: 2px;
+  background: var(--color-brand-blue);
+}
+
+@media (min-width: 1024px) {
+  .hero-inner__content::before { bottom: 6.5rem; }
+}
+
+.hero-inner__eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-brand-blue);
+  text-decoration: none;
+}
+
+.hero-inner__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-inner__back:hover { color: #FFFFFF; }
+
+.hero-inner__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.hero-inner__lede {
+  margin-top: 1.5rem;
+  max-width: 40ch;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1.0625rem, 1.3vw, 1.25rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ── "Por qué eligen LUMISIS" — left-column pop (brand-blue corner frame) ── */
+.whyus-enfoque__intro {
+  position: relative;
+  padding: 1.75rem;
+}
+
+.whyus-enfoque__intro::before,
+.whyus-enfoque__intro::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-color: var(--color-brand-blue);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.whyus-enfoque__intro::before {
+  top: 0;
+  left: 0;
+  border-width: 2px 0 0 2px;
+}
+
+.whyus-enfoque__intro::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 2px 2px 0;
+}
+
+.whyus-enfoque__intro .eyebrow {
+  display: inline-block;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-brand-blue);
+}
+
+/* ── Solutions hub — framed mosaic wrapper ("not just a plain mosaic") ── */
+.solutions-grid {
+  position: relative;
+  margin-top: 3rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(57, 57, 56, 0.12);
+}
+
+.solutions-grid::before,
+.solutions-grid::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-color: var(--color-brand-blue);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.solutions-grid::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+
+.solutions-grid::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+@media (max-width: 767px) {
+  .solutions-grid { padding: 0.5rem; }
+}
+
+/* ============================================================
+   Service detail — editorial article body
+   ============================================================ */
+.service-standfirst {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  line-height: 1.45;
+  color: #393938;
+  max-width: 38ch;
+  margin: 1rem 0 0;
+}
+
+.service-rule {
+  border: none;
+  height: 2px;
+  width: 3rem;
+  background: var(--color-brand-blue);
+  margin: 2rem 0 3rem;
+}
+
+.service-article {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+/* Subtle brand-blue rail down the article */
+.service-article::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: rgba(0, 152, 219, 0.25);
+}
+
+.service-article > h2 {
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: #393938;
+  margin: 0 0 1.5rem;
+}
+
+.service-article > h2:not(:first-child) {
+  margin-top: 3.5rem;
+}
+
+/* Lead paragraph — first <p> after the opening <h2> */
+.service-article > h2:first-child + p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+  line-height: 1.55;
+  color: #393938;
+}
+
+.service-article > p {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-gray-80);
+  max-width: 62ch;
+  margin: 0 0 1.5rem;
+}
+
+/* Inline emphasis — bold ink (WCAG-AA safe; brand-blue accents live elsewhere) */
+.service-article strong { color: #393938; font-weight: 600; }
+
+/* In-body ordered list — styled like .whyus-process rows */
+.service-article ol {
+  list-style: none;
+  margin: 2.5rem 0;
+  padding: 0;
+  counter-reset: svc;
+}
+
+.service-article ol > li {
+  position: relative;
+  padding: 1.125rem 0 1.125rem 3.25rem;
+  border-bottom: 1px solid rgba(57, 57, 56, 0.08);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-gray-80);
+}
+
+.service-article ol > li:last-child { border-bottom: 0; }
+
+.service-article ol > li::before {
+  counter-increment: svc;
+  content: counter(svc, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 1.125rem;
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: rgba(57, 57, 56, 0.32);
+}
+
+/* In-body unordered list — styled like .why-us__list rows */
+.service-article ul {
+  list-style: none;
+  margin: 2.5rem 0;
+  padding: 0;
+}
+
+.service-article ul > li {
+  position: relative;
+  padding: 0.875rem 0 0.875rem 1.5rem;
+  border-bottom: 1px solid rgba(57, 57, 56, 0.08);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: #393938;
+}
+
+.service-article ul > li:last-child { border-bottom: 0; }
+
+.service-article ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.375rem;
+  width: 6px;
+  height: 6px;
+  background: #0098DB;
+}
+
+/* ── Related services cards — dialed hover ── */
+.service-related__card {
+  display: block;
+  border: 1px solid rgba(57, 57, 56, 0.14);
+  background: #FFFFFF;
+  padding: 2rem;
+  text-decoration: none;
+  transition:
+    border-color 320ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-related__card:hover {
+  border-color: #0098DB;
+  transform: translateY(-4px);
+}
+
+.service-related__title {
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #393938;
+  margin: 0;
+}
+
+.service-related__cta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gray-60);
+  transition: color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-related__card:hover .service-related__cta { color: #0098DB; }
+
+.service-related__cta-arrow {
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-related__card:hover .service-related__cta-arrow { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .service-related__card,
+  .service-related__cta,
+  .service-related__cta-arrow { transition: none; }
+  .service-related__card:hover { transform: none; }
+  .service-related__card:hover .service-related__cta-arrow { transform: none; }
 }

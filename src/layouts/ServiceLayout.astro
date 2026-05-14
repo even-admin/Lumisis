@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 import PageLayout from './PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
-import Button from '@/components/ui/Button.astro';
 import { prefixBase } from '@/lib/constants';
 import { SERVICE_IMAGES } from '@/lib/images';
 
@@ -19,34 +18,39 @@ const { title, description, slug, lang, relatedServices } = Astro.props;
 const solutionsBase = prefixBase(lang === 'es' ? '/soluciones' : '/en/solutions');
 const solutionsLabel = lang === 'es' ? 'Soluciones en Movimiento' : 'Solutions in Motion';
 const backLabel = lang === 'es' ? '← Todas las soluciones' : '← All solutions';
+const eyebrowLabel = lang === 'es' ? 'Solución' : 'Solution';
+const exploreLabel = lang === 'es' ? 'Explorar' : 'Explore';
 const heroImage = SERVICE_IMAGES[slug];
 ---
 
 <PageLayout title={`${title} — LUMISIS`} description={description}>
   {/* Hero */}
-  <section class="relative flex min-h-[50vh] items-end overflow-hidden pb-16 text-white">
+  <section class="hero-inner">
     {heroImage && (
       <Image
         src={heroImage}
         alt=""
         width={1920}
-        quality={80}
-        class="absolute inset-0 h-full w-full object-cover"
+        quality={82}
+        class="hero-inner__bg"
       />
     )}
-    <div class="absolute inset-0 bg-black/50" />
+    <div class="hero-inner__overlay"></div>
     <Container>
-      <a href={solutionsBase} class="relative eyebrow mb-4 inline-block no-underline text-white/70 hover:text-white">
-        {backLabel}
-      </a>
-      <h1 class="relative text-4xl md:text-5xl text-white">{title}</h1>
+      <div class="hero-inner__content">
+        <a href={solutionsBase} class="hero-inner__back" data-reveal>{backLabel}</a>
+        <h1 class="hero-inner__title" data-reveal data-reveal-delay="120">{title}</h1>
+      </div>
     </Container>
   </section>
 
-  {/* Content */}
+  {/* Editorial body */}
   <Section>
     <Container narrow>
-      <article class="prose prose-lg max-w-none [&>h2]:font-display [&>h2]:text-3xl [&>h2]:mt-0 [&>p]:text-gray-600">
+      <p class="eyebrow" data-reveal>{eyebrowLabel}</p>
+      <p class="service-standfirst" data-reveal data-reveal-delay="80">{description}</p>
+      <hr class="service-rule" data-reveal data-reveal-delay="140" />
+      <article class="service-article" data-reveal data-reveal-delay="200">
         <slot />
       </article>
     </Container>
@@ -54,18 +58,21 @@ const heroImage = SERVICE_IMAGES[slug];
 
   {/* Related Services */}
   {relatedServices.length > 0 && (
-    <Section bg="light">
+    <Section class="whyus-rule">
       <Container>
-        <p class="eyebrow mb-8">{solutionsLabel}</p>
+        <p class="eyebrow mb-8" data-reveal>{solutionsLabel}</p>
         <div class="grid gap-6 sm:grid-cols-2">
-          {relatedServices.map((related) => (
+          {relatedServices.map((related, i) => (
             <a
               href={`${solutionsBase}/${related.slug}`}
-              class="group block border border-gray-200 bg-white p-8 no-underline transition-colors hover:border-brand-black"
+              class="service-related__card"
+              data-reveal
+              data-reveal-delay={`${i * 80}`}
             >
-              <h3 class="text-xl">{related.title}</h3>
-              <span class="mt-4 inline-block text-sm text-gray-500 transition-colors group-hover:text-brand-black">
-                {lang === 'es' ? 'Explorar →' : 'Explore →'}
+              <h3 class="service-related__title">{related.title}</h3>
+              <span class="service-related__cta">
+                <span>{exploreLabel}</span>
+                <span class="service-related__cta-arrow">&rarr;</span>
               </span>
             </a>
           ))}

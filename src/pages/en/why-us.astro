@@ -4,65 +4,111 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import { AnimatedNumber } from '@/components/islands/AnimatedNumber';
-import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/images';
+import { heroWhyUs, TEAM_MEMBERS, footprintMap } from '@/lib/images';
+
+const fronts = [
+  'Strategic — aligned to the business strategy',
+  'Functional — practical, real-world application',
+  'Institutional — professionalization and capabilities in an ESG environment',
+  'Profitable — value, ROI, ROE and growth',
+  'People — mindset, competencies and a systemic approach',
+];
+
+const process = [
+  { label: 'Discover', copy: 'We step into your organization with an appreciative inquiry to understand it in depth.' },
+  { label: 'Design', copy: 'We co-create a tailored solution for the strategy-aligned challenges, and build a prototype.' },
+  { label: 'Deliver', copy: 'We deliver the designed promise with precision and power.' },
+  { label: 'Develop', copy: 'We follow through and strengthen the results over time.' },
+];
 ---
 
 <PageLayout title="Why Us? — LUMISIS" description="Intention, purpose and unprecedented results. Discover why companies choose LUMISIS.">
   {/* Hero */}
-  <section class="relative flex min-h-[60vh] items-end overflow-hidden pb-16 text-white">
+  <section class="hero-inner">
     <Image
       src={heroWhyUs}
       alt=""
       width={1920}
-      quality={80}
-      class="absolute inset-0 h-full w-full object-cover"
+      quality={82}
+      class="hero-inner__bg"
     />
-    <div class="absolute inset-0 bg-black/50" />
+    <div class="hero-inner__overlay"></div>
     <Container>
-      <h1 class="relative text-4xl md:text-5xl text-white">Resonant Strategic<br />Breakthroughs</h1>
-      <p class="relative mt-6 max-w-xl text-lg text-white/80">
-        Everything we do is resonant — it echoes and reverberates powerfully through organizations, people and the planet.
-      </p>
+      <div class="hero-inner__content">
+        <span class="hero-inner__eyebrow" data-reveal>Why Us?</span>
+        <h1 class="hero-inner__title" data-reveal data-reveal-delay="120">
+          Resonant Strategic<br />Breakthroughs
+        </h1>
+        <p class="hero-inner__lede" data-reveal data-reveal-delay="280">
+          Everything we do is resonant — it echoes and reverberates powerfully through organizations, people and the planet.
+        </p>
+      </div>
     </Container>
   </section>
 
-  {/* Three Principles */}
-  <Section>
+  {/* Our Team — mosaic on brand-black */}
+  <Section bg="dark" class="whyus-team">
     <Container>
-      <div class="grid gap-16 md:grid-cols-3">
-        <div data-reveal>
-          <p class="eyebrow mb-4">01</p>
-          <h3>The Power of Intention</h3>
-          <p class="mt-4 text-gray-600">
-            We do things with intention, forethought and planning. We don't work on things "without meaning" — the "why" is crucial in every one of our professional interventions.
-          </p>
-        </div>
-        <div data-reveal data-reveal-delay="120">
-          <p class="eyebrow mb-4">02</p>
-          <h3>A Definitive Turning Point</h3>
-          <p class="mt-4 text-gray-600">
-            We aim for a breakthrough, not marginal growth. We pursue unprecedented results — a before and an after that participants recognize as truly transcendental.
-          </p>
-        </div>
-        <div data-reveal data-reveal-delay="240">
-          <p class="eyebrow mb-4">03</p>
-          <h3>The Echo</h3>
-          <p class="mt-4 text-gray-600">
-            We don't believe in isolated actions. Everything we do is designed to be resonant — it echoes and reverberates long after the engagement ends.
-          </p>
-        </div>
+      <p class="eyebrow mb-4" data-reveal>Experts</p>
+      <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Our Team</h2>
+      <p class="whyus-team__intro max-w-xl" data-reveal data-reveal-delay="160">
+        A high-caliber, multidisciplinary team that fits our clients' needs — strategists, consultants and coaches, international experts.
+      </p>
+
+      <div class="whyus-team__mosaic">
+        {TEAM_MEMBERS.map((member, i) => (
+          <div
+            class="whyus-team__tile"
+            data-reveal
+            data-reveal-delay={`${200 + i * 80}`}
+          >
+            <Image
+              src={member.image}
+              alt=""
+              width={600}
+              quality={85}
+              class="whyus-team__photo"
+            />
+            <div class="whyus-team__overlay"></div>
+            <div class="whyus-team__content">
+              <p class="whyus-team__name">{member.name}</p>
+              <p class="whyus-team__title">{member.title}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </Container>
   </Section>
 
-  {/* Our approach — the five fronts */}
-  <Section bg="light">
+  {/* How we work — the 4 Ds */}
+  <Section>
+    <Container>
+      <p class="eyebrow mb-4" data-reveal>Our process</p>
+      <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">How we work</h2>
+      <ol class="whyus-process" role="list">
+        {process.map((step, i) => (
+          <li
+            class="whyus-process__step"
+            data-reveal
+            data-reveal-delay={`${120 + i * 100}`}
+          >
+            <span class="whyus-process__num">{String(i + 1).padStart(2, '0')}</span>
+            <p class="whyus-process__label">{step.label}</p>
+            <p class="whyus-process__copy">{step.copy}</p>
+          </li>
+        ))}
+      </ol>
+    </Container>
+  </Section>
+
+  {/* Why Companies Choose Lumisis — the five fronts */}
+  <Section class="whyus-rule">
     <Container>
       <div class="grid gap-16 md:grid-cols-2">
-        <div data-reveal>
+        <div class="whyus-enfoque__intro" data-reveal>
           <p class="eyebrow mb-4">Why Us?</p>
           <h2 class="text-3xl md:text-4xl">
-            Our approach
+            Why Companies Choose Lumisis&reg;
           </h2>
           <p class="mt-6 text-gray-600">
             We approach every challenge with intention, forethought, planning and a strategic mindset — aligned to the business strategy across its five strategic horizons.
@@ -70,14 +116,8 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
         </div>
         <div>
           <p class="eyebrow mb-6" data-reveal data-reveal-delay="100">We work on five fronts:</p>
-          <ol class="why-us__list">
-            {[
-              'Strategic — aligned to the business strategy',
-              'Functional — practical, real-world application',
-              'Institutional — professionalization and capabilities in an ESG environment',
-              'Profitable — value, ROI, ROE and growth',
-              'People — mindset, competencies and a systemic approach',
-            ].map((item, i) => (
+          <ol class="why-us__list" role="list">
+            {fronts.map((item, i) => (
               <li
                 class="why-us__item"
                 data-reveal
@@ -93,88 +133,46 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
     </Container>
   </Section>
 
-  {/* Partners */}
-  <div class="border-y border-gray-200 py-12">
+  {/* Stats — We create an echo (on brand-black) */}
+  <Section bg="dark" class="whyus-stats">
     <Container>
-      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-        {PARTNER_LOGOS.map((logo, i) => (
-          <Image
-            src={logo}
-            alt={`Partner ${i + 1}`}
-            height={32}
-            quality={85}
-            class="h-8 w-auto opacity-50 grayscale transition-opacity hover:opacity-80"
-          />
-        ))}
-      </div>
-    </Container>
-  </div>
-
-  {/* Our Team */}
-  <Section>
-    <Container>
-      <p class="eyebrow mb-4" data-reveal>Experts</p>
-      <h2 class="mb-4 text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Our Team</h2>
-      <p class="mb-12 max-w-xl text-gray-600" data-reveal data-reveal-delay="160">A high-caliber, multidisciplinary team that fits our clients' needs — strategists, consultants and coaches, international experts.</p>
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
-        {TEAM_MEMBERS.map((member) => (
-          <div class="text-center">
-            <div class="mx-auto aspect-square w-full max-w-[200px] overflow-hidden">
-              <Image
-                src={member.image}
-                alt={member.name}
-                width={400}
-                quality={85}
-                class="h-full w-full object-cover"
-              />
-            </div>
-            <p class="mt-4 font-medium">{member.name}</p>
-            <p class="text-sm text-gray-500">{member.title}</p>
-          </div>
-        ))}
-      </div>
-    </Container>
-  </Section>
-
-  {/* Stats */}
-  <Section bg="dark">
-    <Container>
-      <p class="eyebrow mb-8 text-gray-400">We create an echo</p>
-      <div class="grid gap-8 text-center md:grid-cols-3">
-        <div>
-          <p class="font-display text-5xl text-white">
+      <h2 class="eyebrow mb-8" data-reveal>We create an echo</h2>
+      <hr class="whyus-stats__divider" data-reveal />
+      <div class="whyus-stats__grid">
+        <div class="whyus-stat" data-reveal data-reveal-delay="120">
+          <span class="whyus-stat__num">
             <AnimatedNumber client:visible end={5} prefix="+" suffix="k" />
-          </p>
-          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Workshops</p>
+          </span>
+          <span class="whyus-stat__label">Workshops</span>
         </div>
-        <div>
-          <p class="font-display text-5xl text-white">
+        <div class="whyus-stat" data-reveal data-reveal-delay="200">
+          <span class="whyus-stat__num">
             <AnimatedNumber client:visible end={50} prefix="+" suffix="k" />
-          </p>
-          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Talent Release Hours</p>
+          </span>
+          <span class="whyus-stat__label">Talent Release Hours</span>
         </div>
-        <div>
-          <p class="font-display text-5xl text-white">
+        <div class="whyus-stat" data-reveal data-reveal-delay="280">
+          <span class="whyus-stat__num">
             <AnimatedNumber client:visible end={400} prefix="+" />
-          </p>
-          <p class="mt-2 text-sm tracking-wider uppercase text-gray-400">Conferences</p>
+          </span>
+          <span class="whyus-stat__label">Conferences</span>
         </div>
       </div>
     </Container>
   </Section>
 
-  {/* Footprint */}
+  {/* Footprint — Global Reach */}
   <Section>
     <Container>
-      <div class="grid gap-12 items-center md:grid-cols-2">
-        <div>
+      <div class="whyus-footprint__grid">
+        <div class="whyus-footprint__copy">
           <p class="eyebrow mb-4" data-reveal>Our Footprint</p>
           <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Global Reach</h2>
           <p class="mt-6 text-gray-600" data-reveal data-reveal-delay="160">
             We have served clients internationally in more than <strong>30 countries</strong> — Mexico, Germany, France, Switzerland, England, Kenya, South Africa, Canada, the United States, Colombia, Argentina, Brazil and Japan, to name a few. From multinationals to SMEs, from publicly traded companies to family businesses.
           </p>
         </div>
-        <div>
+        <div class="whyus-footprint__map" data-reveal data-reveal-delay="120">
           <Image
             src={footprintMap}
             alt="LUMISIS global footprint — 30+ countries"
