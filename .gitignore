@@ -12,6 +12,9 @@ MEDIA/
 *.swp
 *.swo
 
+# Claude Code workspace (worktrees, launch config, transcripts)
+.claude/
+
 # Environment
 .env
 .env.*

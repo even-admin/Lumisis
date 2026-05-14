@@ -6,6 +6,18 @@
 
 ---
 
+## 0. Workspace & session rooting — READ BEFORE ANYTHING
+
+**Always launch the Claude Code session with `/Users/racosta/LUMISIS` as the working directory.**
+
+- The LUMISIS repo is fully independent: own `.git`, own remote (`github.com/even-admin/Lumisis`), single clean worktree, own `CLAUDE.md`. Nothing is shared with the `dr-luis-merida` (Dr. Ramírez) site.
+- However — the *previous* session was accidentally launched from inside a `dr-luis-merida` git worktree (`/Users/racosta/dr-luis-merida/.claude/worktrees/recursing-joliot-527c6f`). All the LUMISIS work still landed correctly on `even-admin/Lumisis main` (we `cd`'d into the right repo for every git op), but the session loaded the wrong project's `CLAUDE.md`, memory, and permissions.
+- **Fix**: `cd /Users/racosta/LUMISIS` and start Claude Code from there — so it loads LUMISIS's `CLAUDE.md` and files its transcript/plan under the LUMISIS project. Running in the main checkout is fine; no worktree needed.
+- `.claude/` is now gitignored in this repo, so any worktrees/launch config Claude creates won't pollute `git status`.
+- One-time cleanup (do it from a `dr-luis-merida` checkout, not from a LUMISIS session): `git -C /Users/racosta/dr-luis-merida worktree remove .claude/worktrees/recursing-joliot-527c6f` then `git -C /Users/racosta/dr-luis-merida worktree prune` to clear the orphan + 3 other stale dr-luis-merida worktrees.
+
+---
+
 ## 1. Project snapshot
 
 - **What**: LUMISIS — bilingual consulting-firm website (Strategy · Consulting · Coaching), replacing a Framer build. Spanish is the default locale, English under `/en/`.
@@ -21,23 +33,11 @@
 
 ## 3. Git state — READ FIRST
 
-- **Last commit**: `c4a3e0d` — "feat(home): dial-in Quiénes Somos with marks/chips/pillar hovers; gate logo band behind flag"
-- **Uncommitted**: a large body of work, ~1190 insertions / 586 deletions across 5 files:
-  `src/components/layout/Footer.astro`, `src/components/layout/Header.astro`, `src/pages/index.astro`, `src/pages/por-que-nosotros.astro`, `src/styles/global.css`.
-- **Nothing since `c4a3e0d` is committed.** First action in the new chat should be to commit this.
-
-### Suggested commit sequence (granular) — or squash into one `feat(home)` commit, user's call:
-
-1. `feat(home): scroll-progress mark underline on Quiénes Somos`
-2. `feat(home): merge offices + stats into "Presencia Global" editorial composition`
-3. `feat(home): services bento → uniform 2×3 mosaic with blue-hue hover`
-4. `chore(home): drop redundant Resonant Breakthroughs section`
-5. `refactor(css): migrate all page-scoped CSS to global.css for ClientRouter robustness`
-6. `feat(footer): 4-column whitehouse-style layout (Navegación · Soluciones · Conecta · Contacto)`
-7. `fix(header): move mobile menu out of <header> so backdrop-filter doesn't trap fixed positioning`
-8. `fix(home): countries stat 33→47 + 7 continentes to match /por-que-nosotros footprint`
-
-Then push to `main` (GitHub Pages auto-deploys).
+- **`main` is up to date and pushed.** The entire home-page redesign is committed and on `even-admin/Lumisis`.
+- **Latest commit**: `af25d12` — "feat(home): finish home page — Presencia composition, services mosaic, footer, CSS migration" (the whole prior session's work: Quiénes Somos scroll-progress underline, Presencia Global composition, Services 2×3 mosaic, Resonant Breakthroughs removal, footer 4-column rebuild, mobile-menu fix, page-scoped → `global.css` migration, 33→47 / 7-continentes stat fix).
+- A follow-up `chore` commit gitignores `.claude/` and adds §0 of this handoff.
+- **Working tree should be clean** at the start of the next session — verify with `git -C /Users/racosta/LUMISIS status`.
+- GitHub Pages auto-deploys from `main` on push.
 
 ## 4. Home page — current state
 
@@ -88,8 +88,8 @@ Section order: **Hero → Quiénes Somos → Presencia Global → Services → F
 
 ## 8. How to resume in the new chat
 
-1. Read this file.
-2. `cd /Users/racosta/LUMISIS && git status` — confirm the uncommitted work is still there.
-3. Commit per §3 (granular or squashed).
+1. Confirm the session is rooted at `/Users/racosta/LUMISIS` (see §0).
+2. Read this file.
+3. `git -C /Users/racosta/LUMISIS status` — working tree should be clean, `main` up to date.
 4. Start `npm run dev`, open `http://localhost:4321/Lumisis/`, sanity-check the home page.
 5. Most likely next task: **English mirror pages** (§6) — port the Spanish-page redesign to `/en/`.
