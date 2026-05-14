@@ -8,7 +8,7 @@ export async function getStaticPaths() {
 
   return enServices.map((service) => {
     const related = service.data.relatedServices
-      .map((slug) => enServices.find((s) => s.id.replace('en/', '') === `${slug}.mdx`))
+      .map((slug) => enServices.find((s) => s.id.replace('en/', '') === slug))
       .filter(Boolean)
       .map((s) => ({ title: s!.data.title, slug: s!.id.replace('en/', '').replace('.mdx', '') }));
 
