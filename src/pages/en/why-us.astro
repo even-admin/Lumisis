@@ -20,6 +20,9 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
     <div class="absolute inset-0 bg-black/50" />
     <Container>
       <h1 class="relative text-4xl md:text-5xl text-white">Resonant Strategic<br />Breakthroughs</h1>
+      <p class="relative mt-6 max-w-xl text-lg text-white/80">
+        Everything we do is resonant — it echoes and reverberates powerfully through organizations, people and the planet.
+      </p>
     </Container>
   </section>
 
@@ -30,17 +33,61 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
         <div data-reveal>
           <p class="eyebrow mb-4">01</p>
           <h3>The Power of Intention</h3>
-          <p class="mt-4 text-gray-600">We ensure that every intervention is not just active, but purposeful. Creating a powerful, positive echo that extends beyond the boardroom.</p>
+          <p class="mt-4 text-gray-600">
+            We do things with intention, forethought and planning. We don't work on things "without meaning" — the "why" is crucial in every one of our professional interventions.
+          </p>
         </div>
         <div data-reveal data-reveal-delay="120">
           <p class="eyebrow mb-4">02</p>
           <h3>A Definitive Turning Point</h3>
-          <p class="mt-4 text-gray-600">Our goal is to generate unprecedented results that serve as a true turning point — a clear "before and after" in the life of your organization.</p>
+          <p class="mt-4 text-gray-600">
+            We aim for a breakthrough, not marginal growth. We pursue unprecedented results — a before and an after that participants recognize as truly transcendental.
+          </p>
         </div>
         <div data-reveal data-reveal-delay="240">
           <p class="eyebrow mb-4">03</p>
           <h3>The Echo</h3>
-          <p class="mt-4 text-gray-600">Everything we do is designed to be resonant. We ensure that our work vibrates with purpose long after the engagement ends.</p>
+          <p class="mt-4 text-gray-600">
+            We don't believe in isolated actions. Everything we do is designed to be resonant — it echoes and reverberates long after the engagement ends.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  {/* Our approach — the five fronts */}
+  <Section bg="light">
+    <Container>
+      <div class="grid gap-16 md:grid-cols-2">
+        <div data-reveal>
+          <p class="eyebrow mb-4">Why Us?</p>
+          <h2 class="text-3xl md:text-4xl">
+            Our approach
+          </h2>
+          <p class="mt-6 text-gray-600">
+            We approach every challenge with intention, forethought, planning and a strategic mindset — aligned to the business strategy across its five strategic horizons.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-6" data-reveal data-reveal-delay="100">We work on five fronts:</p>
+          <ol class="why-us__list">
+            {[
+              'Strategic — aligned to the business strategy',
+              'Functional — practical, real-world application',
+              'Institutional — professionalization and capabilities in an ESG environment',
+              'Profitable — value, ROI, ROE and growth',
+              'People — mindset, competencies and a systemic approach',
+            ].map((item, i) => (
+              <li
+                class="why-us__item"
+                data-reveal
+                data-reveal-delay={`${200 + i * 60}`}
+              >
+                <span class="why-us__num">{String(i + 1).padStart(2, '0')}</span>
+                <span class="why-us__label">{item}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </Container>
@@ -63,12 +110,12 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
     </Container>
   </div>
 
-  {/* Leadership Team */}
+  {/* Our Team */}
   <Section>
     <Container>
       <p class="eyebrow mb-4" data-reveal>Experts</p>
-      <h2 class="mb-4 text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Leadership Team</h2>
-      <p class="mb-12 max-w-xl text-gray-600" data-reveal data-reveal-delay="160">Our approach is defined by deep thoughtfulness, rigorous planning, and a strategic mindset.</p>
+      <h2 class="mb-4 text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Our Team</h2>
+      <p class="mb-12 max-w-xl text-gray-600" data-reveal data-reveal-delay="160">A high-caliber, multidisciplinary team that fits our clients' needs — strategists, consultants and coaches, international experts.</p>
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
         {TEAM_MEMBERS.map((member) => (
           <div class="text-center">
@@ -92,7 +139,7 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
   {/* Stats */}
   <Section bg="dark">
     <Container>
-      <p class="eyebrow mb-8 text-gray-400">We Create an Echo</p>
+      <p class="eyebrow mb-8 text-gray-400">We create an echo</p>
       <div class="grid gap-8 text-center md:grid-cols-3">
         <div>
           <p class="font-display text-5xl text-white">
@@ -124,13 +171,13 @@ import { heroWhyUs, PARTNER_LOGOS, TEAM_MEMBERS, footprintMap } from '@/lib/imag
           <p class="eyebrow mb-4" data-reveal>Our Footprint</p>
           <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Global Reach</h2>
           <p class="mt-6 text-gray-600" data-reveal data-reveal-delay="160">
-            At LUMISIS Group, we address challenges with a global mindset. We have developed projects in more than <strong>47 countries</strong> spread across <strong>7 continents.</strong>
+            We have served clients internationally in more than <strong>30 countries</strong> — Mexico, Germany, France, Switzerland, England, Kenya, South Africa, Canada, the United States, Colombia, Argentina, Brazil and Japan, to name a few. From multinationals to SMEs, from publicly traded companies to family businesses.
           </p>
         </div>
         <div>
           <Image
             src={footprintMap}
-            alt="LUMISIS global footprint — 47 countries, 7 continents"
+            alt="LUMISIS global footprint — 30+ countries"
             width={1200}
             quality={85}
           />
