@@ -4,8 +4,9 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import { AnimatedNumber } from '@/components/islands/AnimatedNumber';
-import { prefixBase } from '@/lib/constants';
-import { heroWhyUs, TEAM_MEMBERS, footprintMap } from '@/lib/images';
+import { FootprintMap } from '@/components/islands/FootprintMap';
+import { prefixBase, GLOBE_PINS } from '@/lib/constants';
+import { heroWhyUs, TEAM_MEMBERS } from '@/lib/images';
 
 const fronts = [
   'Strategic — aligned to the business strategy',
@@ -189,12 +190,7 @@ const process = [
           </div>
         </div>
         <div class="whyus-footprint__map" data-reveal data-reveal-delay="120">
-          <Image
-            src={footprintMap}
-            alt="LUMISIS global footprint — 30+ countries"
-            width={1200}
-            quality={85}
-          />
+          <FootprintMap client:visible pins={GLOBE_PINS} />
         </div>
       </div>
     </Container>

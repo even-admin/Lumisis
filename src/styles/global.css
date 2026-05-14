@@ -1639,14 +1639,8 @@
 
 .whyus-footprint__map {
   position: relative;
-}
-
-.whyus-footprint__map img {
-  display: block;
-  width: 100%;
-  height: auto;
-  /* The map PNG is deep-blue on transparent — brighten so it reads on brand-black */
-  filter: brightness(2.4) saturate(1.1);
+  /* Holds the flat equirectangular FootprintMap canvas (lon 360 / lat 140) */
+  aspect-ratio: 18 / 7;
 }
 
 .whyus-footprint__map::before,

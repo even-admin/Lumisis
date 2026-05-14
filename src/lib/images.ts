@@ -8,7 +8,9 @@ import serviceStrategicPlanning from '@/assets/services/strategic-planning-1.png
 import serviceStrategicOffsite from '@/assets/services/strategic-offsite.jpg';
 import serviceCultureEvolution from '@/assets/services/culture-evolution.jpg';
 import serviceLeadershipPrograms from '@/assets/services/leadership-programs.jpg';
-import serviceExecutiveCoaching from '@/assets/services/executive-coaching.jpg';
+// Exec-coaching uses the unused hi-res face photo — the original
+// executive-coaching.jpg is only 1024×1024, too small for a full-bleed hero.
+import serviceExecutiveCoaching from '@/assets/hero/home-hero-face-with-sunlight.jpg';
 import serviceFamilyBusiness from '@/assets/services/family-business.jpg';
 
 import teamAmenoffis from '@/assets/team/amenoffis-acosta.png';
