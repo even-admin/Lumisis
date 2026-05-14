@@ -1,19 +1,37 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ServiceLayout from '@/layouts/ServiceLayout.astro';
+import { SERVICE_IMAGES } from '@/lib/images';
 
 export async function getStaticPaths() {
   const allServices = await getCollection('services');
-  const enServices = allServices.filter((s) => s.data.lang === 'en');
+  const enServices = allServices
+    .filter((s) => s.data.lang === 'en')
+    .sort((a, b) => a.data.order - b.data.order);
 
   return enServices.map((service) => {
-    const related = service.data.relatedServices
+    const selfSlug = service.id.replace('en/', '');
+    // Curated related services, padded with the rest (by order) to exactly 3
+    const slugs = [
+      ...new Set([
+        ...service.data.relatedServices,
+        ...enServices.map((s) => s.id.replace('en/', '')),
+      ]),
+    ]
+      .filter((slug) => slug !== selfSlug)
+      .slice(0, 3);
+
+    const related = slugs
       .map((slug) => enServices.find((s) => s.id.replace('en/', '') === slug))
       .filter(Boolean)
-      .map((s) => ({ title: s!.data.title, slug: s!.id.replace('en/', '').replace('.mdx', '') }));
+      .map((s) => ({
+        title: s!.data.title,
+        slug: s!.id.replace('en/', ''),
+        image: SERVICE_IMAGES[s!.id.replace('en/', '')],
+      }));
 
     return {
-      params: { slug: service.id.replace('en/', '').replace('.mdx', '') },
+      params: { slug: selfSlug },
       props: { service, relatedServices: related },
     };
   });
@@ -26,7 +44,7 @@ const { Content } = await render(service);
 <ServiceLayout
   title={service.data.title}
   description={service.data.description}
-  slug={service.id.replace('en/', '').replace('.mdx', '')}
+  slug={service.id.replace('en/', '')}
   lang="en"
   relatedServices={relatedServices}
 >

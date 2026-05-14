@@ -11,7 +11,7 @@ interface Props {
   description: string;
   slug: string;
   lang: 'es' | 'en';
-  relatedServices: Array<{ title: string; slug: string }>;
+  relatedServices: Array<{ title: string; slug: string; image?: ImageMetadata }>;
 }
 
 const { title, description, slug, lang, relatedServices } = Astro.props;
@@ -56,24 +56,36 @@ const heroImage = SERVICE_IMAGES[slug];
     </Container>
   </Section>
 
-  {/* Related Services */}
+  {/* Related Services — home-style image-tile mosaic, one row */}
   {relatedServices.length > 0 && (
-    <Section bg="dark" class="service-related">
+    <Section class="whyus-rule">
       <Container>
         <p class="eyebrow mb-8" data-reveal>{solutionsLabel}</p>
-        <div class="grid gap-6 sm:grid-cols-2">
+        <div class="service-related__grid">
           {relatedServices.map((related, i) => (
             <a
               href={`${solutionsBase}/${related.slug}`}
-              class="service-related__card"
+              class="service-tile"
               data-reveal
               data-reveal-delay={`${i * 80}`}
             >
-              <h3 class="service-related__title">{related.title}</h3>
-              <span class="service-related__cta">
-                <span>{exploreLabel}</span>
-                <span class="service-related__cta-arrow">&rarr;</span>
-              </span>
+              {related.image && (
+                <Image
+                  src={related.image}
+                  alt={related.title}
+                  width={800}
+                  quality={80}
+                  class="service-tile__img"
+                />
+              )}
+              <div class="service-tile__overlay"></div>
+              <div class="service-tile__content">
+                <h3 class="service-tile__title">{related.title}</h3>
+                <span class="service-tile__cta">
+                  <span class="service-tile__cta-label">{exploreLabel}</span>
+                  <span class="service-tile__cta-arrow">&rarr;</span>
+                </span>
+              </div>
             </a>
           ))}
         </div>
