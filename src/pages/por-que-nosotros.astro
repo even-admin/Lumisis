@@ -5,7 +5,7 @@ import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import { AnimatedNumber } from '@/components/islands/AnimatedNumber';
 import { FootprintMap } from '@/components/islands/FootprintMap';
-import { prefixBase, GLOBE_PINS } from '@/lib/constants';
+import { prefixBase, FOOTPRINT_COUNTRIES } from '@/lib/constants';
 import { heroWhyUs, TEAM_MEMBERS } from '@/lib/images';
 
 const fronts = [
@@ -190,7 +190,7 @@ const process = [
           </div>
         </div>
         <div class="whyus-footprint__map" data-reveal data-reveal-delay="120">
-          <FootprintMap client:visible pins={GLOBE_PINS} />
+          <FootprintMap client:visible pins={FOOTPRINT_COUNTRIES} />
         </div>
       </div>
     </Container>

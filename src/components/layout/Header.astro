@@ -346,7 +346,10 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
     display: none;
     align-items: center;
     gap: 0.625rem;
-    padding: 0.6875rem 1.375rem;
+    /* Asymmetric vertical padding optically centres the uppercase label —
+       no-descender glyphs sit high in the line-box, so nudge down ~1px.
+       Total vertical padding unchanged, so pill height is unaffected. */
+    padding: 0.75rem 1.375rem 0.625rem;
     border-radius: 9999px;
     font-family: var(--font-body);
     font-size: 0.8125rem;
@@ -376,6 +379,13 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
     background-color: var(--color-brand-blue);
     border-color: var(--color-brand-blue);
     color: #FFFFFF;
+  }
+
+  /* White focus ring — the CTA sits over the dark photo hero, where the
+     global brand-blue outline is too low-contrast. */
+  .header__cta:focus-visible {
+    outline: 2px solid #FFFFFF;
+    outline-offset: 3px;
   }
 
   .header__cta-arrow {

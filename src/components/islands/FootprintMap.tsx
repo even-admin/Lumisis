@@ -31,7 +31,9 @@ const URL_TOPO = "https://esm.sh/topojson-client@3?bundle"
 
 // Equirectangular viewport — clip the empty poles + Antarctica for a clean
 // "world view" (the globe drops the same polar mass in filterNonPolarPolys).
-const LAT_TOP = 84
+// LAT_TOP stops at 76: drops the most equirectangular-distorted polar band
+// (all plotted points sit ≤ ~53° lat, so nothing relevant is lost).
+const LAT_TOP = 76
 const LAT_BOTTOM = -56
 const LAT_RANGE = LAT_TOP - LAT_BOTTOM
 
@@ -214,8 +216,23 @@ function draw(
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
   ctx.clearRect(0, 0, w, h)
 
-  const px = (lon: number) => ((wrapLon(lon) + 180) / 360) * w
-  const py = (lat: number) => ((LAT_TOP - lat) / LAT_RANGE) * h
+  // Project into an inset, aspect-correct, centred rect (not edge-to-edge):
+  // the padding keeps coastlines off the canvas edges, and fitting an explicit
+  // 360/LAT_RANGE-aspect rect preserves the equirectangular proportions.
+  const padX = w * 0.05
+  const padY = h * 0.06
+  const mapAspect = 360 / LAT_RANGE
+  let rectW = w - padX * 2
+  let rectH = rectW / mapAspect
+  if (rectH > h - padY * 2) {
+    rectH = h - padY * 2
+    rectW = rectH * mapAspect
+  }
+  const rectX = (w - rectW) / 2
+  const rectY = (h - rectH) / 2
+
+  const px = (lon: number) => rectX + ((wrapLon(lon) + 180) / 360) * rectW
+  const py = (lat: number) => rectY + ((LAT_TOP - lat) / LAT_RANGE) * rectH
 
   // Interior fill dots — fainter
   ctx.fillStyle = "rgba(0, 152, 219, 0.5)"
@@ -316,10 +333,13 @@ export function FootprintMap({ pins, className }: FootprintMapProps) {
     <div
       ref={wrapRef}
       className={className}
+      role="presentation"
+      aria-hidden="true"
       style={{ position: "relative", width: "100%", height: "100%" }}
     >
       <canvas
         ref={canvasRef}
+        aria-hidden="true"
         style={{ display: "block", width: "100%", height: "100%" }}
       />
       {loading && (
