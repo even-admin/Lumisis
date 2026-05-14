@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { NAV_ITEMS, SOCIAL_LINKS, SITE } from '@/lib/constants';
+import { NAV_ITEMS, SOCIAL_LINKS, SITE, SERVICES, prefixBase } from '@/lib/constants';
 import { getLocaleFromUrl } from '@/i18n/utils';
 import { ui } from '@/i18n/ui';
 import { lumisisLogoWhite } from '@/lib/images';
@@ -8,135 +8,230 @@ import Container from './Container.astro';
 
 const locale = getLocaleFromUrl(Astro.url);
 const navItems = NAV_ITEMS[locale];
+const services = SERVICES[locale];
 ---
 
 <footer class="footer" transition:persist>
   <Container>
     <div class="footer__grid">
-      <div class="footer__brand">
-        <Image src={lumisisLogoWhite} alt="LUMISIS" height={32} class="footer__logo" />
-        <p class="footer__tagline">Strategy | Consulting | Coaching</p>
+
+      <div class="footer__col">
+        <p class="footer__heading">{ui[locale]['footer.nav']}</p>
+        <nav class="footer__nav" aria-label="Footer navigation">
+          {navItems.map((item) => (
+            <a href={item.href} class="footer__link">{item.label}</a>
+          ))}
+        </nav>
       </div>
 
-      <div class="footer__right">
-        <div class="footer__col">
-          <p class="footer__heading">{ui[locale]['footer.nav']}</p>
-          <nav class="footer__nav" aria-label="Footer navigation">
-            {navItems.map((item) => (
-              <a href={item.href} class="footer__link">
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        </div>
+      <div class="footer__col">
+        <p class="footer__heading">Soluciones</p>
+        <nav class="footer__nav" aria-label="Servicios">
+          {services.map((s) => (
+            <a href={prefixBase(`/soluciones/${s.slug}`)} class="footer__link">{s.title}</a>
+          ))}
+        </nav>
+      </div>
 
-        <div class="footer__col">
-          <p class="footer__heading">{ui[locale]['footer.connect']}</p>
-          <div class="footer__nav">
-            {SOCIAL_LINKS.map((link) => (
-              <a
-                href={link.href}
-                class="footer__link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
+      <div class="footer__col">
+        <p class="footer__heading">{ui[locale]['footer.connect']}</p>
+        <div class="footer__nav">
+          {SOCIAL_LINKS.map((link) => (
+            <a
+              href={link.href}
+              class="footer__link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
       </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Contacto</p>
+        <div class="footer__nav">
+          <a href="mailto:hola@lumisis.com" class="footer__link">hola@lumisis.com</a>
+          <a href="tel:+529999429151" class="footer__link">+52 999 942 9151</a>
+          <span class="footer__link footer__link--static">Mérida, México</span>
+        </div>
+      </div>
+
     </div>
 
     <div class="footer__bottom">
-      <p class="footer__copyright">{SITE.copyright}</p>
+      <Image
+        src={lumisisLogoWhite}
+        alt="LUMISIS — Strategy, Consulting, Coaching"
+        height={40}
+        class="footer__logo"
+      />
+      <p class="footer__meta">
+        <span class="footer__location">Hecho en Mérida, México</span>
+        <span class="footer__sep" aria-hidden="true">·</span>
+        <span class="footer__copyright">{SITE.copyright}</span>
+      </p>
     </div>
   </Container>
 </footer>
 
 <style>
   .footer {
-    background-color: var(--color-surface-dark, #0A0A0A);
+    position: relative;
+    background-color: var(--color-surface-dark, #393938);
     color: var(--color-text-on-dark, #FBFAFC);
-    padding: 5rem 0 2.5rem;
+    padding: 4rem 0 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer { padding: 5rem 0 2.5rem; }
+  }
+
+  /* Brand-gradient accent strip at the very top */
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      #F5B335 0%,
+      #E43D30 30%,
+      #009ADE 65%,
+      #6ABF4B 100%
+    );
   }
 
   .footer__grid {
     display: grid;
-    gap: 3rem;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     .footer__grid {
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 3rem 2rem;
     }
   }
 
-  .footer__brand {
+  @media (min-width: 1024px) {
+    .footer__grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem 2rem;
+    }
+  }
+
+  .footer__col {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .footer__logo {
-    height: 32px;
-    width: auto;
-  }
-
-  .footer__tagline {
-    font-size: 0.875rem;
-    color: var(--color-text-muted-dark, #999);
-    letter-spacing: 0.05em;
-  }
-
-  .footer__right {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    .footer__right {
-      justify-items: end;
-    }
+    align-items: flex-start;
   }
 
   .footer__heading {
     font-size: 0.6875rem;
     font-weight: 600;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-text-muted-dark, #999);
-    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0 0 1.25rem;
   }
 
   .footer__nav {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 0.625rem;
   }
 
   .footer__link {
+    position: relative;
+    display: inline-block;
     font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
-    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .footer__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 1.5px;
+    background: #0098DB;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .footer__link:hover {
-    color: white;
+    color: #FFFFFF;
   }
 
+  .footer__link:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Static (non-link) variant — no underline behavior */
+  .footer__link--static {
+    cursor: default;
+  }
+
+  .footer__link--static::after {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer__link,
+    .footer__link::after { transition: none; }
+  }
+
+  /* Bottom signature row: logo left, meta right */
   .footer__bottom {
     margin-top: 4rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--color-border-dark, rgba(255, 255, 255, 0.1));
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .footer__logo {
+    height: 40px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+  }
+
+  .footer__meta {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.05em;
+    margin: 0;
+  }
+
+  .footer__sep {
+    color: rgba(255, 255, 255, 0.3);
   }
 
   .footer__copyright {
-    font-size: 0.75rem;
-    color: var(--color-text-muted-dark, #999);
-    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  @media (max-width: 639px) {
+    .footer__bottom {
+      justify-content: flex-start;
+    }
   }
 </style>

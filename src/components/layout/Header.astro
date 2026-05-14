@@ -78,39 +78,43 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
       </button>
     </div>
   </nav>
-
-  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
-    <div class="mobile-menu__accent" aria-hidden="true"></div>
-    <div class="mobile-menu__top">
-      <a href={homeHref} class="header__logo" aria-label="LUMISIS — Home">
-        <Image src={lumisisLogoColor} alt="LUMISIS" height={32} class="mobile-menu__logo-img" />
-      </a>
-      <button
-        aria-label="Close menu"
-        id="mobile-menu-close"
-        type="button"
-        class="mobile-menu__close"
-      >
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-    <nav class="mobile-menu__nav" aria-label="Mobile navigation">
-      {navItems.map((item, i) => (
-        <a href={item.href} class="mobile-menu__link" style={`--i:${i}`}>
-          <span class="mobile-menu__link-num">0{i + 1}</span>
-          <span class="mobile-menu__link-label">{item.label}</span>
-        </a>
-      ))}
-    </nav>
-    <div class="mobile-menu__footer">
-      <a href={alternatePath} class="mobile-menu__lang">{switchLabel}</a>
-      <a href={contactHref} class="mobile-menu__cta">
-        {contactLabel} &rarr;
-      </a>
-    </div>
-  </div>
 </header>
+
+{/* Mobile menu lives OUTSIDE the header so its position:fixed resolves
+    against the viewport, not against the header (which has backdrop-filter
+    in its solid state, creating a containing block that would scope the
+    menu to the header's tiny height). */}
+<div id="mobile-menu" class="mobile-menu" aria-hidden="true" transition:persist>
+  <div class="mobile-menu__accent" aria-hidden="true"></div>
+  <div class="mobile-menu__top">
+    <a href={homeHref} class="header__logo" aria-label="LUMISIS — Home">
+      <Image src={lumisisLogoColor} alt="LUMISIS" height={32} class="mobile-menu__logo-img" />
+    </a>
+    <button
+      aria-label="Close menu"
+      id="mobile-menu-close"
+      type="button"
+      class="mobile-menu__close"
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <nav class="mobile-menu__nav" aria-label="Mobile navigation">
+    {navItems.map((item, i) => (
+      <a href={item.href} class="mobile-menu__link" style={`--i:${i}`}>
+        <span class="mobile-menu__link-num">0{i + 1}</span>
+        <span class="mobile-menu__link-label">{item.label}</span>
+      </a>
+    ))}
+  </nav>
+  <div class="mobile-menu__footer">
+    <a href={alternatePath} class="mobile-menu__lang">{switchLabel}</a>
+    <a href={contactHref} class="mobile-menu__cta">
+      {contactLabel} &rarr;
+    </a>
+  </div>
+</div>
 
 <style>
   /* ============================================================
@@ -465,7 +469,13 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
 
   .mobile-menu {
     position: fixed;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     z-index: 60;
     background-color: #FFFFFF;
     display: none;
