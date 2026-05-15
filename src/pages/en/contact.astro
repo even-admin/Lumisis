@@ -3,6 +3,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import Button from '@/components/ui/Button.astro';
+import ContactFormScript from '@/components/ContactFormScript.astro';
 ---
 
 <PageLayout title="Contact — LUMISIS" description="Collaborate with our experts to create impactful experiences together.">
@@ -14,7 +15,13 @@ import Button from '@/components/ui/Button.astro';
           <h1 class="text-3xl md:text-4xl">Start Your Next Strategic Breakthrough</h1>
           <p class="mt-6 text-gray-600">Not sure where to start? Request a Needs Detection session (DNE) — a no-cost conversation where we listen to your situation and the challenges you face before proposing anything.</p>
         </div>
-        <form class="space-y-6" data-contact-form>
+        <form
+          class="space-y-6"
+          data-contact-form
+          action="https://formspree.io/f/mbdwvaoo"
+          method="POST"
+          data-sending-label="Sending…"
+        >
           <div>
             <label for="name" class="block text-sm font-medium mb-2">Your Name *</label>
             <input type="text" id="name" name="name" required class="w-full border-b border-gray-300 bg-transparent py-3 text-base outline-none transition-colors focus:border-brand-black" />
@@ -30,9 +37,26 @@ import Button from '@/components/ui/Button.astro';
           <div class="contact-submit">
             <Button variant="primary">Send Message</Button>
             <p class="contact-hashtag">#ItsTime</p>
+            <p class="contact-form__status" data-form-success hidden>
+              Message sent. We'll get back to you soon.
+            </p>
+            <p class="contact-form__status contact-form__status--error" data-form-error hidden>
+              Couldn't send. Try again, or email us directly at operaciones@lumisisgroup.com.
+            </p>
           </div>
+
+          <input type="hidden" name="_subject" value="New contact message — LUMISIS" />
+          <input
+            type="text"
+            name="_gotcha"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            style="display:none"
+          />
         </form>
       </div>
     </Container>
   </Section>
+  <ContactFormScript />
 </PageLayout>

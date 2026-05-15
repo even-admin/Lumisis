@@ -3,6 +3,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import Container from '@/components/layout/Container.astro';
 import Section from '@/components/layout/Section.astro';
 import Button from '@/components/ui/Button.astro';
+import ContactFormScript from '@/components/ContactFormScript.astro';
 ---
 
 <PageLayout title="Contacto — LUMISIS" description="Colabora con nuestros expertos para crear experiencias de impacto.">
@@ -19,7 +20,13 @@ import Button from '@/components/ui/Button.astro';
           </p>
         </div>
 
-        <form class="space-y-6" data-contact-form>
+        <form
+          class="space-y-6"
+          data-contact-form
+          action="https://formspree.io/f/mbdwvaoo"
+          method="POST"
+          data-sending-label="Enviando…"
+        >
           <div>
             <label for="name" class="block text-sm font-medium mb-2">Tu nombre *</label>
             <input
@@ -52,9 +59,26 @@ import Button from '@/components/ui/Button.astro';
           <div class="contact-submit">
             <Button variant="primary">Enviar mensaje</Button>
             <p class="contact-hashtag">#YaEsHora</p>
+            <p class="contact-form__status" data-form-success hidden>
+              Mensaje enviado. Te responderemos pronto.
+            </p>
+            <p class="contact-form__status contact-form__status--error" data-form-error hidden>
+              No se pudo enviar. Intenta de nuevo o escríbenos directo a operaciones@lumisisgroup.com.
+            </p>
           </div>
+
+          <input type="hidden" name="_subject" value="Nuevo mensaje de contacto — LUMISIS" />
+          <input
+            type="text"
+            name="_gotcha"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            style="display:none"
+          />
         </form>
       </div>
     </Container>
   </Section>
+  <ContactFormScript />
 </PageLayout>

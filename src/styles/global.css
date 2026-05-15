@@ -2314,3 +2314,19 @@
     #F5B335 0%, #E43D30 25%, #aa5b5e 50%, #009ADE 75%, #6ABF4B 100%
   );
 }
+
+/* Submit status messages — success (brand-black) / error (brand-red, functional use) */
+.contact-form__status {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-brand-black);
+}
+
+.contact-form__status[hidden] {
+  display: none;
+}
+
+.contact-form__status--error {
+  color: var(--color-brand-red);
+}

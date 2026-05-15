@@ -1,0 +1,61 @@
+---
+/**
+ * AJAX submit handler for any [data-contact-form] on the page (Formspree).
+ * Locale-agnostic — success/error copy and the "sending" label live in the
+ * page DOM ([data-form-success] / [data-form-error] / data-sending-label),
+ * so this script holds no strings.
+ */
+---
+
+<script>
+  function initContactForms() {
+    const forms =
+      document.querySelectorAll<HTMLFormElement>('[data-contact-form]');
+
+    forms.forEach((form) => {
+      if (form.dataset.bound === 'true') return;
+      form.dataset.bound = 'true';
+
+      const button = form.querySelector('button');
+      const successEl = form.querySelector<HTMLElement>('[data-form-success]');
+      const errorEl = form.querySelector<HTMLElement>('[data-form-error]');
+      const hashtag = form.querySelector<HTMLElement>('.contact-hashtag');
+      const sendingLabel = form.dataset.sendingLabel ?? 'Sending…';
+      const idleLabel = button?.textContent ?? '';
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        successEl?.setAttribute('hidden', '');
+        errorEl?.setAttribute('hidden', '');
+        if (button) {
+          button.disabled = true;
+          button.textContent = sendingLabel;
+        }
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { Accept: 'application/json' },
+          });
+
+          if (!response.ok) throw new Error('Form submission failed');
+
+          form.reset();
+          successEl?.removeAttribute('hidden');
+          button?.setAttribute('hidden', '');
+          hashtag?.setAttribute('hidden', '');
+        } catch {
+          errorEl?.removeAttribute('hidden');
+          if (button) {
+            button.disabled = false;
+            button.textContent = idleLabel;
+          }
+        }
+      });
+    });
+  }
+
+  initContactForms();
+  document.addEventListener('astro:page-load', initContactForms);
+</script>
