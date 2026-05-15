@@ -60,7 +60,7 @@ export const GLOBE_PINS = [
   {
     name: 'LUMISIS HQ — Mérida, México',
     address: 'C 17 474, entre 20 y 22, Mérida, Yucatan 97130, MX',
-    phone: '+52 999 942 9151',
+    phone: '+52 999 649 0203',
     lon: -89.6253,
     lat: 20.9674,
   },
@@ -74,7 +74,7 @@ export const GLOBE_PINS = [
   {
     name: 'Mexico City, Mexico',
     address: 'Oficina Regional',
-    phone: '+52 (999) 942 9151',
+    phone: '+52 999 649 0203',
     lon: -99.1332,
     lat: 19.4326,
   },

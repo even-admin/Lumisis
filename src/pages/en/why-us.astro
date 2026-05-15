@@ -22,7 +22,16 @@ const process = [
   { label: 'Sustain', copy: 'We follow through and strengthen the results over time.' },
 ];
 
-const countries = ['Mexico', 'Germany', 'France', 'Switzerland', 'England', 'Kenya', 'South Africa', 'Canada', 'United States', 'Colombia', 'Argentina', 'Brazil', 'Japan'];
+const countries = [
+  // Americas (5)
+  'Mexico', 'Canada', 'United States', 'Colombia', 'Argentina',
+  // Brasil starts row 2
+  'Brazil',
+  // Europe (4)
+  'Germany', 'France', 'Switzerland', 'England',
+  // Others (3)
+  'Kenya', 'South Africa', 'Japan',
+];
 const clientTypes = ['Multinationals', 'SMEs', 'Public companies', 'Family businesses'];
 
 const values = [
@@ -41,6 +50,8 @@ const values = [
       alt=""
       width={1920}
       quality={82}
+      loading="eager"
+      fetchpriority="high"
       class="hero-inner__bg"
     />
     <div class="hero-inner__overlay"></div>

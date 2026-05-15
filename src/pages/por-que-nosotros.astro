@@ -9,7 +9,7 @@ import { heroWhyUs, TEAM_MEMBERS } from '@/lib/images';
 
 const fronts = [
   { name: 'Estratégico', copy: 'Alineados a la estrategia del negocio' },
-  { name: 'Funcional', copy: 'De aplicación práctica y real' },
+  { name: 'Funcional', copy: 'Aplicación práctica y real' },
   { name: 'Institucional', copy: 'Profesionalización y capacidades en un ambiente ESG' },
   { name: 'Rentable', copy: 'Valor, ROI, ROE y crecimiento' },
   { name: 'Personas', copy: 'Mindset, competencias y enfoque sistémico' },
@@ -22,7 +22,16 @@ const process = [
   { label: 'Sostener', copy: 'Damos seguimiento y fortalecemos los resultados en el tiempo.' },
 ];
 
-const countries = ['México', 'Alemania', 'Francia', 'Suiza', 'Inglaterra', 'Kenia', 'Sudáfrica', 'Canadá', 'Estados Unidos', 'Colombia', 'Argentina', 'Brasil', 'Japón'];
+const countries = [
+  // Americas (5)
+  'México', 'Canadá', 'Estados Unidos', 'Colombia', 'Argentina',
+  // Brasil starts row 2
+  'Brasil',
+  // Europe (4)
+  'Alemania', 'Francia', 'Suiza', 'Inglaterra',
+  // Others (3)
+  'Kenia', 'Sudáfrica', 'Japón',
+];
 const clientTypes = ['Multinacionales', 'PyMES', 'Empresas públicas', 'Empresas familiares'];
 
 const values = [
@@ -41,6 +50,8 @@ const values = [
       alt=""
       width={1920}
       quality={82}
+      loading="eager"
+      fetchpriority="high"
       class="hero-inner__bg"
     />
     <div class="hero-inner__overlay"></div>
