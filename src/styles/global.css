@@ -2355,7 +2355,7 @@
   color: var(--color-brand-red);
 }
 
-/* ── Philosophy — RSB deep-dive + Values grid (white-principal section) ── */
+/* ── Philosophy — RSB manifesto + Values accordion (white-principal section) ── */
 .whyus-philosophy__title {
   font-family: var(--font-display, 'Gotham', sans-serif);
   font-size: clamp(2.25rem, 5vw, 3.75rem);
@@ -2363,21 +2363,7 @@
   font-weight: 500;
   letter-spacing: -0.025em;
   color: var(--color-brand-blue);
-  margin: 0 0 2rem;
-}
-
-.whyus-philosophy__body {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: 64ch;
-}
-
-.whyus-philosophy__body p {
-  font-size: 1.0625rem;
-  line-height: 1.7;
-  color: var(--color-gray-80);
-  margin: 0;
+  margin: 0 0 2.5rem;
 }
 
 /* Inline brand-blue accent for key phrases (resonante / planteamiento / breakthrough) —
@@ -2388,8 +2374,83 @@
   font-weight: 600;
 }
 
+/* RSB manifesto — three movements, mirrors .whyus-process motion vocabulary */
+.whyus-manifesto {
+  list-style: none;
+  margin: 0 0 5rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .whyus-manifesto { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+}
+
+.whyus-manifesto__movement {
+  position: relative;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(57, 57, 56, 0.1);
+  transition:
+    border-color 320ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-manifesto__num {
+  display: block;
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 500;
+  color: rgba(57, 57, 56, 0.3);
+  margin-bottom: 0.75rem;
+  transition: color 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-manifesto__eyebrow {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-brand-blue);
+  margin-bottom: 1rem;
+}
+
+.whyus-manifesto__eyebrow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1.5px;
+  background: var(--color-brand-blue);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-manifesto__movement p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-gray-80);
+}
+
+.whyus-manifesto__movement:hover {
+  transform: translateY(-2px);
+  border-top-color: var(--color-brand-blue);
+}
+
+.whyus-manifesto__movement:hover .whyus-manifesto__num { color: var(--color-brand-blue); }
+.whyus-manifesto__movement:hover .whyus-manifesto__eyebrow::after { transform: scaleX(1); }
+
+/* ── Values accordion ───────────────────────────────────────────────── */
 .whyus-values__heading {
-  margin: 4.5rem 0 2rem;
+  margin: 0 0 1.5rem;
   font-family: var(--font-display, 'Gotham', sans-serif);
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   line-height: 1.1;
@@ -2402,37 +2463,142 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem 2.5rem;
+  border-top: 1px solid rgba(57, 57, 56, 0.12);
+  /* interpolate-size enables <details> height animation in modern browsers;
+     unsupported browsers snap-open (still functional, just no animation). */
+  interpolate-size: allow-keywords;
 }
 
-@media (min-width: 640px) {
-  .whyus-values { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (min-width: 1024px) {
-  .whyus-values { grid-template-columns: repeat(3, 1fr); }
+.whyus-values > li {
+  border-bottom: 1px solid rgba(57, 57, 56, 0.12);
 }
 
 .whyus-value {
-  padding-top: 1.25rem;
-  border-top: 2px solid var(--color-brand-blue);
+  transition: background-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-value:hover {
+  background-color: rgba(0, 152, 219, 0.025);
+}
+
+/* Strip the native disclosure marker — we draw our own +/− icon */
+.whyus-value summary { list-style: none; }
+.whyus-value summary::-webkit-details-marker { display: none; }
+.whyus-value summary::marker { content: ''; }
+
+.whyus-value__head {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem 0.25rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.whyus-value__num {
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(57, 57, 56, 0.32);
+  min-width: 2.25rem;
+  transition: color 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .whyus-value__title {
+  flex: 1;
   font-family: var(--font-display, 'Gotham', sans-serif);
   font-size: 1.0625rem;
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 500;
+  line-height: 1.3;
   letter-spacing: -0.005em;
   color: #393938;
-  margin: 0 0 0.75rem;
+  transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Plus icon — two brand-blue bars; vertical bar fades on [open] = becomes minus */
+.whyus-value__icon {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.whyus-value__icon::before,
+.whyus-value__icon::after {
+  content: '';
+  position: absolute;
+  background: var(--color-brand-blue);
+  border-radius: 1px;
+  transition:
+    opacity 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whyus-value__icon::before {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-1px);
+}
+
+.whyus-value__icon::after {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-1px);
+}
+
+.whyus-value[open] .whyus-value__num,
+.whyus-value[open] .whyus-value__title {
+  color: var(--color-brand-blue);
+}
+
+.whyus-value[open] .whyus-value__icon::after {
+  opacity: 0;
+  transform: translateX(-1px) rotate(90deg);
+}
+
+/* Animated open/close (modern browsers). Older browsers fall back to instant. */
+.whyus-value::details-content {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    height 360ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    content-visibility 360ms allow-discrete;
+}
+
+.whyus-value[open]::details-content {
+  height: auto;
+  opacity: 1;
+}
+
+.whyus-value__body {
+  padding: 0 0.25rem 1.75rem 3.25rem;
 }
 
 .whyus-value__copy {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--color-gray-80);
   margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-gray-80);
+  max-width: 60ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whyus-manifesto__movement,
+  .whyus-manifesto__num,
+  .whyus-manifesto__eyebrow::after,
+  .whyus-value,
+  .whyus-value__num,
+  .whyus-value__title,
+  .whyus-value__icon::before,
+  .whyus-value__icon::after { transition: none; }
+  .whyus-manifesto__movement:hover { transform: none; }
+  .whyus-value::details-content { transition: none; }
 }

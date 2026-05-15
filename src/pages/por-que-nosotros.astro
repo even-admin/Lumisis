@@ -26,13 +26,10 @@ const countries = ['México', 'Alemania', 'Francia', 'Suiza', 'Inglaterra', 'Ken
 const clientTypes = ['Multinacionales', 'PyMES', 'Empresas públicas', 'Empresas familiares'];
 
 const values = [
-  { title: 'Realidad con sentido', copy: 'Trabajamos con objetividad, con un sentido de realidad y orientación al negocio, basados en hechos y datos observables.' },
-  { title: 'Seniority todo terreno', copy: 'Somos un equipo multidisciplinario de alto nivel, con experiencia, capaz de intervenir a todos los niveles de la organización. Acompañamos en primera persona los retos de nuestros clientes.' },
-  { title: 'Abrazamos lo emergente', copy: 'Sabemos que vivimos en un mundo VUCCA y estamos listos para atender lo que se presente, desde una actitud disruptiva y constructiva.' },
-  { title: 'Impecabilidad y congruencia', copy: 'Nos gusta predicar con el ejemplo, actuar de forma consistente con lo que profesamos, cuidando cada detalle con profesionalismo. Las cosas bien hechas y a la primera, como debe de ser.' },
-  { title: 'Centrados en las personas y sus aspiraciones', copy: 'Estamos convencidos que las personas son Personas, y que sus metas individuales se pueden alinear con los objetivos de la organización.' },
-  { title: 'Disposición, templanza y resiliencia', copy: 'Nuestro sentido de accountability nos hace disponibles para atender los retos de nuestros clientes, estamos ahí para ti. Sabemos que el camino no será fácil y debemos mantenernos y sostenernos juntos en el camino.' },
   { title: 'Esto no tiene por qué ser sufrido', copy: 'Creemos en el bienestar y el disfrute, es posible alcanzar resultados en balance de la persona y el equipo.' },
+  { title: 'Centrados en las personas y sus aspiraciones', copy: 'Estamos convencidos que las personas son Personas, y que sus metas individuales se pueden alinear con los objetivos de la organización.' },
+  { title: 'Abrazamos lo emergente', copy: 'Sabemos que vivimos en un mundo VUCCA y estamos listos para atender lo que se presente, desde una actitud disruptiva y constructiva.' },
+  { title: 'Rigor y oficio', copy: 'Trabajamos con objetividad y datos, con experiencia profunda a todos los niveles. Cuidamos cada detalle con profesionalismo, predicando con el ejemplo, y sostenemos el camino con templanza y resiliencia.' },
 ];
 ---
 
@@ -54,7 +51,7 @@ const values = [
           Resonant Strategic<br />Breakthroughs
         </h1>
         <p class="hero-inner__lede" data-reveal data-reveal-delay="280">
-          Todo lo que hacemos es resonante, tiene eco y repercute de manera poderosa en las organizaciones, en las personas y en el planeta.
+          Estrategia, consultoría y coaching pensados para dejar eco.
         </p>
       </div>
     </Container>
@@ -68,24 +65,38 @@ const values = [
         Resonant Strategic Breakthroughs
       </h2>
 
-      <div class="whyus-philosophy__body">
-        <p data-reveal data-reveal-delay="160">
-          Todo lo que hacemos es <em class="whyus-philosophy__accent">resonante</em>, tiene eco y repercute de manera poderosa en las organizaciones, en las personas y en el planeta.
-        </p>
-        <p data-reveal data-reveal-delay="240">
-          Hacemos las cosas con intención, premeditación, planeación y con un <em class="whyus-philosophy__accent">planteamiento estratégico</em>. No nos gusta trabajar en temas "sin sentido", y por ende el "para qué" es crucial en todas nuestras intervenciones profesionales.
-        </p>
-        <p data-reveal data-reveal-delay="320">
-          Los resultados que generamos no tienen precedente y apuntamos más a un <em class="whyus-philosophy__accent">breakthrough</em> que a un crecimiento o movimiento marginal de las cosas. El impacto apunta a convertirse en un parteaguas al que los participantes refieran de manera trascendental como un antes y un después de que LUMISIS&reg; llegara a sus vidas.
-        </p>
-      </div>
+      <ol class="whyus-manifesto" role="list">
+        <li class="whyus-manifesto__movement" data-reveal data-reveal-delay="160">
+          <span class="whyus-manifesto__num">01</span>
+          <span class="whyus-manifesto__eyebrow">Eco</span>
+          <p>Todo lo que hacemos es <em class="whyus-philosophy__accent">resonante</em>, tiene eco y repercute de manera poderosa en las organizaciones, en las personas y en el planeta.</p>
+        </li>
+        <li class="whyus-manifesto__movement" data-reveal data-reveal-delay="240">
+          <span class="whyus-manifesto__num">02</span>
+          <span class="whyus-manifesto__eyebrow">Intención</span>
+          <p>Hacemos las cosas con intención, premeditación, planeación y con un <em class="whyus-philosophy__accent">planteamiento estratégico</em>. No nos gusta trabajar en temas "sin sentido", y por ende el "para qué" es crucial en todas nuestras intervenciones profesionales.</p>
+        </li>
+        <li class="whyus-manifesto__movement" data-reveal data-reveal-delay="320">
+          <span class="whyus-manifesto__num">03</span>
+          <span class="whyus-manifesto__eyebrow">Parteaguas</span>
+          <p>Los resultados que generamos no tienen precedente y apuntamos más a un <em class="whyus-philosophy__accent">breakthrough</em> que a un crecimiento o movimiento marginal de las cosas. El impacto apunta a convertirse en un parteaguas al que los participantes refieran de manera trascendental como un antes y un después de que LUMISIS&reg; llegara a sus vidas.</p>
+        </li>
+      </ol>
 
       <h3 class="whyus-values__heading" data-reveal data-reveal-delay="400">Nuestros Valores</h3>
       <ul class="whyus-values" role="list">
         {values.map((v, i) => (
-          <li class="whyus-value" data-reveal data-reveal-delay={`${440 + i * 60}`}>
-            <h4 class="whyus-value__title">{v.title}</h4>
-            <p class="whyus-value__copy">{v.copy}</p>
+          <li data-reveal data-reveal-delay={`${440 + i * 70}`}>
+            <details class="whyus-value">
+              <summary class="whyus-value__head">
+                <span class="whyus-value__num">{String(i + 1).padStart(2, '0')}</span>
+                <span class="whyus-value__title">{v.title}</span>
+                <span class="whyus-value__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="whyus-value__body">
+                <p class="whyus-value__copy">{v.copy}</p>
+              </div>
+            </details>
           </li>
         ))}
       </ul>
