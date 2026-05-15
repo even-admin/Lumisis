@@ -6,6 +6,13 @@ dist/
 # Source assets too large for git
 BRANDING/
 MEDIA/
+Fotos drive/
+
+# Working / reference docs (not part of the build)
+Guia_de_adopcion_de_Claude_*.pdf
+
+# Pending asset swaps — kept on disk until explicitly imported into src/lib/images.ts
+src/assets/team/*-new.*
 
 # Editor
 .vscode/
