@@ -3,7 +3,6 @@ import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import { getLocaleFromUrl, getTranslatedPath } from '@/i18n/utils';
 import { SITE } from '@/lib/constants';
-import Preloader from '@/components/Preloader.astro';
 
 interface Props {
   title: string;
@@ -57,7 +56,6 @@ const alternateUrl = new URL(alternatePath, Astro.site);
     <a href="#main" class="skip-to-content">
       {locale === 'es' ? 'Saltar al contenido' : 'Skip to content'}
     </a>
-    <Preloader />
     <slot />
 
     <script>
@@ -65,7 +63,10 @@ const alternateUrl = new URL(alternatePath, Astro.site);
 
       function initLenis() {
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReduced) return;
+        // Skip on touch / coarse-pointer devices — Lenis's virtual scroll fights
+        // native iOS/Android momentum scroll and can feel laggy on phones.
+        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+        if (prefersReduced || isTouchDevice) return;
 
         const lenis = new Lenis({
           lerp: 0.1,

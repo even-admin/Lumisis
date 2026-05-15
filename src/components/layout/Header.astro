@@ -27,6 +27,7 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
         src={lumisisLogoWhite}
         alt="LUMISIS"
         height={32}
+        densities={[1, 2, 3]}
         class="header__logo-img header__logo-img--white"
       />
       <Image
@@ -34,6 +35,7 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
         alt=""
         aria-hidden="true"
         height={32}
+        densities={[1, 2, 3]}
         class="header__logo-img header__logo-img--color"
       />
     </a>
@@ -88,7 +90,7 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
   <div class="mobile-menu__accent" aria-hidden="true"></div>
   <div class="mobile-menu__top">
     <a href={homeHref} class="header__logo" aria-label="LUMISIS — Home">
-      <Image src={lumisisLogoColor} alt="LUMISIS" height={32} class="mobile-menu__logo-img" />
+      <Image src={lumisisLogoColor} alt="LUMISIS" height={32} densities={[1, 2, 3]} class="mobile-menu__logo-img" />
     </a>
     <button
       aria-label="Close menu"
