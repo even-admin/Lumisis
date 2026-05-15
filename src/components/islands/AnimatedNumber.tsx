@@ -31,9 +31,12 @@ export function AnimatedNumber({
     const el = ref.current
     if (!el) return
 
-    // Honor prefers-reduced-motion — jump to the final value, skip the count-up.
+    // Honor prefers-reduced-motion AND coarse-pointer (touch) — jump to the final
+    // value, skip the count-up. The rAF + setState loop competes with mobile scroll
+    // and reads as glitchy; instant value is the premium-mobile move.
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (reducedMotion) {
+    const isTouch = window.matchMedia("(pointer: coarse)").matches
+    if (reducedMotion || isTouch) {
       setValue(end)
       hasAnimated.current = true
       return

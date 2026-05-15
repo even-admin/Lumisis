@@ -24,11 +24,11 @@ import ContactFormScript from '@/components/ContactFormScript.astro';
         >
           <div>
             <label for="name" class="block text-sm font-medium mb-2">Your Name *</label>
-            <input type="text" id="name" name="name" required class="w-full border-b border-gray-300 bg-transparent py-3 text-base outline-none transition-colors focus:border-brand-black" />
+            <input type="text" id="name" name="name" required inputmode="text" autocomplete="name" autocapitalize="words" class="w-full border-b border-gray-300 bg-transparent py-3 text-base outline-none transition-colors focus:border-brand-black" />
           </div>
           <div>
             <label for="email" class="block text-sm font-medium mb-2">Your Email *</label>
-            <input type="email" id="email" name="email" required class="w-full border-b border-gray-300 bg-transparent py-3 text-base outline-none transition-colors focus:border-brand-black" />
+            <input type="email" id="email" name="email" required inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" class="w-full border-b border-gray-300 bg-transparent py-3 text-base outline-none transition-colors focus:border-brand-black" />
           </div>
           <div>
             <label for="message" class="block text-sm font-medium mb-2">Message</label>

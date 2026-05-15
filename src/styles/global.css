@@ -2633,23 +2633,42 @@
   outline-offset: -4px;
 }
 
-/* ── Mobile-only refinements (<768px) ─────────────────────────────────
-   Final phone-review polish: hero eyebrow fits on one line, home hero
-   uses a solid brand-black background (no photo), footprint client-type
-   row stacks cleanly without orphaned middots.
+/* ── Mobile build — premium-mobile refinements ────────────────────────
+   Not a shrunk desktop. Deliberate mobile-first tuning.
    ─────────────────────────────────────────────────────────────────── */
+
+/* Kill the browser-default tap highlight (translucent blue rectangle on tap).
+   Brand-blue focus styles still apply via :focus-visible. */
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
 @media (max-width: 767px) {
-  /* Hero eyebrow: shrink size + tracking so STRATEGY | CONSULTING | COACHING fits on one line */
+  /* Hero eyebrow: 12px is the readability floor at arm's length on a phone.
+     Tracking tightened slightly so STRATEGY | CONSULTING | COACHING still fits. */
   .hero-people__eyebrow {
-    font-size: 0.625rem;
-    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
     margin-bottom: 1.25rem;
   }
 
-  /* Home hero: solid brand-black on mobile (drops the 1MB photo + gradient) */
-  .hero-people__bg,
-  .hero-people__overlay {
+  /* Home page Globe (Three.js) — hidden on mobile. The Astro client:visible
+     island never hydrates because IntersectionObserver doesn't fire on display:none,
+     so Three.js never downloads. The surrounding .presencia stats remain. */
+  .presencia__globe {
     display: none;
+  }
+
+  /* Touch targets — bring all interactive controls to 48px minimum.
+     iOS HIG = 44pt, WCAG 2.5.5 AA = 44px, premium feel = 48px. */
+  .cta-pill {
+    padding: 1.125rem 2rem;
+    min-height: 48px;
+  }
+
+  .btn {
+    padding: 0.875rem 1.75rem;
+    min-height: 48px;
   }
 
   /* Footprint client-type detail: stack cleanly, drop the middots */

@@ -34,6 +34,9 @@ import ContactFormScript from '@/components/ContactFormScript.astro';
               id="name"
               name="name"
               required
+              inputmode="text"
+              autocomplete="name"
+              autocapitalize="words"
               class="w-full border-b border-gray-300 bg-transparent py-3 text-base outline-none transition-colors focus:border-brand-black"
             />
           </div>
@@ -44,6 +47,10 @@ import ContactFormScript from '@/components/ContactFormScript.astro';
               id="email"
               name="email"
               required
+              inputmode="email"
+              autocomplete="email"
+              autocapitalize="off"
+              spellcheck="false"
               class="w-full border-b border-gray-300 bg-transparent py-3 text-base outline-none transition-colors focus:border-brand-black"
             />
           </div>
