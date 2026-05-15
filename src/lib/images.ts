@@ -75,17 +75,23 @@ export const TEAM_MEMBERS = [
   { name: 'Juan Benitez', title: '— pendiente', image: teamJuan },
 ];
 
+// Hero photo → service mapping.
+// NOTE (rotation 2026-05-15): the four `service*` variable names below
+// describe the original *image file* (e.g. serviceLeadershipPrograms imports
+// leadership-programs.jpg), NOT the service slot they now serve. Photos were
+// rotated across the four leadership/culture/coaching/family-business slots,
+// so the value identifier won't match its key — that's intentional, not a typo.
 export const SERVICE_IMAGES: Record<string, ImageMetadata> = {
   'planeacion-estrategica': serviceStrategicPlanning,
   'strategic-planning': serviceStrategicPlanning,
   'offsite-estrategico': serviceStrategicOffsite,
   'strategic-offsite': serviceStrategicOffsite,
-  'evolucion-cultural': serviceCultureEvolution,
-  'culture-evolution': serviceCultureEvolution,
-  'programas-de-liderazgo': serviceLeadershipPrograms,
-  'leadership-programs': serviceLeadershipPrograms,
-  'coaching-ejecutivo': serviceExecutiveCoaching,
-  'executive-coaching': serviceExecutiveCoaching,
-  'evolucion-empresa-familiar': serviceFamilyBusiness,
-  'family-business-evolution': serviceFamilyBusiness,
+  'evolucion-cultural': serviceExecutiveCoaching,
+  'culture-evolution': serviceExecutiveCoaching,
+  'programas-de-liderazgo': serviceCultureEvolution,
+  'leadership-programs': serviceCultureEvolution,
+  'coaching-ejecutivo': serviceFamilyBusiness,
+  'executive-coaching': serviceFamilyBusiness,
+  'evolucion-empresa-familiar': serviceLeadershipPrograms,
+  'family-business-evolution': serviceLeadershipPrograms,
 };
