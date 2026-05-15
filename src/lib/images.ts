@@ -2,7 +2,6 @@ import heroHome from '@/assets/hero/home-hero-face-with-sunlight.jpg';
 import heroHomeAlt from '@/assets/hero/home-hero-alt.jpg';
 import heroWhyUs from '@/assets/hero/why-us-hero-hands-fireball.jpg';
 import heroSolutions from '@/assets/hero/solutions-hub-hero.png';
-import heroStrategicPlanning from '@/assets/hero/strategic-planning-detail-hero.png';
 
 import serviceStrategicPlanning from '@/assets/services/strategic-planning-1.png';
 import serviceStrategicOffsite from '@/assets/services/strategic-offsite.jpg';
@@ -13,7 +12,7 @@ import serviceLeadershipPrograms from '@/assets/services/leadership-programs.jpg
 import serviceExecutiveCoaching from '@/assets/hero/home-hero-face-with-sunlight.jpg';
 import serviceFamilyBusiness from '@/assets/services/family-business.jpg';
 
-import teamAmenoffis from '@/assets/team/amenoffis-acosta.png';
+import teamAmenoffis from '@/assets/team/amenoffis-acosta.jpg';
 import teamRosa from '@/assets/team/rosa-villa.jpg';
 import teamGabriel from '@/assets/team/gabriel-mijares.png';
 import teamVictor from '@/assets/team/victor-zorrilla.png';
@@ -32,7 +31,6 @@ import partner4 from '@/assets/logos/partners/partner-4.png';
 import partner5 from '@/assets/logos/partners/partner-5.png';
 import partner6 from '@/assets/logos/partners/partner-6.png';
 
-import footprintMap from '@/assets/map/footprint-world-map.png';
 import lumisisLogo from '@/assets/logos/lumisis-logo.avif';
 import lumisisLogoWhite from '@/assets/logos/lumisis-white.png';
 import lumisisLogoColor from '@/assets/logos/lumisis-color.png';
@@ -43,7 +41,6 @@ export {
   heroHomeAlt,
   heroWhyUs,
   heroSolutions,
-  heroStrategicPlanning,
   serviceStrategicPlanning,
   serviceStrategicOffsite,
   serviceCultureEvolution,
@@ -57,7 +54,6 @@ export {
   teamJuan,
   client1, client2, client3, client4, client5,
   partner1, partner2, partner3, partner4, partner5, partner6,
-  footprintMap,
   lumisisLogo,
   lumisisLogoWhite,
   lumisisLogoColor,
