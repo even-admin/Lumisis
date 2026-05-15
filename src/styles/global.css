@@ -1497,6 +1497,12 @@
   color: #393938;
 }
 
+/* Front name reads as the categorical label (semi-bold); the description that
+   follows the colon stays in the .why-us__label regular weight 500. */
+.why-us__name {
+  font-weight: 600;
+}
+
 .why-us__label::after {
   content: '';
   position: absolute;

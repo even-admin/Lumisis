@@ -8,11 +8,11 @@ import { prefixBase } from '@/lib/constants';
 import { heroWhyUs, TEAM_MEMBERS } from '@/lib/images';
 
 const fronts = [
-  'Strategic — aligned to the business strategy',
-  'Functional — practical, real-world application',
-  'Institutional — professionalization and capabilities in an ESG environment',
-  'Profitable — value, ROI, ROE and growth',
-  'People — mindset, competencies and a systemic approach',
+  { name: 'Strategic', copy: 'aligned to the business strategy' },
+  { name: 'Functional', copy: 'practical, real-world application' },
+  { name: 'Institutional', copy: 'professionalization and capabilities in an ESG environment' },
+  { name: 'Profitable', copy: 'value, ROI, ROE and growth' },
+  { name: 'People', copy: 'mindset, competencies and a systemic approach' },
 ];
 
 const process = [
@@ -185,7 +185,9 @@ const values = [
                 data-reveal-delay={`${200 + i * 60}`}
               >
                 <span class="why-us__num">{String(i + 1).padStart(2, '0')}</span>
-                <span class="why-us__label">{item}</span>
+                <span class="why-us__label">
+                  <strong class="why-us__name">{item.name}</strong>: {item.copy}
+                </span>
               </li>
             ))}
           </ol>

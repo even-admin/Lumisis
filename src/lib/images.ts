@@ -71,18 +71,18 @@ export const PARTNER_LOGOS = [partner1, partner2, partner3, partner4, partner5, 
 // Follows the same `.es` / `.en` shape used by NAV_ITEMS / SERVICES in constants.ts.
 export const TEAM_MEMBERS = {
   es: [
-    { name: 'Amenoffis',    title: 'Co-fundador y CEO',                    image: teamAmenoffis },
-    { name: 'Rosa',         title: 'Co-fundadora y Directora Europa',      image: teamRosa },
-    { name: 'Gabriel',      title: 'Co-fundador y Líder Global DHYO',      image: teamGabriel },
-    { name: 'Víctor',       title: 'Co-fundador y Líder Global Coaching',  image: teamVictor },
-    { name: 'Juan Benitez', title: 'Senior Coach',                          image: teamJuan },
+    { name: 'Amenoffis Acosta', title: 'Co-fundador y CEO',                    image: teamAmenoffis },
+    { name: 'Rosa Villa',       title: 'Co-fundadora y Directora Europa',      image: teamRosa },
+    { name: 'Gabriel Mijares',  title: 'Co-fundador y Líder Global DHYO',      image: teamGabriel },
+    { name: 'Víctor Zorrilla',  title: 'Co-fundador y Líder Global Coaching',  image: teamVictor },
+    { name: 'Juan Benitez',     title: 'Senior Coach',                          image: teamJuan },
   ],
   en: [
-    { name: 'Amenoffis',    title: 'Co-founder & CEO',                      image: teamAmenoffis },
-    { name: 'Rosa',         title: 'Co-founder & Europe Director',          image: teamRosa },
-    { name: 'Gabriel',      title: 'Co-founder & DHYO Global Lead',         image: teamGabriel },
-    { name: 'Víctor',       title: 'Co-founder & Coaching Global Lead',     image: teamVictor },
-    { name: 'Juan Benitez', title: 'Senior Coach',                          image: teamJuan },
+    { name: 'Amenoffis Acosta', title: 'Co-founder & CEO',                      image: teamAmenoffis },
+    { name: 'Rosa Villa',       title: 'Co-founder & Europe Director',          image: teamRosa },
+    { name: 'Gabriel Mijares',  title: 'Co-founder & DHYO Global Lead',         image: teamGabriel },
+    { name: 'Víctor Zorrilla',  title: 'Co-founder & Coaching Global Lead',     image: teamVictor },
+    { name: 'Juan Benitez',     title: 'Senior Coach',                          image: teamJuan },
   ],
 } as const;
 

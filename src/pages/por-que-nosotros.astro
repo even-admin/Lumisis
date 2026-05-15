@@ -8,11 +8,11 @@ import { prefixBase } from '@/lib/constants';
 import { heroWhyUs, TEAM_MEMBERS } from '@/lib/images';
 
 const fronts = [
-  'Estratégico — alineados a la estrategia del negocio',
-  'Funcional — de aplicación práctica y real',
-  'Institucional — profesionalización y capacidades en un ambiente ESG',
-  'Rentable — valor, ROI, ROE y crecimiento',
-  'Personas — mindset, competencias y enfoque sistémico',
+  { name: 'Estratégico', copy: 'alineados a la estrategia del negocio' },
+  { name: 'Funcional', copy: 'de aplicación práctica y real' },
+  { name: 'Institucional', copy: 'profesionalización y capacidades en un ambiente ESG' },
+  { name: 'Rentable', copy: 'valor, ROI, ROE y crecimiento' },
+  { name: 'Personas', copy: 'mindset, competencias y enfoque sistémico' },
 ];
 
 const process = [
@@ -136,7 +136,7 @@ const values = [
       </div>
 
       <p class="whyus-team__note" data-reveal data-reveal-delay="640">
-        Conoce al equipo completo en LUMISIS.
+        Detrás de cada proyecto, un equipo internacional más amplio.
       </p>
     </Container>
   </Section>
@@ -185,7 +185,9 @@ const values = [
                 data-reveal-delay={`${200 + i * 60}`}
               >
                 <span class="why-us__num">{String(i + 1).padStart(2, '0')}</span>
-                <span class="why-us__label">{item}</span>
+                <span class="why-us__label">
+                  <strong class="why-us__name">{item.name}</strong>: {item.copy}
+                </span>
               </li>
             ))}
           </ol>
