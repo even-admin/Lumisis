@@ -1914,6 +1914,21 @@
   .whyus-team__tile:hover .whyus-team__photo { transform: none; }
 }
 
+/* "Conoce al equipo completo" — signals the mosaic is a sample, not the whole team.
+   Mirrors .whyus-footprint__note for visual consistency on the brand-black sections. */
+.whyus-team__note {
+  margin-top: 2rem;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.whyus-team__note::before {
+  content: '+';
+  margin-right: 0.5rem;
+  font-weight: 600;
+  color: var(--color-brand-blue);
+}
+
 /* ── Stats — count-up row on brand-black (modeled on .presencia-stat) ── */
 .whyus-stats__divider {
   border: none;

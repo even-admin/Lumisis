@@ -67,13 +67,24 @@ export {
 export const CLIENT_LOGOS = [client1, client2, client3, client4, client5];
 export const PARTNER_LOGOS = [partner1, partner2, partner3, partner4, partner5, partner6];
 
-export const TEAM_MEMBERS = [
-  { name: 'Amenoffis Acosta', title: 'Co-fundador y Director', image: teamAmenoffis },
-  { name: 'Rosa Villa', title: 'Co-fundadora', image: teamRosa },
-  { name: 'Gabriel Mijares', title: '— pendiente', image: teamGabriel },
-  { name: 'Víctor Zorrilla', title: '— pendiente', image: teamVictor },
-  { name: 'Juan Benitez', title: '— pendiente', image: teamJuan },
-];
+// Bilingual split — same names + photos across locales, titles localized.
+// Follows the same `.es` / `.en` shape used by NAV_ITEMS / SERVICES in constants.ts.
+export const TEAM_MEMBERS = {
+  es: [
+    { name: 'Amenoffis',    title: 'Co-fundador y CEO',                    image: teamAmenoffis },
+    { name: 'Rosa',         title: 'Co-fundadora y Directora Europa',      image: teamRosa },
+    { name: 'Gabriel',      title: 'Co-fundador y Líder Global DHYO',      image: teamGabriel },
+    { name: 'Víctor',       title: 'Co-fundador y Líder Global Coaching',  image: teamVictor },
+    { name: 'Juan Benitez', title: 'Senior Coach',                          image: teamJuan },
+  ],
+  en: [
+    { name: 'Amenoffis',    title: 'Co-founder & CEO',                      image: teamAmenoffis },
+    { name: 'Rosa',         title: 'Co-founder & Europe Director',          image: teamRosa },
+    { name: 'Gabriel',      title: 'Co-founder & DHYO Global Lead',         image: teamGabriel },
+    { name: 'Víctor',       title: 'Co-founder & Coaching Global Lead',     image: teamVictor },
+    { name: 'Juan Benitez', title: 'Senior Coach',                          image: teamJuan },
+  ],
+} as const;
 
 // Hero photo → service mapping.
 // NOTE (rotation 2026-05-15): the four `service*` variable names below

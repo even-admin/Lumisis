@@ -50,17 +50,17 @@ const clientTypes = ['Multinacionales', 'PyMES', 'Empresas públicas', 'Empresas
     </Container>
   </section>
 
-  {/* Nuestro Equipo — mosaico sobre brand-black */}
+  {/* Equipo de Liderazgo — mosaico sobre brand-black */}
   <Section bg="dark" class="whyus-team">
     <Container>
       <p class="eyebrow mb-4" data-reveal>Expertos</p>
-      <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Nuestro Equipo</h2>
+      <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Equipo de Liderazgo</h2>
       <p class="whyus-team__intro max-w-xl" data-reveal data-reveal-delay="160">
-        Un equipo multidisciplinario de alto perfil que hace fit con las necesidades de nuestros clientes — estrategas, consultores y coaches, expertos internacionales.
+        Estrategas, consultores y coaches de alto perfil — parte de un equipo más amplio de expertos internacionales.
       </p>
 
       <div class="whyus-team__mosaic">
-        {TEAM_MEMBERS.map((member, i) => (
+        {TEAM_MEMBERS.es.map((member, i) => (
           <div
             class="whyus-team__tile"
             data-reveal
@@ -81,6 +81,10 @@ const clientTypes = ['Multinacionales', 'PyMES', 'Empresas públicas', 'Empresas
           </div>
         ))}
       </div>
+
+      <p class="whyus-team__note" data-reveal data-reveal-delay="640">
+        Conoce al equipo completo en LUMISIS.
+      </p>
     </Container>
   </Section>
 

@@ -50,17 +50,17 @@ const clientTypes = ['Multinationals', 'SMEs', 'Public companies', 'Family busin
     </Container>
   </section>
 
-  {/* Our Team — mosaic on brand-black */}
+  {/* Leadership Team — mosaic on brand-black */}
   <Section bg="dark" class="whyus-team">
     <Container>
       <p class="eyebrow mb-4" data-reveal>Experts</p>
-      <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Our Team</h2>
+      <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Leadership Team</h2>
       <p class="whyus-team__intro max-w-xl" data-reveal data-reveal-delay="160">
-        A high-caliber, multidisciplinary team that fits our clients' needs — strategists, consultants and coaches, international experts.
+        High-caliber strategists, consultants and coaches — part of a wider team of international experts.
       </p>
 
       <div class="whyus-team__mosaic">
-        {TEAM_MEMBERS.map((member, i) => (
+        {TEAM_MEMBERS.en.map((member, i) => (
           <div
             class="whyus-team__tile"
             data-reveal
@@ -81,6 +81,10 @@ const clientTypes = ['Multinationals', 'SMEs', 'Public companies', 'Family busin
           </div>
         ))}
       </div>
+
+      <p class="whyus-team__note" data-reveal data-reveal-delay="640">
+        Meet the full team at LUMISIS.
+      </p>
     </Container>
   </Section>
 
