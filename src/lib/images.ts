@@ -14,7 +14,7 @@ import serviceExecutiveCoaching from '@/assets/hero/home-hero-face-with-sunlight
 import serviceFamilyBusiness from '@/assets/services/family-business.jpg';
 
 import teamAmenoffis from '@/assets/team/amenoffis-acosta.png';
-import teamRosa from '@/assets/team/rosa-villa.png';
+import teamRosa from '@/assets/team/rosa-villa.jpg';
 import teamGabriel from '@/assets/team/gabriel-mijares.png';
 import teamVictor from '@/assets/team/victor-zorrilla.png';
 import teamJuan from '@/assets/team/juan-benitez.png';
