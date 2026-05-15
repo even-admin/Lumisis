@@ -2664,3 +2664,20 @@
     margin: 0;
   }
 }
+
+/* ── Mobile + touch: skip reveal animations entirely ──────────────────
+   The 700ms staggered fade+translate stacks into visible jitter on phones
+   (especially long lists like the country ledger and values accordion).
+   Instant content visibility reads faster than half-glitched animation.
+   Sits alongside the existing prefers-reduced-motion handling.
+   ─────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px), (pointer: coarse) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  [data-reveal].revealed {
+    transition: none !important;
+  }
+}
