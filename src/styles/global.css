@@ -2354,3 +2354,85 @@
 .contact-form__status--error {
   color: var(--color-brand-red);
 }
+
+/* ── Philosophy — RSB deep-dive + Values grid (white-principal section) ── */
+.whyus-philosophy__title {
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: var(--color-brand-blue);
+  margin: 0 0 2rem;
+}
+
+.whyus-philosophy__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 64ch;
+}
+
+.whyus-philosophy__body p {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-gray-80);
+  margin: 0;
+}
+
+/* Inline brand-blue accent for key phrases (resonante / planteamiento / breakthrough) —
+   <em> reset so it's not italic; gradient text is banned, brand-blue solid is fine. */
+.whyus-philosophy__accent {
+  font-style: normal;
+  color: var(--color-brand-blue);
+  font-weight: 600;
+}
+
+.whyus-values__heading {
+  margin: 4.5rem 0 2rem;
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: #393938;
+}
+
+.whyus-values {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .whyus-values { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .whyus-values { grid-template-columns: repeat(3, 1fr); }
+}
+
+.whyus-value {
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--color-brand-blue);
+}
+
+.whyus-value__title {
+  font-family: var(--font-display, 'Gotham', sans-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  color: #393938;
+  margin: 0 0 0.75rem;
+}
+
+.whyus-value__copy {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-gray-80);
+  margin: 0;
+}

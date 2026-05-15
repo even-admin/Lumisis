@@ -24,6 +24,16 @@ const process = [
 
 const countries = ['México', 'Alemania', 'Francia', 'Suiza', 'Inglaterra', 'Kenia', 'Sudáfrica', 'Canadá', 'Estados Unidos', 'Colombia', 'Argentina', 'Brasil', 'Japón'];
 const clientTypes = ['Multinacionales', 'PyMES', 'Empresas públicas', 'Empresas familiares'];
+
+const values = [
+  { title: 'Realidad con sentido', copy: 'Trabajamos con objetividad, con un sentido de realidad y orientación al negocio, basados en hechos y datos observables.' },
+  { title: 'Seniority todo terreno', copy: 'Somos un equipo multidisciplinario de alto nivel, con experiencia, capaz de intervenir a todos los niveles de la organización. Acompañamos en primera persona los retos de nuestros clientes.' },
+  { title: 'Abrazamos lo emergente', copy: 'Sabemos que vivimos en un mundo VUCCA y estamos listos para atender lo que se presente, desde una actitud disruptiva y constructiva.' },
+  { title: 'Impecabilidad y congruencia', copy: 'Nos gusta predicar con el ejemplo, actuar de forma consistente con lo que profesamos, cuidando cada detalle con profesionalismo. Las cosas bien hechas y a la primera, como debe de ser.' },
+  { title: 'Centrados en las personas y sus aspiraciones', copy: 'Estamos convencidos que las personas son Personas, y que sus metas individuales se pueden alinear con los objetivos de la organización.' },
+  { title: 'Disposición, templanza y resiliencia', copy: 'Nuestro sentido de accountability nos hace disponibles para atender los retos de nuestros clientes, estamos ahí para ti. Sabemos que el camino no será fácil y debemos mantenernos y sostenernos juntos en el camino.' },
+  { title: 'Esto no tiene por qué ser sufrido', copy: 'Creemos en el bienestar y el disfrute, es posible alcanzar resultados en balance de la persona y el equipo.' },
+];
 ---
 
 <PageLayout title="¿Por Qué Nosotros? — LUMISIS" description="Intención, propósito y resultados sin precedentes. Descubre por qué las empresas eligen LUMISIS.">
@@ -49,6 +59,38 @@ const clientTypes = ['Multinacionales', 'PyMES', 'Empresas públicas', 'Empresas
       </div>
     </Container>
   </section>
+
+  {/* Filosofía Organizacional — RSB deep-dive + 7 valores (white-principal) */}
+  <Section class="whyus-philosophy">
+    <Container>
+      <p class="eyebrow mb-4" data-reveal>Filosofía Organizacional</p>
+      <h2 class="whyus-philosophy__title" lang="en" data-reveal data-reveal-delay="80">
+        Resonant Strategic Breakthroughs
+      </h2>
+
+      <div class="whyus-philosophy__body">
+        <p data-reveal data-reveal-delay="160">
+          Todo lo que hacemos es <em class="whyus-philosophy__accent">resonante</em>, tiene eco y repercute de manera poderosa en las organizaciones, en las personas y en el planeta.
+        </p>
+        <p data-reveal data-reveal-delay="240">
+          Hacemos las cosas con intención, premeditación, planeación y con un <em class="whyus-philosophy__accent">planteamiento estratégico</em>. No nos gusta trabajar en temas "sin sentido", y por ende el "para qué" es crucial en todas nuestras intervenciones profesionales.
+        </p>
+        <p data-reveal data-reveal-delay="320">
+          Los resultados que generamos no tienen precedente y apuntamos más a un <em class="whyus-philosophy__accent">breakthrough</em> que a un crecimiento o movimiento marginal de las cosas. El impacto apunta a convertirse en un parteaguas al que los participantes refieran de manera trascendental como un antes y un después de que LUMISIS&reg; llegara a sus vidas.
+        </p>
+      </div>
+
+      <h3 class="whyus-values__heading" data-reveal data-reveal-delay="400">Nuestros Valores</h3>
+      <ul class="whyus-values" role="list">
+        {values.map((v, i) => (
+          <li class="whyus-value" data-reveal data-reveal-delay={`${440 + i * 60}`}>
+            <h4 class="whyus-value__title">{v.title}</h4>
+            <p class="whyus-value__copy">{v.copy}</p>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </Section>
 
   {/* Equipo de Liderazgo — mosaico sobre brand-black */}
   <Section bg="dark" class="whyus-team">

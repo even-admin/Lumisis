@@ -24,6 +24,16 @@ const process = [
 
 const countries = ['Mexico', 'Germany', 'France', 'Switzerland', 'England', 'Kenya', 'South Africa', 'Canada', 'United States', 'Colombia', 'Argentina', 'Brazil', 'Japan'];
 const clientTypes = ['Multinationals', 'SMEs', 'Public companies', 'Family businesses'];
+
+const values = [
+  { title: 'Grounded reality', copy: 'We work with objectivity, a sense of reality, and a business orientation — grounded in observable facts and data.' },
+  { title: 'All-terrain seniority', copy: "A high-caliber, multidisciplinary team — experienced and able to engage at every level of the organization. We accompany our clients' challenges in person." },
+  { title: 'Embrace the emergent', copy: "We know we live in a VUCCA world and we're ready for whatever surfaces — from a disruptive and constructive stance." },
+  { title: 'Impeccability and congruence', copy: 'We lead by example, acting consistently with what we profess and tending every detail with professionalism. Things done right the first time, as they should be.' },
+  { title: 'Centered on people and their aspirations', copy: "We're convinced that people are People — and that individual goals can align with the organization's objectives." },
+  { title: 'Disposition, temperance and resilience', copy: "Our sense of accountability keeps us available for our clients' challenges — we're here for you. We know the path won't be easy, and that we must hold and sustain each other along the way." },
+  { title: "This doesn't have to be suffered", copy: 'We believe in well-being and enjoyment — results are possible while keeping the person and the team in balance.' },
+];
 ---
 
 <PageLayout title="Why Us? — LUMISIS" description="Intention, purpose and unprecedented results. Discover why companies choose LUMISIS.">
@@ -49,6 +59,38 @@ const clientTypes = ['Multinationals', 'SMEs', 'Public companies', 'Family busin
       </div>
     </Container>
   </section>
+
+  {/* Our Philosophy — RSB deep-dive + 7 values (white-principal) */}
+  <Section class="whyus-philosophy">
+    <Container>
+      <p class="eyebrow mb-4" data-reveal>Our Philosophy</p>
+      <h2 class="whyus-philosophy__title" data-reveal data-reveal-delay="80">
+        Resonant Strategic Breakthroughs
+      </h2>
+
+      <div class="whyus-philosophy__body">
+        <p data-reveal data-reveal-delay="160">
+          Everything we do is <em class="whyus-philosophy__accent">resonant</em> — it echoes and reverberates powerfully through organizations, people and the planet.
+        </p>
+        <p data-reveal data-reveal-delay="240">
+          We work with intention, forethought, planning and a <em class="whyus-philosophy__accent">strategic approach</em>. We don't engage with aimless work — the "why" is crucial in every one of our professional interventions.
+        </p>
+        <p data-reveal data-reveal-delay="320">
+          The results we generate have no precedent — we aim for a <em class="whyus-philosophy__accent">breakthrough</em>, not marginal growth or incremental movement. The impact becomes a turning point participants reference as a before-and-after LUMISIS&reg; entered their lives.
+        </p>
+      </div>
+
+      <h3 class="whyus-values__heading" data-reveal data-reveal-delay="400">Our Values</h3>
+      <ul class="whyus-values" role="list">
+        {values.map((v, i) => (
+          <li class="whyus-value" data-reveal data-reveal-delay={`${440 + i * 60}`}>
+            <h4 class="whyus-value__title">{v.title}</h4>
+            <p class="whyus-value__copy">{v.copy}</p>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </Section>
 
   {/* Leadership Team — mosaic on brand-black */}
   <Section bg="dark" class="whyus-team">
