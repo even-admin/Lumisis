@@ -54,6 +54,9 @@ const alternateUrl = new URL(alternatePath, Astro.site);
     <slot name="head" />
   </head>
   <body class="font-body text-brand-black antialiased">
+    <a href="#main" class="skip-to-content">
+      {locale === 'es' ? 'Saltar al contenido' : 'Skip to content'}
+    </a>
     <Preloader />
     <slot />
 
@@ -100,6 +103,9 @@ const alternateUrl = new URL(alternatePath, Astro.site);
 
         revealEls.forEach((el) => {
           const htmlEl = el as HTMLElement;
+          // Skip elements already revealed (e.g., persisted across View Transition
+          // back-navigation) so they don't re-trigger the observer / re-animate.
+          if (htmlEl.classList.contains('revealed')) return;
           if (htmlEl.dataset.revealDelay) {
             htmlEl.style.transitionDelay = `${htmlEl.dataset.revealDelay}ms`;
           }

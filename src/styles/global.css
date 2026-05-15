@@ -2602,3 +2602,27 @@
   .whyus-manifesto__movement:hover { transform: none; }
   .whyus-value::details-content { transition: none; }
 }
+
+/* ── Skip-to-content link — WCAG 2.1 A. Hidden offscreen until focused. ── */
+.skip-to-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--color-brand-blue);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transform: translateY(-100%);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+  outline: 2px solid #FFFFFF;
+  outline-offset: -4px;
+}

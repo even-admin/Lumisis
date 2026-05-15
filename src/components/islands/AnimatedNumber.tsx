@@ -31,6 +31,14 @@ export function AnimatedNumber({
     const el = ref.current
     if (!el) return
 
+    // Honor prefers-reduced-motion — jump to the final value, skip the count-up.
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (reducedMotion) {
+      setValue(end)
+      hasAnimated.current = true
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
