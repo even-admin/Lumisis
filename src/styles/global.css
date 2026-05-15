@@ -1439,11 +1439,20 @@
   .service-tile:hover .service-tile__cta-arrow { transform: none; }
 }
 
-/* Mobile — collapse to single-column stack */
+/* Mobile — collapse to single-column stack. The previous rule pinned each
+   row to minmax(260px, auto) while the tile keeps aspect-ratio 4/3 (~160px
+   at narrow widths) — that left a ~100px empty band below every tile.
+   Drop the explicit row sizing, let rows size to the tile, and switch the
+   tile to a 1/1 (card-like) aspect-ratio on mobile for more substance. */
 @media (max-width: 767px) {
   .services__mosaic {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, minmax(260px, auto));
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+  }
+
+  .service-tile {
+    aspect-ratio: 1 / 1;
   }
 }
 
