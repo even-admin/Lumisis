@@ -12,7 +12,7 @@ import serviceLeadershipPrograms from '@/assets/services/leadership-programs.jpg
 import serviceExecutiveCoaching from '@/assets/hero/home-hero-face-with-sunlight.jpg';
 import serviceFamilyBusiness from '@/assets/services/family-business.jpg';
 
-import teamAmenoffis from '@/assets/team/amenoffis-acosta.jpg';
+import teamAmenoffis from '@/assets/team/amenoffis-acosta.png';
 import teamRosa from '@/assets/team/rosa-villa.jpg';
 import teamGabriel from '@/assets/team/gabriel-mijares.png';
 import teamVictor from '@/assets/team/victor-zorrilla.png';
@@ -67,14 +67,14 @@ export const PARTNER_LOGOS = [partner1, partner2, partner3, partner4, partner5, 
 // Follows the same `.es` / `.en` shape used by NAV_ITEMS / SERVICES in constants.ts.
 export const TEAM_MEMBERS = {
   es: [
-    { name: 'Amenoffis Acosta', title: 'Co-fundador y CEO',                    image: teamAmenoffis, objectPosition: 'center 15%', scale: 'scale(1.45)' },
+    { name: 'Amenoffis Acosta', title: 'Co-fundador y CEO',                    image: teamAmenoffis, objectPosition: 'center',       scale: 'scale(1)' },
     { name: 'Rosa Villa',       title: 'Co-fundadora y Directora Europa',      image: teamRosa,      objectPosition: 'center',       scale: 'scale(1)' },
     { name: 'Gabriel Mijares',  title: 'Co-fundador y Líder Global DHYO',      image: teamGabriel,   objectPosition: 'center',       scale: 'scale(1)' },
     { name: 'Víctor Zorrilla',  title: 'Co-fundador y Líder Global Coaching',  image: teamVictor,    objectPosition: 'center',       scale: 'scale(1)' },
     { name: 'Juan Benitez',     title: 'Senior Coach',                         image: teamJuan,      objectPosition: 'center',       scale: 'scale(1)' },
   ],
   en: [
-    { name: 'Amenoffis Acosta', title: 'Co-founder & CEO',                     image: teamAmenoffis, objectPosition: 'center 15%', scale: 'scale(1.45)' },
+    { name: 'Amenoffis Acosta', title: 'Co-founder & CEO',                     image: teamAmenoffis, objectPosition: 'center',       scale: 'scale(1)' },
     { name: 'Rosa Villa',       title: 'Co-founder & Europe Director',         image: teamRosa,      objectPosition: 'center',       scale: 'scale(1)' },
     { name: 'Gabriel Mijares',  title: 'Co-founder & DHYO Global Lead',        image: teamGabriel,   objectPosition: 'center',       scale: 'scale(1)' },
     { name: 'Víctor Zorrilla',  title: 'Co-founder & Coaching Global Lead',    image: teamVictor,    objectPosition: 'center',       scale: 'scale(1)' },
