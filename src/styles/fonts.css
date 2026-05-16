@@ -2,11 +2,15 @@
    LUMISIS Brand Fonts — Self-hosted, Vite-bundled
    Source: /Users/racosta/LUMISIS/branding/Tipografias LUMISIS Oct23/
    Licensed to LUMISIS GROUP. Do not redistribute.
+
+   WOFF2 first (60-75% smaller than OTF/TTF), OTF/TTF as fallback for
+   any browser without WOFF2 support (none in production since 2018).
    ============================================================ */
 
 @font-face {
   font-family: 'Gotham';
-  src: url('../assets/fonts/gotham-light.otf') format('opentype');
+  src: url('../assets/fonts/gotham-light.woff2') format('woff2'),
+       url('../assets/fonts/gotham-light.otf')   format('opentype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -14,7 +18,8 @@
 
 @font-face {
   font-family: 'Gotham';
-  src: url('../assets/fonts/gotham-book.otf') format('opentype');
+  src: url('../assets/fonts/gotham-book.woff2') format('woff2'),
+       url('../assets/fonts/gotham-book.otf')   format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -22,7 +27,8 @@
 
 @font-face {
   font-family: 'Gotham';
-  src: url('../assets/fonts/gotham-medium.otf') format('opentype');
+  src: url('../assets/fonts/gotham-medium.woff2') format('woff2'),
+       url('../assets/fonts/gotham-medium.otf')   format('opentype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -30,7 +36,8 @@
 
 @font-face {
   font-family: 'Gotham';
-  src: url('../assets/fonts/gotham-bold.otf') format('opentype');
+  src: url('../assets/fonts/gotham-bold.woff2') format('woff2'),
+       url('../assets/fonts/gotham-bold.otf')   format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -38,7 +45,8 @@
 
 @font-face {
   font-family: 'Gotham';
-  src: url('../assets/fonts/gotham-black.ttf') format('truetype');
+  src: url('../assets/fonts/gotham-black.woff2') format('woff2'),
+       url('../assets/fonts/gotham-black.ttf')   format('truetype');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -46,7 +54,8 @@
 
 @font-face {
   font-family: 'Futura Round';
-  src: url('../assets/fonts/futura-round-book.ttf') format('truetype');
+  src: url('../assets/fonts/futura-round-book.woff2') format('woff2'),
+       url('../assets/fonts/futura-round-book.ttf')   format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
