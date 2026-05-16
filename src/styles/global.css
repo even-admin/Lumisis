@@ -204,15 +204,16 @@
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translate3d(0, 24px, 0);
   transition:
     opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
 
 [data-reveal].revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1112,12 +1113,36 @@
 }
 
 .presencia-stat__num {
+  position: relative;
   font-family: var(--font-display, 'Gotham', sans-serif);
   font-size: clamp(2.25rem, 4vw, 3.5rem);
   line-height: 1;
   font-weight: 500;
   color: #FFFFFF;
   min-width: 5.5rem;
+}
+
+/* Brand-blue underline draws in when the stat reveals — editorial accent
+   that gives each number its own visual signature. */
+.presencia-stat__num::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.625rem;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--color-brand-blue);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1) 200ms;
+}
+
+.presencia-stat.revealed .presencia-stat__num::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .presencia-stat__num::after { transition: none; transform: scaleX(1); }
 }
 
 .presencia-stat__label {
@@ -1265,17 +1290,62 @@
 .presencia__cta:hover .presencia__cta-label::after { transform: scaleX(1); }
 .presencia__cta:hover .presencia__cta-arrow { transform: translateX(4px); }
 
-/* Mobile */
+/* Mobile — premium editorial redesign of the trayectoria block */
 @media (max-width: 767px) {
   .presencia__grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
-  .presencia__globe {
-    max-width: 320px;
+
+  /* Drop the corner accents — feel decorative-pointless without the Globe */
+  .presencia__grid::before,
+  .presencia__grid::after {
+    display: none;
   }
+
+  /* Globe is hidden in the mobile premium pass — and so is its space */
+  .presencia__globe { display: none; }
+
+  /* Tighten the column padding now that there's no Globe holding the column */
+  .presencia__content { padding-top: 0; gap: 2.5rem; }
+
+  /* Stats stack vertical on mobile so number/label align cleanly + the
+     brand-blue underline reads as the visual divider between them. */
+  .presencia-stat {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.125rem;
+  }
+
   .presencia-stat__num {
-    min-width: 4.5rem;
+    min-width: 0;
+    font-size: 2.5rem;
+  }
+
+  .presencia-stat__num::after {
+    bottom: -0.5rem;
+    width: 2rem;
+  }
+
+  /* Oficinas list — make the brand-blue dot always visible (no hover on touch),
+     more breathing room between entries, brand-blue rail accent on the left. */
+  .presencia__cities {
+    gap: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .presencia__cities li {
+    padding-left: 0.875rem;
+  }
+
+  .presencia__cities li::before {
+    opacity: 1;
+    left: -0.125rem;
+    width: 5px;
+    height: 5px;
+    background: var(--color-brand-blue);
+    transition: none;
   }
 }
 
@@ -2684,19 +2754,15 @@ html {
   }
 }
 
-/* ── Mobile + touch: skip reveal animations entirely ──────────────────
-   The 700ms staggered fade+translate stacks into visible jitter on phones
-   (especially long lists like the country ledger and values accordion).
-   Instant content visibility reads faster than half-glitched animation.
-   Sits alongside the existing prefers-reduced-motion handling.
-   ─────────────────────────────────────────────────────────────────── */
+/* ── Mobile + touch: SHORTER reveals (not disabled) ──────────────────
+   The full 700ms / 24px reveal stacks into jitter on phones because of
+   stagger pile-up + heavy paints. Mobile gets a tighter version:
+   300ms / 8px / GPU-accelerated. Smooth without the cascade fatigue. */
 @media (max-width: 767px), (pointer: coarse) {
   [data-reveal] {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  [data-reveal].revealed {
-    transition: none !important;
+    transform: translate3d(0, 8px, 0);
+    transition:
+      opacity 300ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
