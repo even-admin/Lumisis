@@ -1390,11 +1390,22 @@
 
 .services__mosaic {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: 1fr 1fr;
-  gap: 1px;
-  background: rgba(57, 57, 56, 0.12);
+  gap: 0;
+  background: transparent;
 }
+
+/* Explicit 1px borders on tiles snap to device pixels and avoid the
+   subpixel rounding that made one gap render wider when faked via
+   `gap: 1px + container background`. */
+.service-tile {
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+.service-tile:nth-child(3n) { border-right: none; }
+.service-tile:nth-last-child(-n+3) { border-bottom: none; }
+.service-tile:last-child { border-right: none; border-bottom: none; }
 
 .service-tile {
   position: relative;
@@ -1523,7 +1534,12 @@
 
   .service-tile {
     aspect-ratio: 1 / 1;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   }
+  .service-tile:nth-child(3n) { border-right: none; }
+  .service-tile:nth-last-child(-n+3) { border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
+  .service-tile:last-child { border-bottom: none; }
 }
 
 /* ============================================================
@@ -1898,12 +1914,37 @@
   margin-top: 3rem;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1px;
-  background: rgba(255, 255, 255, 0.14);
+  gap: 0;
+  background: transparent;
 }
 
+/* Mobile (1 col): bottom border between stacked tiles, none after the last. */
+.whyus-team__tile {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+.whyus-team__tile:last-child { border-bottom: none; }
+
+/* Tablet (3 × 2) */
 @media (min-width: 768px) {
-  .whyus-team__mosaic { grid-template-columns: repeat(5, 1fr); }
+  .whyus-team__mosaic { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .whyus-team__tile {
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .whyus-team__tile:nth-child(3n) { border-right: none; }
+  .whyus-team__tile:nth-last-child(-n+3) { border-bottom: none; }
+  .whyus-team__tile:last-child { border-bottom: none; }
+}
+
+/* Desktop (6 × 1) — single cinematic row */
+@media (min-width: 1024px) {
+  .whyus-team__mosaic { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .whyus-team__tile {
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: none;
+  }
+  .whyus-team__tile:nth-child(6n) { border-right: none; }
+  .whyus-team__tile:last-child { border-right: none; }
 }
 
 /* One horizontal row of equal portrait tiles — no tile larger than another */
