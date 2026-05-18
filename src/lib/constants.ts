@@ -39,20 +39,20 @@ export const SOCIAL_LINKS = [
 
 export const SERVICES = {
   es: [
-    { title: 'Planeación Estratégica', slug: 'planeacion-estrategica' },
-    { title: 'Offsite Estratégico', slug: 'offsite-estrategico' },
-    { title: 'Evolución Cultural', slug: 'evolucion-cultural' },
-    { title: 'Programas de Liderazgo', slug: 'programas-de-liderazgo' },
-    { title: 'Coaching Ejecutivo', slug: 'coaching-ejecutivo' },
-    { title: 'Evolución Empresa Familiar', slug: 'evolucion-empresa-familiar' },
+    { title: 'Planeación estratégica', slug: 'planeacion-estrategica' },
+    { title: 'Experiencias ejecutivas y offsites', slug: 'offsite-estrategico' },
+    { title: 'Evolución cultural', slug: 'evolucion-cultural' },
+    { title: 'Programas de liderazgo', slug: 'programas-de-liderazgo' },
+    { title: 'Coaching ejecutivo', slug: 'coaching-ejecutivo' },
+    { title: 'Evolución de empresas familiares', slug: 'evolucion-empresa-familiar' },
   ],
   en: [
-    { title: 'Strategic Planning', slug: 'strategic-planning' },
-    { title: 'Strategic Offsite', slug: 'strategic-offsite' },
-    { title: 'Culture Evolution', slug: 'culture-evolution' },
-    { title: 'Leadership Programs', slug: 'leadership-programs' },
-    { title: 'Executive Coaching', slug: 'executive-coaching' },
-    { title: 'Family Business Evolution', slug: 'family-business-evolution' },
+    { title: 'Strategic planning', slug: 'strategic-planning' },
+    { title: 'Executive experiences & offsites', slug: 'strategic-offsite' },
+    { title: 'Culture evolution', slug: 'culture-evolution' },
+    { title: 'Leadership programs', slug: 'leadership-programs' },
+    { title: 'Executive coaching', slug: 'executive-coaching' },
+    { title: 'Family businesses evolution', slug: 'family-business-evolution' },
   ],
 } as const;
 

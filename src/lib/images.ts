@@ -3,14 +3,16 @@ import heroHomeAlt from '@/assets/hero/home-hero-alt.jpg';
 import heroWhyUs from '@/assets/hero/why-us-hero-hands-fireball.jpg';
 import heroSolutions from '@/assets/hero/solutions-hub-hero.png';
 
-import serviceStrategicPlanning from '@/assets/services/strategic-planning-1.png';
+// Service hero photos — variable names describe the SLOT each photo serves,
+// not the source file. Four slots got new team-approved photography on
+// 2026-05-18; the remaining two (culture + leadership) still use rotated
+// stand-in photos pending fresh assets.
+import serviceStrategicPlanning from '@/assets/services/strategic-planning.png';
 import serviceStrategicOffsite from '@/assets/services/strategic-offsite.jpg';
-import serviceCultureEvolution from '@/assets/services/culture-evolution.jpg';
-import serviceLeadershipPrograms from '@/assets/services/leadership-programs.jpg';
-// Exec-coaching uses the unused hi-res face photo — the original
-// executive-coaching.jpg is only 1024×1024, too small for a full-bleed hero.
-import serviceExecutiveCoaching from '@/assets/hero/home-hero-face-with-sunlight.jpg';
-import serviceFamilyBusiness from '@/assets/services/family-business.jpg';
+import serviceExecutiveCoaching from '@/assets/services/executive-coaching.jpg';
+import serviceFamilyBusinessEvolution from '@/assets/services/family-business-evolution.png';
+import serviceCultureEvolution from '@/assets/hero/home-hero-face-with-sunlight.jpg';
+import serviceLeadershipPrograms from '@/assets/services/culture-evolution.jpg';
 
 import teamAmenoffis from '@/assets/team/amenoffis-acosta.png';
 import teamRosa from '@/assets/team/rosa-villa.jpg';
@@ -46,7 +48,7 @@ export {
   serviceCultureEvolution,
   serviceLeadershipPrograms,
   serviceExecutiveCoaching,
-  serviceFamilyBusiness,
+  serviceFamilyBusinessEvolution,
   teamAmenoffis,
   teamRosa,
   teamGabriel,
@@ -82,23 +84,18 @@ export const TEAM_MEMBERS = {
   ],
 } as const;
 
-// Hero photo → service mapping.
-// NOTE (rotation 2026-05-15): the four `service*` variable names below
-// describe the original *image file* (e.g. serviceLeadershipPrograms imports
-// leadership-programs.jpg), NOT the service slot they now serve. Photos were
-// rotated across the four leadership/culture/coaching/family-business slots,
-// so the value identifier won't match its key — that's intentional, not a typo.
+// Slug → hero photo mapping. Variable names above match the slot.
 export const SERVICE_IMAGES: Record<string, ImageMetadata> = {
   'planeacion-estrategica': serviceStrategicPlanning,
   'strategic-planning': serviceStrategicPlanning,
   'offsite-estrategico': serviceStrategicOffsite,
   'strategic-offsite': serviceStrategicOffsite,
-  'evolucion-cultural': serviceExecutiveCoaching,
-  'culture-evolution': serviceExecutiveCoaching,
-  'programas-de-liderazgo': serviceCultureEvolution,
-  'leadership-programs': serviceCultureEvolution,
-  'coaching-ejecutivo': serviceFamilyBusiness,
-  'executive-coaching': serviceFamilyBusiness,
-  'evolucion-empresa-familiar': serviceLeadershipPrograms,
-  'family-business-evolution': serviceLeadershipPrograms,
+  'evolucion-cultural': serviceCultureEvolution,
+  'culture-evolution': serviceCultureEvolution,
+  'programas-de-liderazgo': serviceLeadershipPrograms,
+  'leadership-programs': serviceLeadershipPrograms,
+  'coaching-ejecutivo': serviceExecutiveCoaching,
+  'executive-coaching': serviceExecutiveCoaching,
+  'evolucion-empresa-familiar': serviceFamilyBusinessEvolution,
+  'family-business-evolution': serviceFamilyBusinessEvolution,
 };
