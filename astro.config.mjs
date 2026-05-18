@@ -22,5 +22,12 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
+  // Inline every page's full CSS into a <style> block in <head>.
+  // Eliminates the FOUC race during ClientRouter view-transition swaps
+  // when the external stylesheet would otherwise load async.
+  build: {
+    inlineStylesheets: 'always',
+  },
+
   integrations: [mdx(), sitemap(), react()],
 });

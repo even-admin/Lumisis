@@ -2414,12 +2414,14 @@
   background: #0098DB;
 }
 
-/* ── Related services — home-style image-tile mosaic, single row ── */
+/* ── Related services — home-style image-tile mosaic, single row.
+   Borders + edge-stripping live on `.service-tile` (set near the
+   home services mosaic). Subpixel-safe via gap: 0 + minmax(0, 1fr). */
 .service-related__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(57, 57, 56, 0.12);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  background: transparent;
 }
 
 @media (max-width: 767px) {
