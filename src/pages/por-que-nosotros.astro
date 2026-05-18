@@ -126,7 +126,7 @@ const values = [
       <div class="whyus-team__mosaic">
         {TEAM_MEMBERS.es.map((member, i) => (
           <div
-            class="whyus-team__tile"
+            class:list={['whyus-team__tile', member.placeholder && 'whyus-team__tile--placeholder']}
             data-reveal
             data-reveal-delay={`${200 + i * 80}`}
           >
@@ -148,7 +148,7 @@ const values = [
       </div>
 
       <p class="whyus-team__note" data-reveal data-reveal-delay="640">
-        Detrás de cada proyecto, un equipo internacional más amplio.
+        Y un extenso equipo de consultores y coaches.
       </p>
     </Container>
   </Section>

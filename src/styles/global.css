@@ -1942,6 +1942,10 @@
 
 .whyus-team__tile:hover .whyus-team__photo { transform: scale(1.05); }
 
+.whyus-team__tile--placeholder .whyus-team__photo { opacity: 0.55; }
+.whyus-team__tile--placeholder .whyus-team__name { font-style: italic; opacity: 0.85; }
+.whyus-team__tile--placeholder:hover .whyus-team__photo { transform: none; }
+
 .whyus-team__overlay {
   position: absolute;
   inset: 0;

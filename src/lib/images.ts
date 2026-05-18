@@ -17,8 +17,9 @@ import serviceLeadershipPrograms from '@/assets/services/culture-evolution.jpg';
 import teamAmenoffis from '@/assets/team/amenoffis-acosta.png';
 import teamRosa from '@/assets/team/rosa-villa.jpg';
 import teamGabriel from '@/assets/team/gabriel-mijares.png';
-import teamVictor from '@/assets/team/victor-zorrilla.png';
+import teamVictor from '@/assets/team/victor-zorrilla.jpg';
 import teamJuan from '@/assets/team/juan-benitez.png';
+import teamPlaceholder from '@/assets/team/placeholder.png';
 
 import client1 from '@/assets/logos/clients/home-client-1.jpg';
 import client2 from '@/assets/logos/clients/home-client-2.png';
@@ -54,6 +55,7 @@ export {
   teamGabriel,
   teamVictor,
   teamJuan,
+  teamPlaceholder,
   client1, client2, client3, client4, client5,
   partner1, partner2, partner3, partner4, partner5, partner6,
   lumisisLogo,
@@ -69,20 +71,22 @@ export const PARTNER_LOGOS = [partner1, partner2, partner3, partner4, partner5, 
 // Follows the same `.es` / `.en` shape used by NAV_ITEMS / SERVICES in constants.ts.
 export const TEAM_MEMBERS = {
   es: [
-    { name: 'Amenoffis Acosta', title: 'Co-fundador y CEO',                    image: teamAmenoffis, objectPosition: 'center',       scale: 'scale(1)' },
-    { name: 'Rosa Villa',       title: 'Co-fundadora y Directora Europa',      image: teamRosa,      objectPosition: 'center',       scale: 'scale(1)' },
-    { name: 'Gabriel Mijares',  title: 'Co-fundador y Líder Global DHYO',      image: teamGabriel,   objectPosition: 'center',       scale: 'scale(1)' },
-    { name: 'Víctor Zorrilla',  title: 'Co-fundador y Líder Global Coaching',  image: teamVictor,    objectPosition: 'center',       scale: 'scale(1)' },
-    { name: 'Juan Benitez',     title: 'Senior Coach',                         image: teamJuan,      objectPosition: 'center',       scale: 'scale(1)' },
+    { name: 'Amenoffis Acosta', title: 'CEO',                                        image: teamAmenoffis,   objectPosition: 'center', scale: 'scale(1)', placeholder: false },
+    { name: 'Rosa Villa',       title: 'Directora Europa',                           image: teamRosa,        objectPosition: 'center', scale: 'scale(1)', placeholder: false },
+    { name: 'Gabriel Mijares',  title: 'Líder Global DHYO',                          image: teamGabriel,     objectPosition: 'center', scale: 'scale(1)', placeholder: false },
+    { name: 'Víctor Zorrilla',  title: 'Líder Global Coaching',                      image: teamVictor,      objectPosition: 'center', scale: 'scale(1)', placeholder: false },
+    { name: 'Juan Benitez',     title: 'Senior Coach',                               image: teamJuan,        objectPosition: 'center', scale: 'scale(1)', placeholder: false },
+    { name: 'Por anunciar',     title: 'Líder global de transformación cultural',    image: teamPlaceholder, objectPosition: 'center', scale: 'scale(1)', placeholder: true  },
   ],
   en: [
-    { name: 'Amenoffis Acosta', title: 'Co-founder & CEO',                     image: teamAmenoffis, objectPosition: 'center',       scale: 'scale(1)' },
-    { name: 'Rosa Villa',       title: 'Co-founder & Europe Director',         image: teamRosa,      objectPosition: 'center',       scale: 'scale(1)' },
-    { name: 'Gabriel Mijares',  title: 'Co-founder & DHYO Global Lead',        image: teamGabriel,   objectPosition: 'center',       scale: 'scale(1)' },
-    { name: 'Víctor Zorrilla',  title: 'Co-founder & Coaching Global Lead',    image: teamVictor,    objectPosition: 'center',       scale: 'scale(1)' },
-    { name: 'Juan Benitez',     title: 'Senior Coach',                         image: teamJuan,      objectPosition: 'center',       scale: 'scale(1)' },
+    { name: 'Amenoffis Acosta', title: 'CEO',                                        image: teamAmenoffis,   objectPosition: 'center', scale: 'scale(1)', placeholder: false },
+    { name: 'Rosa Villa',       title: 'Europe Director',                            image: teamRosa,        objectPosition: 'center', scale: 'scale(1)', placeholder: false },
+    { name: 'Gabriel Mijares',  title: 'DHYO Global Lead',                           image: teamGabriel,     objectPosition: 'center', scale: 'scale(1)', placeholder: false },
+    { name: 'Víctor Zorrilla',  title: 'Coaching Global Lead',                       image: teamVictor,      objectPosition: 'center', scale: 'scale(1)', placeholder: false },
+    { name: 'Juan Benitez',     title: 'Senior Coach',                               image: teamJuan,        objectPosition: 'center', scale: 'scale(1)', placeholder: false },
+    { name: 'To be announced',  title: 'Culture Transformation Global Lead',         image: teamPlaceholder, objectPosition: 'center', scale: 'scale(1)', placeholder: true  },
   ],
-} as const;
+};
 
 // Slug → hero photo mapping. Variable names above match the slot.
 export const SERVICE_IMAGES: Record<string, ImageMetadata> = {
