@@ -32,10 +32,10 @@ const SHOW_LOGO_BAND = false;
       <div class="hero-people__content">
         <span class="hero-people__eyebrow" data-reveal>Strategy &nbsp;|&nbsp; Consulting &nbsp;|&nbsp; Coaching</span>
         <h1 class="hero-people__title" data-reveal data-reveal-delay="120">
-          Thrive Through<br />Uncertainty.
+          Thrive Through<br />Uncertainty
         </h1>
         <p class="hero-people__lede" data-reveal data-reveal-delay="280">
-          Unleashing the Potential of Organizations, Leaders, and Cultures.
+          Unleashing the potential of organizations and people.
         </p>
         <div class="hero-people__cta" data-reveal data-reveal-delay="440">
           <a href={prefixBase('/en/contact')} class="cta-pill cta-pill--solid" aria-label="Start a conversation">
@@ -67,15 +67,18 @@ const SHOW_LOGO_BAND = false;
     <Container>
       <p class="eyebrow home-intro__eyebrow" data-reveal>Who we are</p>
       <h2 class="home-intro__statement" data-reveal data-reveal-delay="120">
-        A strategy, consulting and coaching firm for <span class="home-intro__mark">the moments that define the future</span> of an organization.
+        A firm that challenges strategy, installs best practices and <span class="home-intro__mark">unleashes the potential of people</span>.
       </h2>
       <p class="home-intro__supporting" data-reveal data-reveal-delay="280">
-        We work alongside CEOs, boards and leadership teams through their most critical transitions: <em class="home-intro__chip">accelerated growth</em>, <em class="home-intro__chip">succession</em>, <em class="home-intro__chip">institutionalization</em>, <em class="home-intro__chip">cultural evolution</em>. Our strategists, consultants and coaches are international experts, used to challenging the status quo, unleashing potential and accelerating the learning curve.
+        We work alongside founders and executives through their most critical moments: institutionalization, succession, accelerated growth, cultural evolution, among others.
+      </p>
+      <p class="home-intro__supporting" data-reveal data-reveal-delay="360">
+        We serve our clients with international experts accustomed to challenging the status quo and accelerating the learning spiral.
       </p>
 
       <div class="home-intro__pillars">
         {[
-          { label: 'Strategy', copy: 'Strategic services: planning, execution and future design.' },
+          { label: 'Strategy', copy: 'Planning, alignment, cascading, deployment and accountability.' },
           { label: 'Consulting', copy: 'Consulting and best practices to institutionalize the business.' },
           { label: 'Coaching', copy: 'Coaching and talent release for leaders and teams.' },
         ].map((p, i) => (
@@ -169,10 +172,10 @@ const SHOW_LOGO_BAND = false;
     <Container>
       <div class="presencia__grid">
         <div class="presencia__col presencia__col--left">
-          <p class="presencia__eyebrow" data-reveal>Track record</p>
-          <h2 class="presencia__title" data-reveal data-reveal-delay="120">Global presence.</h2>
+          <p class="presencia__eyebrow" data-reveal>Footprint</p>
+          <h2 class="presencia__title" data-reveal data-reveal-delay="120">Global impact</h2>
           <p class="presencia__lede" data-reveal data-reveal-delay="200">
-            More than 20 years guiding critical transitions in organizations across 30+ countries.
+            More than 20 years guiding organizations across 30+ countries.
           </p>
           <div class="presencia__globe">
             <Globe client:visible pins={GLOBE_PINS} showLabels={false} pinSize={0.008} />

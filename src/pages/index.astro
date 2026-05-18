@@ -34,10 +34,10 @@ const SHOW_LOGO_BAND = false;
       <div class="hero-people__content">
         <span class="hero-people__eyebrow" data-reveal>Strategy &nbsp;|&nbsp; Consulting &nbsp;|&nbsp; Coaching</span>
         <h1 class="hero-people__title" data-reveal data-reveal-delay="120">
-          Prosperar en la<br />incertidumbre.
+          Prosperar en la<br />incertidumbre
         </h1>
         <p class="hero-people__lede" data-reveal data-reveal-delay="280">
-          Liberamos el potencial de organizaciones, l&iacute;deres y culturas.
+          Liberamos el potencial de las organizaciones y las personas.
         </p>
         <div class="hero-people__cta" data-reveal data-reveal-delay="440">
           <a href={prefixBase('/contacto')} class="cta-pill cta-pill--solid" aria-label="Iniciar conversaci&oacute;n">
@@ -69,15 +69,18 @@ const SHOW_LOGO_BAND = false;
     <Container>
       <p class="eyebrow home-intro__eyebrow" data-reveal>Quiénes somos</p>
       <h2 class="home-intro__statement" data-reveal data-reveal-delay="120">
-        Una firma de estrategia, consultoría y coaching para <span class="home-intro__mark">los momentos que definen el futuro</span> de una organización.
+        Una firma que reta la estrategia, instala mejores prácticas y <span class="home-intro__mark">libera el potencial de las personas</span>.
       </h2>
       <p class="home-intro__supporting" data-reveal data-reveal-delay="280">
-        Acompañamos a CEOs, consejos y equipos directivos en sus transiciones más críticas: <em class="home-intro__chip">crecimiento acelerado</em>, <em class="home-intro__chip">sucesión</em>, <em class="home-intro__chip">institucionalización</em>, <em class="home-intro__chip">evolución cultural</em>. Nuestros estrategas, consultores y coaches son expertos internacionales, acostumbrados a retar el status quo, liberar el potencial y acelerar la espiral de aprendizaje.
+        Acompañamos a empresarios y directivos en sus momentos críticos: institucionalización, sucesión, crecimiento acelerado, evolución cultural, entre otros.
+      </p>
+      <p class="home-intro__supporting" data-reveal data-reveal-delay="360">
+        Servimos a nuestros clientes con expertos internacionales acostumbrados a retar el status quo y acelerar el espiral de aprendizaje.
       </p>
 
       <div class="home-intro__pillars">
         {[
-          { label: 'Estrategia', copy: 'Servicios estratégicos: planeación, ejecución y diseño de futuro.' },
+          { label: 'Estrategia', copy: 'Planeación, alineación, cascadeo, despliegue y rendición de cuentas.' },
           { label: 'Consultoría', copy: 'Consultoría y mejores prácticas para institucionalizar el negocio.' },
           { label: 'Coaching', copy: 'Coaching y liberación de talento para líderes y equipos.' },
         ].map((p, i) => (
@@ -171,10 +174,10 @@ const SHOW_LOGO_BAND = false;
     <Container>
       <div class="presencia__grid">
         <div class="presencia__col presencia__col--left">
-          <p class="presencia__eyebrow" data-reveal>Trayectoria</p>
-          <h2 class="presencia__title" data-reveal data-reveal-delay="120">Presencia global.</h2>
+          <p class="presencia__eyebrow" data-reveal>Footprint</p>
+          <h2 class="presencia__title" data-reveal data-reveal-delay="120">Impacto global</h2>
           <p class="presencia__lede" data-reveal data-reveal-delay="200">
-            Más de 20 años acompañando transiciones críticas en organizaciones de más de 30 países.
+            Más de 20 años acompañando organizaciones en más de 30 países.
           </p>
           <div class="presencia__globe">
             <Globe client:visible pins={GLOBE_PINS} showLabels={false} pinSize={0.008} />

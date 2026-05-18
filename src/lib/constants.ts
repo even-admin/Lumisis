@@ -34,7 +34,6 @@ export const NAV_ITEMS = {
 export const SOCIAL_LINKS = [
   { label: 'LinkedIn', href: '#', icon: 'linkedin' },
   { label: 'Instagram', href: '#', icon: 'instagram' },
-  { label: 'X', href: '#', icon: 'x' },
 ] as const;
 
 export const SERVICES = {

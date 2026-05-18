@@ -8,37 +8,18 @@ import { prefixBase } from '@/lib/constants';
 import { heroWhyUs, TEAM_MEMBERS } from '@/lib/images';
 
 const fronts = [
-  { name: 'Estratégico', copy: 'Alineados a la estrategia del negocio' },
-  { name: 'Funcional', copy: 'Aplicación práctica y real' },
-  { name: 'Institucional', copy: 'Profesionalización y capacidades en un ambiente ESG' },
-  { name: 'Rentable', copy: 'Valor, ROI, ROE y crecimiento' },
-  { name: 'Personas', copy: 'Mindset, competencias y enfoque sistémico' },
+  { name: 'Estratégico', copy: 'Alineados a la aspiración de largo plazo con la ejecución en tiempo presente.' },
+  { name: 'Funcional', copy: 'Aplicación práctica y real en el contexto de la organización.' },
+  { name: 'Institucional', copy: 'Profesionalización, instalación de capacidades ESG.' },
+  { name: 'Rentable', copy: 'Con valor, ROI, ROE, crecimiento.' },
+  { name: 'Centrado en las personas', copy: 'Mindset, competencias, enfoque sistemático.' },
 ];
-
-const process = [
-  { label: 'Indagar', copy: 'Nos adentramos en tu organización con una indagación apreciativa para entenderla a fondo.' },
-  { label: 'Co-crear', copy: 'Co-creamos un traje a la medida para los retos alineados a la estrategia, y materializamos un prototipo.' },
-  { label: 'Activar', copy: 'Entregamos la promesa diseñada con impecabilidad y potencia.' },
-  { label: 'Sostener', copy: 'Damos seguimiento y fortalecemos los resultados en el tiempo.' },
-];
-
-const countries = [
-  // Americas (5)
-  'México', 'Canadá', 'Estados Unidos', 'Colombia', 'Argentina',
-  // Brasil starts row 2
-  'Brasil',
-  // Europe (4)
-  'Alemania', 'Francia', 'Suiza', 'Inglaterra',
-  // Others (3)
-  'Kenia', 'Sudáfrica', 'Japón',
-];
-const clientTypes = ['Multinacionales', 'PyMES', 'Empresas públicas', 'Empresas familiares'];
 
 const values = [
-  { title: 'Esto no tiene por qué ser sufrido', copy: 'Creemos en el bienestar y el disfrute, es posible alcanzar resultados en balance de la persona y el equipo.' },
+  { title: 'Esto no tiene por qué ser sufrido', copy: 'Creemos en el bienestar y el disfrute, es posible alcanzar resultados en balance con las personas.' },
   { title: 'Centrados en las personas y sus aspiraciones', copy: 'Estamos convencidos que las personas son Personas, y que sus metas individuales se pueden alinear con los objetivos de la organización.' },
   { title: 'Abrazamos lo emergente', copy: 'Sabemos que vivimos en un mundo VUCCA y estamos listos para atender lo que se presente, desde una actitud disruptiva y constructiva.' },
-  { title: 'Rigor y oficio', copy: 'Trabajamos con objetividad y datos, con experiencia profunda a todos los niveles. Cuidamos cada detalle con profesionalismo, predicando con el ejemplo, y sostenemos el camino con templanza y resiliencia.' },
+  { title: 'Impecabilidad', copy: 'Seniority todo terreno capaz de intervenir a todos los niveles de la organización. Trabajamos con objetividad y datos, cuidamos cada detalle con profesionalismo, predicando con el ejemplo y sosteniendo el camino con contemplación y resiliencia.' },
 ];
 ---
 
@@ -62,7 +43,7 @@ const values = [
           Resonant Strategic<br />Breakthroughs
         </h1>
         <p class="hero-inner__lede" data-reveal data-reveal-delay="280">
-          Estrategia, consultoría y coaching pensados para dejar eco.
+          Estrategia, consultoría y coaching pensados para impactar positivamente el planeta.
         </p>
       </div>
     </Container>
@@ -78,17 +59,14 @@ const values = [
 
       <ol class="whyus-manifesto" role="list">
         <li class="whyus-manifesto__movement" data-reveal data-reveal-delay="160">
-          <span class="whyus-manifesto__num">01</span>
           <span class="whyus-manifesto__eyebrow">Eco</span>
           <p>Todo lo que hacemos es <em class="whyus-philosophy__accent">resonante</em>, tiene eco y repercute de manera poderosa en las organizaciones, en las personas y en el planeta.</p>
         </li>
         <li class="whyus-manifesto__movement" data-reveal data-reveal-delay="240">
-          <span class="whyus-manifesto__num">02</span>
           <span class="whyus-manifesto__eyebrow">Intención</span>
           <p>Hacemos las cosas con intención, premeditación, planeación y con un <em class="whyus-philosophy__accent">planteamiento estratégico</em>. No nos gusta trabajar en temas "sin sentido", y por ende el "para qué" es crucial en todas nuestras intervenciones profesionales.</p>
         </li>
         <li class="whyus-manifesto__movement" data-reveal data-reveal-delay="320">
-          <span class="whyus-manifesto__num">03</span>
           <span class="whyus-manifesto__eyebrow">Parteaguas</span>
           <p>Los resultados que generamos no tienen precedente y apuntamos más a un <em class="whyus-philosophy__accent">breakthrough</em> que a un crecimiento o movimiento marginal de las cosas. El impacto apunta a convertirse en un parteaguas al que los participantes refieran de manera trascendental como un antes y un después de que LUMISIS&reg; llegara a sus vidas.</p>
         </li>
@@ -153,27 +131,6 @@ const values = [
     </Container>
   </Section>
 
-  {/* Cómo trabajamos — las 4 D */}
-  <Section>
-    <Container>
-      <p class="eyebrow mb-4" data-reveal>Nuestro proceso</p>
-      <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Cómo trabajamos</h2>
-      <ol class="whyus-process" role="list">
-        {process.map((step, i) => (
-          <li
-            class="whyus-process__step"
-            data-reveal
-            data-reveal-delay={`${120 + i * 100}`}
-          >
-            <span class="whyus-process__num">{String(i + 1).padStart(2, '0')}</span>
-            <p class="whyus-process__label">{step.label}</p>
-            <p class="whyus-process__copy">{step.copy}</p>
-          </li>
-        ))}
-      </ol>
-    </Container>
-  </Section>
-
   {/* Por qué las empresas eligen LUMISIS — los cinco frentes + conteo integrado */}
   <Section class="whyus-rule">
     <Container>
@@ -184,11 +141,11 @@ const values = [
             Por qué las empresas eligen LUMISIS&reg;
           </h2>
           <p class="mt-6 text-gray-600">
-            Abordamos cada reto con intención, premeditación, planeación y un planteamiento estratégico — alineados a la estrategia del negocio en sus cinco plazos estratégicos.
+            Abordamos los retos de nuestros clientes de manera cercana y personalizada, cocreando un traje a la medida que acompañamos en su ejecución.
           </p>
         </div>
         <div class="whyus-enfoque__list">
-          <p class="eyebrow mb-6" data-reveal data-reveal-delay="100">Trabajamos en cinco frentes:</p>
+          <p class="eyebrow mb-6" data-reveal data-reveal-delay="100">Nuestro enfoque</p>
           <ol class="why-us__list" role="list">
             {fronts.map((item, i) => (
               <li
@@ -230,49 +187,14 @@ const values = [
     </Container>
   </Section>
 
-  {/* Footprint — Alcance Global (brand-black, cierre editorial) */}
-  <Section bg="dark" class="whyus-footprint">
+  {/* Cierre editorial — sobre brand-black */}
+  <Section bg="dark" class="whyus-close">
     <Container>
-      <p class="eyebrow mb-4" data-reveal>Nuestra Huella</p>
-      <h2 class="text-3xl md:text-4xl" data-reveal data-reveal-delay="80">Alcance Global</h2>
-      <p class="whyus-footprint__intro" data-reveal data-reveal-delay="140">
-        Hemos servido a clientes a nivel internacional, en cinco continentes.
-      </p>
-
-      <div
-        class="whyus-footprint__stat"
-        role="group"
-        aria-label="Más de 30 países atendidos"
-        data-reveal
-        data-reveal-delay="200"
-      >
-        <span class="whyus-footprint__stat-num" aria-hidden="true">+30</span>
-        <span class="whyus-footprint__stat-rule" aria-hidden="true"></span>
-        <span class="whyus-footprint__stat-label" aria-hidden="true">Países atendidos</span>
-      </div>
-
-      <ul class="whyus-footprint__countries" role="list">
-        {countries.map((name, i) => (
-          <li
-            class="whyus-footprint__country"
-            data-reveal
-            data-reveal-delay={`${220 + i * 22}`}
-          >
-            <span class="whyus-footprint__country-mark" aria-hidden="true"></span>
-            <span class="whyus-footprint__country-name">{name}</span>
-          </li>
-        ))}
-      </ul>
-
-      <p class="whyus-footprint__note" data-reveal data-reveal-delay="500">
-        Por mencionar algunos.
-      </p>
-
-      <ul class="whyus-footprint__detail" role="list" data-reveal data-reveal-delay="520">
-        {clientTypes.map((type) => <li>{type}</li>)}
-      </ul>
-
-      <div class="whyus-footprint__cta" data-reveal data-reveal-delay="580">
+      <h2 class="whyus-close__statement" data-reveal>
+        Posponer no significa ganar tiempo, es en realidad <em class="whyus-close__accent">perderlo</em>.
+      </h2>
+      <p class="whyus-close__hashtag" data-reveal data-reveal-delay="120">#YaEsAhora</p>
+      <div class="whyus-close__cta" data-reveal data-reveal-delay="240">
         <a href={prefixBase('/contacto')} class="cta-pill cta-pill--solid" aria-label="Iniciar conversaci&oacute;n">
           <span class="letters">
             {'INICIAR CONVERSACIÓN'.split('').map((char, i) => (
