@@ -260,8 +260,8 @@
 .hero-people {
   position: relative;
   display: flex;
-  align-items: flex-end;    /* round 11: match .hero-inner pattern — content at bottom */
-  min-height: 85vh;         /* round 12: was 78vh — touch taller as the landing-page anchor */
+  align-items: flex-start;  /* round 13: was flex-end — copy anchors to upper-half band */
+  min-height: 85vh;         /* round 12: 78vh → 85vh as the landing-page anchor */
   overflow: hidden;
   background-color: var(--color-brand-black);  /* fallback while image loads */
 }
@@ -299,24 +299,23 @@
   z-index: 2;
 }
 
-/* Round 11: home hero content matches .hero-inner pattern — flex-end
-   anchors the block to the bottom, padding pushes it up to breathe.
-   Round 12: padding-bottom bumped so content sits in the lower-middle
-   (~42-66%) instead of hugging the floor — grass below stays visible. */
+/* Round 13: hero content anchored to upper-half (flex-start above).
+   padding-top clears the fixed header and positions content in the
+   sky/upper-tree band per Luis's red-box mock. */
 .hero-people__content {
   position: relative;
   z-index: 2;
   width: 100%;
   max-width: 56rem;
   color: #FFFFFF;
-  padding-top: 10rem;
-  padding-bottom: 8rem;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
 }
 
 @media (min-width: 1024px) {
   .hero-people__content {
-    padding-top: 10rem;
-    padding-bottom: 10rem;
+    padding-top: 6rem;
+    padding-bottom: 3rem;
   }
 }
 
