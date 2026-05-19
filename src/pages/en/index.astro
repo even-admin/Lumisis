@@ -37,27 +37,6 @@ const SHOW_LOGO_BAND = false;
         <p class="hero-people__lede" data-reveal data-reveal-delay="280">
           Unleashing the potential of organizations and people.
         </p>
-        <div class="hero-people__cta" data-reveal data-reveal-delay="440">
-          <a href={prefixBase('/en/contact')} class="cta-pill cta-pill--solid" aria-label="Start a conversation">
-            <span class="letters">
-              {'START A CONVERSATION'.split('').map((char, i) => (
-                char === ' '
-                  ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
-                  : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
-              ))}
-            </span>
-            <span class="cta-pill__arrow">&rarr;</span>
-          </a>
-          <a href={prefixBase('/en/solutions')} class="cta-pill cta-pill--outline">
-            <span class="letters">
-              {'VIEW SOLUTIONS'.split('').map((char, i) => (
-                char === ' '
-                  ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
-                  : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
-              ))}
-            </span>
-          </a>
-        </div>
       </div>
     </Container>
   </section>

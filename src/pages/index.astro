@@ -39,27 +39,6 @@ const SHOW_LOGO_BAND = false;
         <p class="hero-people__lede" data-reveal data-reveal-delay="280">
           Liberamos el potencial de las organizaciones y las personas.
         </p>
-        <div class="hero-people__cta" data-reveal data-reveal-delay="440">
-          <a href={prefixBase('/contacto')} class="cta-pill cta-pill--solid" aria-label="Iniciar conversaci&oacute;n">
-            <span class="letters">
-              {'INICIAR CONVERSACIÓN'.split('').map((char, i) => (
-                char === ' '
-                  ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
-                  : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
-              ))}
-            </span>
-            <span class="cta-pill__arrow">&rarr;</span>
-          </a>
-          <a href={prefixBase('/soluciones')} class="cta-pill cta-pill--outline">
-            <span class="letters">
-              {'VER SOLUCIONES'.split('').map((char, i) => (
-                char === ' '
-                  ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
-                  : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
-              ))}
-            </span>
-          </a>
-        </div>
       </div>
     </Container>
   </section>

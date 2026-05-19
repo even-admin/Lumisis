@@ -260,8 +260,8 @@
 .hero-people {
   position: relative;
   display: flex;
-  align-items: flex-start;  /* round 8: was flex-end — copy now anchors to top */
-  min-height: 100vh;
+  align-items: flex-end;    /* round 11: match .hero-inner pattern — content at bottom */
+  min-height: 78vh;         /* round 11: match .hero-inner — was 100vh */
   overflow: hidden;
   background-color: var(--color-brand-black);  /* fallback while image loads */
 }
@@ -279,18 +279,16 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Round 9: very soft touch. New hero image has deep sunset + vivid
-     greens — let them breathe. Just a hint of darkening behind the
-     top H1 and the bottom eyebrow+CTAs for readability; full clear
-     through the middle band so the woman, sunset and grass pop. */
+  /* Round 11: identical to .hero-inner__overlay — ramped brand-black
+     gradient that darkens toward the bottom where the copy now sits.
+     This is the "look and feel" Luis wanted mirrored across heroes. */
   background:
     linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.40) 0%,
-      rgba(0, 0, 0, 0.20) 20%,
-      rgba(0, 0, 0, 0)    45%,
-      rgba(0, 0, 0, 0)    70%,
-      rgba(0, 0, 0, 0.35) 100%
+      rgba(57, 57, 56, 0.25) 0%,
+      rgba(57, 57, 56, 0.30) 30%,
+      rgba(57, 57, 56, 0.65) 70%,
+      rgba(57, 57, 56, 0.85) 100%
     );
 }
 
@@ -301,23 +299,22 @@
   z-index: 2;
 }
 
-/* Round 10: single content block, positioned at the tree-line.
-   Eyebrow on top, then h1, lede, CTAs. padding-top tuned so the
-   subheader bottom lands right where the grass starts (~55% vh). */
+/* Round 11: home hero content matches .hero-inner pattern — flex-end
+   anchors the block to the bottom, padding pushes it up to breathe. */
 .hero-people__content {
   position: relative;
   z-index: 2;
   width: 100%;
   max-width: 56rem;
   color: #FFFFFF;
-  padding-top: 14vh;
-  padding-bottom: 4rem;
+  padding-top: 10rem;
+  padding-bottom: 5rem;
 }
 
 @media (min-width: 1024px) {
   .hero-people__content {
-    padding-top: 16vh;
-    padding-bottom: 5rem;
+    padding-top: 10rem;
+    padding-bottom: 6.5rem;
   }
 }
 
@@ -354,13 +351,6 @@
   font-size: clamp(1.125rem, 1.4vw, 1.375rem);
   line-height: 1.5;
   color: #FFFFFF;
-}
-
-.hero-people__cta {
-  margin-top: 2.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 
 /* ============================================================
