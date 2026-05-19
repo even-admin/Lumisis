@@ -301,14 +301,16 @@
 
 /* Round 13: hero content anchored to upper-half (flex-start above).
    padding-top clears the fixed header and positions content in the
-   sky/upper-tree band per Luis's red-box mock. */
+   sky/upper-tree band per Luis's red-box mock.
+   Round 14: mobile padding-top bumped 5 → 7rem for better balance
+   on phones; desktop unchanged. */
 .hero-people__content {
   position: relative;
   z-index: 2;
   width: 100%;
   max-width: 56rem;
   color: #FFFFFF;
-  padding-top: 5rem;
+  padding-top: 7rem;
   padding-bottom: 3rem;
 }
 
