@@ -762,6 +762,13 @@
   color: rgba(57, 57, 56, 0.7);
 }
 
+/* Round 16: second supporting paragraph is desktop-only — hidden on
+   mobile per leadership review for tighter mobile composition. */
+.home-intro__supporting--desktop { display: none; }
+@media (min-width: 768px) {
+  .home-intro__supporting--desktop { display: block; }
+}
+
 .home-intro__chip {
   font-style: normal;
   font-weight: 500;

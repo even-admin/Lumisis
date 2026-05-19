@@ -109,9 +109,14 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
         <span class="mobile-menu__link-label">{item.label}</span>
       </a>
     ))}
+    {/* Round 16: EN/locale switch moved into the main nav list,
+        right after Contacto. Was in the footer row as a small label. */}
+    <a href={alternatePath} class="mobile-menu__link mobile-menu__link--lang" style={`--i:${navItems.length}`}>
+      <span class="mobile-menu__link-num">0{navItems.length + 1}</span>
+      <span class="mobile-menu__link-label">{switchLabel}</span>
+    </a>
   </nav>
   <div class="mobile-menu__footer">
-    <a href={alternatePath} class="mobile-menu__lang">{switchLabel}</a>
     <a href={contactHref} class="mobile-menu__cta">
       {contactLabel} &rarr;
     </a>
@@ -317,30 +322,48 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
     }
   }
 
-  /* Lang switcher — visible only in default desktop state */
+  /* Round 16: lang switcher is now a visible bordered pill chip,
+     always visible on desktop (was hidden when header scrolled to solid).
+     Color flips for solid header so it reads against the white bg. */
   .header__lang {
     display: none;
     font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.85);
-    transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
+    color: #FFFFFF;
+    padding: 0.5rem 0.875rem;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 9999px;
+    transition:
+      color 240ms cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 240ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 240ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @media (min-width: 960px) {
     .header__lang {
       display: inline-block;
     }
-    .header--solid .header__lang {
-      display: none;
-    }
   }
 
   .header__lang:hover {
+    background-color: #FFFFFF;
+    color: var(--color-brand-black);
+    border-color: #FFFFFF;
+  }
+
+  .header--solid .header__lang {
+    color: var(--color-brand-black);
+    border-color: rgba(57, 57, 56, 0.35);
+  }
+
+  .header--solid .header__lang:hover {
+    background-color: var(--color-brand-black);
     color: #FFFFFF;
+    border-color: var(--color-brand-black);
   }
 
   /* Contact CTA pill — visible only in default desktop state */
@@ -598,19 +621,16 @@ const menuLabel = locale === 'es' ? 'Menú' : 'Menu';
   .mobile-menu__footer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;  /* round 16: was space-between; EN link moved into nav list */
     padding: 1.5rem 1.5rem 2rem;
     border-top: 1px solid rgba(57, 57, 56, 0.08);
   }
 
-  .mobile-menu__lang {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--color-gray-60, #7C7C7B);
+  /* Round 16: EN/locale-switch lives in the main nav list now —
+     this accent paints the label in brand-blue to mark it as the
+     locale switch (vs nav items). */
+  .mobile-menu__link--lang .mobile-menu__link-label {
+    color: var(--color-brand-blue);
   }
 
   .mobile-menu__cta {
