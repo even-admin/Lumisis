@@ -316,7 +316,7 @@
 
 @media (min-width: 1024px) {
   .hero-people__content {
-    padding-top: 6rem;
+    padding-top: 10rem;       /* round 15: was 6rem — drops lede end to the red-line target (~54-60%) */
     padding-bottom: 3rem;
   }
 }
