@@ -1,5 +1,5 @@
 import heroHome from '@/assets/hero/home-hero-face-with-sunlight.jpg';
-import heroHomeAlt from '@/assets/hero/home-hero-alt.jpg';
+import heroHomeAlt from '@/assets/hero/home-hero-alt.png';
 import heroWhyUs from '@/assets/hero/why-us-hero-hands-fireball.jpg';
 import heroSolutions from '@/assets/hero/solutions-hub-hero.png';
 

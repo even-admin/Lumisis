@@ -279,17 +279,18 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Round 7: copy sits in the upper third, so darken the TOP for text pop
-     and fade to nearly clear at the BOTTOM so the green grass / sunset hues
-     stay vibrant. Pure-black tonal wash (not brand-black) to avoid muddying
-     the colors. */
+  /* Round 9: very soft touch. New hero image has deep sunset + vivid
+     greens — let them breathe. Just a hint of darkening behind the
+     top H1 and the bottom eyebrow+CTAs for readability; full clear
+     through the middle band so the woman, sunset and grass pop. */
   background:
     linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.65) 0%,
-      rgba(0, 0, 0, 0.50) 35%,
-      rgba(0, 0, 0, 0.20) 65%,
-      rgba(0, 0, 0, 0.05) 100%
+      rgba(0, 0, 0, 0.40) 0%,
+      rgba(0, 0, 0, 0.20) 20%,
+      rgba(0, 0, 0, 0)    45%,
+      rgba(0, 0, 0, 0)    70%,
+      rgba(0, 0, 0, 0.35) 100%
     );
 }
 
@@ -300,21 +301,39 @@
   z-index: 2;
 }
 
-.hero-people__content {
+/* Round 9: hero content is split into top zone (h1 + lede) and bottom
+   zone (eyebrow + CTAs). The layout wrapper fills the hero's full
+   min-height so justify-content: space-between actually distributes
+   the two zones to the top and bottom of the viewport. */
+.hero-people__layout {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
-  padding-top: 6rem;     /* round 8: clears the fixed header, sits in upper band */
+  min-height: 100vh;
+  padding-top: 6rem;
   padding-bottom: 4rem;
   color: #FFFFFF;
-  max-width: 56rem;
 }
 
 @media (min-width: 1024px) {
-  .hero-people__content {
+  .hero-people__layout {
     padding-top: 7rem;
-    padding-bottom: 4rem;
+    padding-bottom: 5rem;
   }
+}
+
+.hero-people__top {
+  max-width: 56rem;
+}
+
+.hero-people__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 56rem;
 }
 
 .hero-people__eyebrow {
@@ -325,9 +344,10 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #FFFFFF;
-  margin-bottom: 1.75rem;
+  margin: 0;                    /* round 9: was margin-bottom 1.75rem — now sits at top of bottom-block */
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--color-brand-blue);
+  align-self: flex-start;       /* don't stretch to container width */
 }
 
 .hero-people__title {
