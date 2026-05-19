@@ -279,15 +279,17 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Darkness ramps where contrast is needed (behind the text), not uniformly.
-     Top stays light so the photo reads vibrant; bottom darkens for text pop. */
+  /* Round 7: copy sits in the upper third, so darken the TOP for text pop
+     and fade to nearly clear at the BOTTOM so the green grass / sunset hues
+     stay vibrant. Pure-black tonal wash (not brand-black) to avoid muddying
+     the colors. */
   background:
     linear-gradient(
       180deg,
-      rgba(57, 57, 56, 0.25) 0%,
-      rgba(57, 57, 56, 0.30) 30%,
-      rgba(57, 57, 56, 0.65) 70%,
-      rgba(57, 57, 56, 0.85) 100%
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(0, 0, 0, 0.50) 35%,
+      rgba(0, 0, 0, 0.20) 65%,
+      rgba(0, 0, 0, 0.05) 100%
     );
 }
 
@@ -302,7 +304,7 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  padding-top: 12rem;
+  padding-top: 7rem;     /* round 7: was 12rem — lift copy into upper-third */
   padding-bottom: 7rem;
   color: #FFFFFF;
   max-width: 56rem;
@@ -310,6 +312,7 @@
 
 @media (min-width: 1024px) {
   .hero-people__content {
+    padding-top: 8rem;
     padding-bottom: 9rem;
   }
 }
@@ -456,6 +459,60 @@
 }
 
 .cta-pill--gradient:hover::before {
+  transform: translateX(0);
+}
+
+/* Blue solid → pure #000 on hover. Deliberate use of pure black (NOT
+   brand-black #393938) per leadership request in round 7. Do not "fix"
+   back to brand-black without checking with Luis. */
+.cta-pill--blue {
+  background-color: #0098DB;
+  color: #FFFFFF;
+  border: 1px solid #0098DB;
+}
+
+.cta-pill--blue::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #000000;
+  transform: translateX(-101%);
+  transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.cta-pill--blue:hover {
+  color: #FFFFFF;
+  border-color: #000000;
+}
+
+.cta-pill--blue:hover::before {
+  transform: translateX(0);
+}
+
+/* Ghost on white — black border + black text → fills to black on hover. */
+.cta-pill--ghost-dark {
+  background-color: transparent;
+  color: #393938;
+  border: 1px solid #393938;
+}
+
+.cta-pill--ghost-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #393938;
+  transform: translateX(-101%);
+  transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.cta-pill--ghost-dark:hover {
+  color: #FFFFFF;
+  border-color: #393938;
+}
+
+.cta-pill--ghost-dark:hover::before {
   transform: translateX(0);
 }
 
@@ -1633,16 +1690,18 @@
   border-top: 1px solid rgba(57, 57, 56, 0.08);
 }
 
-/* ── Editorial closer on brand-black (replaced footprint section in round 6) ── */
+/* ── Editorial closer on WHITE (round 7 flip — was brand-black in round 6).
+   Headline is bold + brand-black; hashtag uses the same brand-blue signature
+   + gradient hairline as .contact-hashtag. ── */
 .whyus-close { text-align: left; }
 
 .whyus-close__statement {
   font-family: var(--font-display, 'Gotham', sans-serif);
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.02em;
   font-size: clamp(2.25rem, 4vw + 0.5rem, 4.5rem);
   line-height: 1.05;
-  color: #FFFFFF;
+  color: #393938;
   margin: 0;
   max-width: 18ch;
 }
@@ -1657,9 +1716,17 @@
   font-family: var(--font-display, 'Gotham', sans-serif);
   font-size: 1.0625rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.01em;
+  color: #0098DB;
+}
+
+.whyus-close__hashtag::after {
+  content: '';
+  display: block;
+  margin-top: 0.5rem;
+  width: 2.5rem;
+  height: 2px;
+  background: linear-gradient(90deg, #F5B335 0%, #E43D30 25%, #aa5b5e 50%, #009ADE 75%, #6ABF4B 100%);
 }
 
 .whyus-close__cta {
@@ -1667,10 +1734,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-}
-
-.whyus-close .cta-pill:focus-visible {
-  outline-color: #FFFFFF;
 }
 
 
@@ -2230,6 +2293,56 @@
     90deg,
     #F5B335 0%, #E43D30 25%, #aa5b5e 50%, #009ADE 75%, #6ABF4B 100%
   );
+}
+
+/* WhatsApp secondary CTA — sits under the intro paragraph on the left
+   column of the contact page. Brand-black border + text on white → fills
+   to brand-black on hover. Phone number is divided by a vertical rule. */
+.contact-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding: 0.875rem 1.25rem;
+  border: 1px solid #393938;
+  border-radius: 9999px;
+  text-decoration: none;
+  color: #393938;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1;
+  transition:
+    background-color 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-whatsapp:hover {
+  background-color: #393938;
+  color: #FFFFFF;
+}
+
+.contact-whatsapp__icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+}
+
+.contact-whatsapp__label {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.contact-whatsapp__number {
+  font-weight: 400;
+  color: inherit;
+  opacity: 0.65;
+  margin-left: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid currentColor;
+}
+
+.contact-whatsapp:hover .contact-whatsapp__number {
+  opacity: 0.85;
 }
 
 /* Submit status messages — success (brand-black) / error (brand-red, functional use) */

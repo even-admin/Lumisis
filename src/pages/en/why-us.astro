@@ -187,15 +187,15 @@ const values = [
     </Container>
   </Section>
 
-  {/* Editorial closer — brand-black */}
-  <Section bg="dark" class="whyus-close">
+  {/* Editorial closer — white-bg (round 7 flip) */}
+  <Section class="whyus-close">
     <Container>
       <h2 class="whyus-close__statement" data-reveal>
         Postponing doesn't mean gaining time — it actually means <em class="whyus-close__accent">losing it</em>.
       </h2>
       <p class="whyus-close__hashtag" data-reveal data-reveal-delay="120">#YaEsAhora</p>
       <div class="whyus-close__cta" data-reveal data-reveal-delay="240">
-        <a href={prefixBase('/en/contact')} class="cta-pill cta-pill--solid" aria-label="Start a conversation">
+        <a href={prefixBase('/en/contact')} class="cta-pill cta-pill--blue" aria-label="Start a conversation">
           <span class="letters">
             {'START A CONVERSATION'.split('').map((char, i) => (
               char === ' '
@@ -205,7 +205,7 @@ const values = [
           </span>
           <span class="cta-pill__arrow">&rarr;</span>
         </a>
-        <a href={prefixBase('/en/solutions')} class="cta-pill cta-pill--outline" aria-label="View solutions">
+        <a href={prefixBase('/en/solutions')} class="cta-pill cta-pill--ghost-dark" aria-label="View solutions">
           <span class="letters">
             {'VIEW SOLUTIONS'.split('').map((char, i) => (
               char === ' '

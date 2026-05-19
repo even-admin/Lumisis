@@ -187,15 +187,15 @@ const values = [
     </Container>
   </Section>
 
-  {/* Cierre editorial — sobre brand-black */}
-  <Section bg="dark" class="whyus-close">
+  {/* Cierre editorial — white-bg (round 7 flip) */}
+  <Section class="whyus-close">
     <Container>
       <h2 class="whyus-close__statement" data-reveal>
         Posponer no significa ganar tiempo, es en realidad <em class="whyus-close__accent">perderlo</em>.
       </h2>
       <p class="whyus-close__hashtag" data-reveal data-reveal-delay="120">#YaEsAhora</p>
       <div class="whyus-close__cta" data-reveal data-reveal-delay="240">
-        <a href={prefixBase('/contacto')} class="cta-pill cta-pill--solid" aria-label="Iniciar conversaci&oacute;n">
+        <a href={prefixBase('/contacto')} class="cta-pill cta-pill--blue" aria-label="Iniciar conversaci&oacute;n">
           <span class="letters">
             {'INICIAR CONVERSACIÓN'.split('').map((char, i) => (
               char === ' '
@@ -205,7 +205,7 @@ const values = [
           </span>
           <span class="cta-pill__arrow">&rarr;</span>
         </a>
-        <a href={prefixBase('/soluciones')} class="cta-pill cta-pill--outline" aria-label="Ver soluciones">
+        <a href={prefixBase('/soluciones')} class="cta-pill cta-pill--ghost-dark" aria-label="Ver soluciones">
           <span class="letters">
             {'VER SOLUCIONES'.split('').map((char, i) => (
               char === ' '
