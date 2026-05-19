@@ -261,7 +261,7 @@
   position: relative;
   display: flex;
   align-items: flex-end;    /* round 11: match .hero-inner pattern — content at bottom */
-  min-height: 78vh;         /* round 11: match .hero-inner — was 100vh */
+  min-height: 85vh;         /* round 12: was 78vh — touch taller as the landing-page anchor */
   overflow: hidden;
   background-color: var(--color-brand-black);  /* fallback while image loads */
 }
@@ -300,7 +300,9 @@
 }
 
 /* Round 11: home hero content matches .hero-inner pattern — flex-end
-   anchors the block to the bottom, padding pushes it up to breathe. */
+   anchors the block to the bottom, padding pushes it up to breathe.
+   Round 12: padding-bottom bumped so content sits in the lower-middle
+   (~42-66%) instead of hugging the floor — grass below stays visible. */
 .hero-people__content {
   position: relative;
   z-index: 2;
@@ -308,13 +310,13 @@
   max-width: 56rem;
   color: #FFFFFF;
   padding-top: 10rem;
-  padding-bottom: 5rem;
+  padding-bottom: 8rem;
 }
 
 @media (min-width: 1024px) {
   .hero-people__content {
     padding-top: 10rem;
-    padding-bottom: 6.5rem;
+    padding-bottom: 10rem;
   }
 }
 
