@@ -29,39 +29,34 @@ const SHOW_LOGO_BAND = false;
     />
     <div class="hero-people__overlay"></div>
     <Container>
-      <div class="hero-people__layout">
-        <div class="hero-people__top">
-          <h1 class="hero-people__title" data-reveal data-reveal-delay="120">
-            Thrive Through<br />Uncertainty
-          </h1>
-          <p class="hero-people__lede" data-reveal data-reveal-delay="280">
-            Unleashing the potential of organizations and people.
-          </p>
-        </div>
-
-        <div class="hero-people__bottom">
-          <span class="hero-people__eyebrow" data-reveal data-reveal-delay="360">Strategy &nbsp;|&nbsp; Consulting &nbsp;|&nbsp; Coaching</span>
-          <div class="hero-people__cta" data-reveal data-reveal-delay="440">
-            <a href={prefixBase('/en/contact')} class="cta-pill cta-pill--solid" aria-label="Start a conversation">
-              <span class="letters">
-                {'START A CONVERSATION'.split('').map((char, i) => (
-                  char === ' '
-                    ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
-                    : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
-                ))}
-              </span>
-              <span class="cta-pill__arrow">&rarr;</span>
-            </a>
-            <a href={prefixBase('/en/solutions')} class="cta-pill cta-pill--outline">
-              <span class="letters">
-                {'VIEW SOLUTIONS'.split('').map((char, i) => (
-                  char === ' '
-                    ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
-                    : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
-                ))}
-              </span>
-            </a>
-          </div>
+      <div class="hero-people__content">
+        <span class="hero-people__eyebrow" data-reveal>Strategy &nbsp;|&nbsp; Consulting &nbsp;|&nbsp; Coaching</span>
+        <h1 class="hero-people__title" data-reveal data-reveal-delay="120">
+          Thrive Through<br />Uncertainty
+        </h1>
+        <p class="hero-people__lede" data-reveal data-reveal-delay="280">
+          Unleashing the potential of organizations and people.
+        </p>
+        <div class="hero-people__cta" data-reveal data-reveal-delay="440">
+          <a href={prefixBase('/en/contact')} class="cta-pill cta-pill--solid" aria-label="Start a conversation">
+            <span class="letters">
+              {'START A CONVERSATION'.split('').map((char, i) => (
+                char === ' '
+                  ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
+                  : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
+              ))}
+            </span>
+            <span class="cta-pill__arrow">&rarr;</span>
+          </a>
+          <a href={prefixBase('/en/solutions')} class="cta-pill cta-pill--outline">
+            <span class="letters">
+              {'VIEW SOLUTIONS'.split('').map((char, i) => (
+                char === ' '
+                  ? <span class="letter" style={`--i:${i}`}>&nbsp;</span>
+                  : <span class="letter" style={`--i:${i}`}><span>{char}</span><span>{char}</span></span>
+              ))}
+            </span>
+          </a>
         </div>
       </div>
     </Container>

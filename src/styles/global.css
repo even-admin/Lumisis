@@ -301,39 +301,24 @@
   z-index: 2;
 }
 
-/* Round 9: hero content is split into top zone (h1 + lede) and bottom
-   zone (eyebrow + CTAs). The layout wrapper fills the hero's full
-   min-height so justify-content: space-between actually distributes
-   the two zones to the top and bottom of the viewport. */
-.hero-people__layout {
+/* Round 10: single content block, positioned at the tree-line.
+   Eyebrow on top, then h1, lede, CTAs. padding-top tuned so the
+   subheader bottom lands right where the grass starts (~55% vh). */
+.hero-people__content {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   width: 100%;
-  min-height: 100vh;
-  padding-top: 6rem;
-  padding-bottom: 4rem;
+  max-width: 56rem;
   color: #FFFFFF;
+  padding-top: 14vh;
+  padding-bottom: 4rem;
 }
 
 @media (min-width: 1024px) {
-  .hero-people__layout {
-    padding-top: 7rem;
+  .hero-people__content {
+    padding-top: 16vh;
     padding-bottom: 5rem;
   }
-}
-
-.hero-people__top {
-  max-width: 56rem;
-}
-
-.hero-people__bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: 56rem;
 }
 
 .hero-people__eyebrow {
@@ -344,10 +329,9 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #FFFFFF;
-  margin: 0;                    /* round 9: was margin-bottom 1.75rem — now sits at top of bottom-block */
+  margin: 0 0 1.75rem;          /* round 10: restored — eyebrow sits above h1 again */
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--color-brand-blue);
-  align-self: flex-start;       /* don't stretch to container width */
 }
 
 .hero-people__title {
