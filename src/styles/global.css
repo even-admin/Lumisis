@@ -260,7 +260,7 @@
 .hero-people {
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;  /* round 8: was flex-end — copy now anchors to top */
   min-height: 100vh;
   overflow: hidden;
   background-color: var(--color-brand-black);  /* fallback while image loads */
@@ -304,16 +304,16 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  padding-top: 7rem;     /* round 7: was 12rem — lift copy into upper-third */
-  padding-bottom: 7rem;
+  padding-top: 6rem;     /* round 8: clears the fixed header, sits in upper band */
+  padding-bottom: 4rem;
   color: #FFFFFF;
   max-width: 56rem;
 }
 
 @media (min-width: 1024px) {
   .hero-people__content {
-    padding-top: 8rem;
-    padding-bottom: 9rem;
+    padding-top: 7rem;
+    padding-bottom: 4rem;
   }
 }
 
@@ -1693,6 +1693,12 @@
 /* ── Editorial closer on WHITE (round 7 flip — was brand-black in round 6).
    Headline is bold + brand-black; hashtag uses the same brand-blue signature
    + gradient hairline as .contact-hashtag. ── */
+.whyus-close__divider {
+  border: 0;
+  border-top: 1px solid rgba(57, 57, 56, 0.10);
+  margin: 0 0 3.5rem;
+}
+
 .whyus-close { text-align: left; }
 
 .whyus-close__statement {
@@ -2330,19 +2336,6 @@
 .contact-whatsapp__label {
   font-weight: 500;
   letter-spacing: 0.01em;
-}
-
-.contact-whatsapp__number {
-  font-weight: 400;
-  color: inherit;
-  opacity: 0.65;
-  margin-left: 0.5rem;
-  padding-left: 0.75rem;
-  border-left: 1px solid currentColor;
-}
-
-.contact-whatsapp:hover .contact-whatsapp__number {
-  opacity: 0.85;
 }
 
 /* Submit status messages — success (brand-black) / error (brand-red, functional use) */
